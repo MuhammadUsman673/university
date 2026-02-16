@@ -114,19 +114,20 @@ export default function Hero() {
   // Get badge color based on type
   const getBadgeColor = (type) => {
     switch(type) {
-      case 'Program': return 'bg-blue-100 text-blue-700';
-      case 'Location': return 'bg-green-100 text-green-700';
-      case 'Page': return 'bg-purple-100 text-purple-700';
+      case 'Program': return 'bg-[#355E47]/20 text-[#355E47]';
+      case 'Location': return 'bg-[#2D5F3F]/20 text-[#2D5F3F]';
+      case 'Page': return 'bg-[#3A5F4A]/20 text-[#3A5F4A]';
       default: return 'bg-gray-100 text-gray-700';
     }
   };
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16">
-      {/* Video Background */}
+      {/* Background with exact logo green color #355E47 */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/95 via-indigo-900/90 to-purple-900/95 z-10"></div>
-        <div className="w-full h-full bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-900">
+        {/* Main gradient using exact logo green #355E47 */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#355E47]/95 via-[#2D5F3F]/90 to-[#3A5F4A]/95 z-10"></div>
+        <div className="w-full h-full bg-gradient-to-br from-[#355E47] via-[#2D5F3F] to-[#3A5F4A]">
         </div>
         
         {/* Animated particles */}
@@ -178,7 +179,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-base sm:text-lg md:text-xl text-blue-100 mb-8 md:mb-10 max-w-3xl mx-auto px-4"
+            className="text-base sm:text-lg md:text-xl text-white/90 mb-8 md:mb-10 max-w-3xl mx-auto px-4"
           >
             Discover world-class education across 12 global locations. 
             From London to Dubai, your future starts here.
@@ -199,7 +200,8 @@ export default function Hero() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search programs, courses, or locations..."
-                  className="w-full pl-12 sm:pl-16 pr-24 sm:pr-32 py-3 sm:py-4 md:py-5 rounded-full bg-white/95 backdrop-blur-sm text-gray-800 text-sm sm:text-base md:text-lg focus:outline-none focus:ring-4 focus:ring-blue-400/50 transition-all shadow-2xl"
+                  className="w-full pl-12 sm:pl-16 pr-24 sm:pr-32 py-3 sm:py-4 md:py-5 rounded-full bg-white/95 backdrop-blur-sm text-gray-800 text-sm sm:text-base md:text-lg focus:outline-none focus:ring-4 focus:ring-[#355E47]/50 transition-all shadow-2xl"
+                  autoComplete="off"
                 />
                 {searchQuery && (
                   <button
@@ -212,14 +214,14 @@ export default function Hero() {
                 )}
                 <button 
                   type="submit"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 rounded-full font-semibold text-sm sm:text-base hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-[#355E47] to-[#2D5F3F] text-white px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 rounded-full font-semibold text-sm sm:text-base hover:from-[#2D5F3F] hover:to-[#3A5F4A] transition-all shadow-lg"
                 >
                   Search
                 </button>
               </div>
             </form>
 
-            {/* Search Results Dropdown */}
+            {/* Search Results Dropdown - Suggestions will appear here */}
             {showResults && searchResults.length > 0 && (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
@@ -230,13 +232,13 @@ export default function Hero() {
                   <div
                     key={index}
                     onClick={() => handleResultClick(result.url)}
-                    className="flex items-center justify-between px-6 py-4 hover:bg-blue-50 cursor-pointer transition-colors border-b border-gray-100 last:border-b-0"
+                    className="flex items-center justify-between px-6 py-4 hover:bg-[#355E47]/5 cursor-pointer transition-colors border-b border-gray-100 last:border-b-0"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-lg flex items-center justify-center">
-                        {result.type === 'Program' && <GraduationCap className="w-5 h-5 text-blue-600" />}
-                        {result.type === 'Location' && <Globe className="w-5 h-5 text-green-600" />}
-                        {result.type === 'Page' && <Search className="w-5 h-5 text-purple-600" />}
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#355E47]/20 to-[#2D5F3F]/20 rounded-lg flex items-center justify-center">
+                        {result.type === 'Program' && <GraduationCap className="w-5 h-5 text-[#355E47]" />}
+                        {result.type === 'Location' && <Globe className="w-5 h-5 text-[#2D5F3F]" />}
+                        {result.type === 'Page' && <Search className="w-5 h-5 text-[#3A5F4A]" />}
                       </div>
                       <div className="text-left">
                         <div className="font-semibold text-gray-900">{result.title}</div>
@@ -251,7 +253,7 @@ export default function Hero() {
               </motion.div>
             )}
 
-            {/* No Results */}
+            {/* No Results Message */}
             {showResults && searchResults.length === 0 && searchQuery.trim() !== '' && (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
@@ -273,16 +275,12 @@ export default function Hero() {
           >
             <button 
               onClick={() => router.push('/apply')}
-              className="group relative w-full sm:w-auto px-8 md:px-10 py-3 md:py-4 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold text-base md:text-lg rounded-full overflow-hidden shadow-2xl hover:shadow-amber-500/50 transition-all hover:scale-105"
+              className="group relative w-full sm:w-auto px-8 md:px-10 py-3 md:py-4 bg-gradient-to-r from-[#355E47] to-[#2D5F3F] text-white font-bold text-base md:text-lg rounded-full overflow-hidden shadow-2xl hover:shadow-[#355E47]/50 transition-all hover:scale-105"
             >
               <span className="relative z-10">Apply Now</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-orange-700 translate-y-full group-hover:translate-y-0 transition-transform"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#2D5F3F] to-[#3A5F4A] translate-y-full group-hover:translate-y-0 transition-transform"></div>
             </button>
 
-            <button className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 md:px-10 py-3 md:py-4 bg-white/10 backdrop-blur-sm text-white font-bold text-base md:text-lg rounded-full border-2 border-white/30 hover:bg-white/20 transition-all hover:scale-105">
-              <Play className="w-5 h-5 md:w-6 md:h-6" />
-              <span>Virtual Tour</span>
-            </button>
           </motion.div>
 
           {/* Quick Stats */}
@@ -300,9 +298,9 @@ export default function Hero() {
                 transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
                 className="bg-white/10 backdrop-blur-md rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 border border-white/20 hover:bg-white/15 transition-all"
               >
-                <stat.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-amber-400 mx-auto mb-2 md:mb-3" />
+                <stat.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white/90 mx-auto mb-2 md:mb-3" />
                 <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-1">{stat.value}</div>
-                <div className="text-xs sm:text-sm text-blue-200">{stat.label}</div>
+                <div className="text-xs sm:text-sm text-white/80">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>

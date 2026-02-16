@@ -1,175 +1,170 @@
 'use client';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, MapPin, Clock, Users, ArrowRight, Filter, GraduationCap } from 'lucide-react';
+import { Search, Clock, Users, ArrowRight, GraduationCap, ChevronDown, ChevronUp } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Programs() {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedLocation, setSelectedLocation] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [expandedDescriptions, setExpandedDescriptions] = useState([]);
 
-  const categories = ['All', 'Business', 'Engineering', 'Medical', 'Arts', 'Computer Science', 'Law'];
-  
-  const locationFilters = ['All', 'UK', 'International'];
+  const categories = ['All', 'Business', 'Technology', 'Health', 'Law', 'Psychology', 'Hospitality'];
 
   const programs = [
     {
       id: 1,
-      title: 'MBA - Master of Business Administration',
+      title: 'BA (Hons) Business and Management',
       category: 'Business',
-      location: 'London',
-      locationType: 'UK',
-      duration: '2 Years',
-      students: '250+',
-      description: 'Transform your career with our prestigious MBA program designed for future leaders.',
-      image: '/programs/mba.jpg',
-      color: 'from-blue-600 to-indigo-600'
+      duration: '1, 2, 3, or 4 years',
+      students: '350+',
+      description: 'Develop the skills and knowledge to lead in today\'s competitive business world. Our flexible Business Management program lets you choose a study path to match your goals.',
+      fullDescription: 'Develop the skills and knowledge to lead in today\'s competitive business world. Our flexible Business Management program lets you choose a 1, 2, 3, or 4-year study path to match your goals. Gain expertise in leadership, marketing, finance, and strategic planning—preparing you for a successful career in any industry.',
+      image: '/hons.webp',
+      icon: '📊'
     },
     {
       id: 2,
-      title: 'BSc Computer Science',
-      category: 'Computer Science',
-      location: 'Manchester',
-      locationType: 'UK',
-      duration: '3 Years',
-      students: '180+',
-      description: 'Master cutting-edge technologies and become a software engineering expert.',
-      image: '/programs/cs.jpg',
-      color: 'from-purple-600 to-pink-600'
+      title: 'BSc (Hons) Cyber Security',
+      category: 'Technology',
+      duration: '2, 3, or 4 years',
+      students: '280+',
+      description: 'Protect the digital world with our flexible Cybersecurity program. Gain hands-on skills in ethical hacking, network security, and digital forensics.',
+      fullDescription: 'Protect the digital world with our flexible Cybersecurity program, offered over 2, 3, or 4 years. Gain hands-on skills in ethical hacking, network security, risk management, and digital forensics. This course prepares you for in-demand careers defending systems, data, and infrastructure in a rapidly evolving tech landscape.',
+      image: '/cyber.webp',
+      icon: '🔒'
     },
     {
       id: 3,
-      title: 'MBBS - Medicine & Surgery',
-      category: 'Medical',
-      location: 'Birmingham',
-      locationType: 'UK',
-      duration: '5 Years',
-      students: '120+',
-      description: 'Join our world-renowned medical program and save lives.',
-      image: '/programs/medical.jpg',
-      color: 'from-red-600 to-orange-600'
+      title: 'BSc (Hons) Accounting and Finance',
+      category: 'Business',
+      duration: '2 or 4 years',
+      students: '320+',
+      description: 'Build a strong foundation for a successful career in finance with our Accounting and Finance program. Learn essential skills in financial management and investment analysis.',
+      fullDescription: 'Build a strong foundation for a successful career in finance with our 2 or 4-year Accounting and Finance program. Learn essential skills in financial management, auditing, taxation, and investment analysis. This course combines theory with practical application to prepare you for professional roles in accounting, banking, and corporate finance.',
+      image: '/accouting.webp',
+      icon: '💰'
     },
     {
       id: 4,
-      title: 'BEng Mechanical Engineering',
-      category: 'Engineering',
-      location: 'Leeds',
-      locationType: 'UK',
-      duration: '4 Years',
-      students: '200+',
-      description: 'Design the future with our comprehensive engineering curriculum.',
-      image: '/programs/engineering.jpg',
-      color: 'from-green-600 to-teal-600'
+      title: 'BSc (Hons) Health and Social Care',
+      category: 'Health',
+      duration: '1, 2, 3, or 4 years',
+      students: '240+',
+      description: 'Prepare for a rewarding career supporting individuals and communities. Gain practical skills and essential knowledge in care, safeguarding, and health systems.',
+      fullDescription: 'Prepare for a rewarding career supporting individuals and communities. Our flexible Health and Social Care program offers 1, 2, 3, or 4-year options to suit your needs. You\'ll gain practical skills and essential knowledge in care, safeguarding, communication, and health systems—perfect for roles in healthcare, social work, or community support.',
+      image: '/health.webp',
+      icon: '🏥'
     },
     {
       id: 5,
-      title: 'LLB Law',
-      category: 'Law',
-      location: 'Nottingham',
-      locationType: 'UK',
-      duration: '3 Years',
-      students: '150+',
-      description: 'Build a prestigious legal career with our expert faculty.',
-      image: '/programs/law.jpg',
-      color: 'from-amber-600 to-yellow-600'
+      title: 'BSc Computer Science',
+      category: 'Technology',
+      duration: '3 or 4 years',
+      students: '400+',
+      description: 'Build a future in tech with our flexible Computing program. Learn core skills in programming, networking, cybersecurity, and software development.',
+      fullDescription: 'Build a future in tech with our flexible Computing program, available in 3 or 4-year study options. Learn core skills in programming, networking, cybersecurity, and software development. Whether you\'re starting out or advancing your knowledge, this course prepares you for a wide range of roles in the digital and IT industries.',
+      image: '/computer.webp',
+      icon: '💻'
     },
     {
       id: 6,
-      title: 'BA International Relations',
-      category: 'Arts',
-      location: 'Leicester',
-      locationType: 'UK',
-      duration: '3 Years',
-      students: '100+',
-      description: 'Understand global politics and diplomacy in depth.',
-      image: '/programs/international.jpg',
-      color: 'from-cyan-600 to-blue-600'
+      title: 'BSc (Hons) Data Science',
+      category: 'Technology',
+      duration: '3 or 4 years',
+      students: '180+',
+      description: 'Turn data into insight with our comprehensive Data Science program. Develop expertise in data analysis, programming, statistics, and machine learning.',
+      fullDescription: 'Turn data into insight with our comprehensive Data Science program, available over 3 or 4 years. Develop expertise in data analysis, programming, statistics, and machine learning. This course equips you with the practical and analytical skills needed to solve real-world problems and succeed in today\'s data-driven industries.',
+      image: '/data science.webp',
+      icon: '📈'
     },
     {
       id: 7,
-      title: 'MBA Global Business',
-      category: 'Business',
-      location: 'Dubai',
-      locationType: 'International',
-      duration: '18 Months',
-      students: '300+',
-      description: 'Experience business education in the heart of the Middle East.',
-      image: '/programs/dubai-mba.jpg',
-      color: 'from-indigo-600 to-purple-600'
+      title: 'BSc Psychology',
+      category: 'Psychology',
+      duration: '3 or 4 years',
+      students: '290+',
+      description: 'Explore the science of the mind and human behavior with our Psychology program. Gain a deep understanding of cognitive, social, developmental, and clinical psychology.',
+      fullDescription: 'Explore the science of the mind and human behavior with our Psychology program, available over 3 or 4 years. Gain a deep understanding of cognitive, social, developmental, and clinical psychology while developing strong research and analytical skills. This course prepares you for diverse careers in mental health, education, research, and beyond.',
+      image: '/pycholgy.webp',
+      icon: '🧠'
     },
     {
       id: 8,
-      title: 'BSc Data Science',
-      category: 'Computer Science',
-      location: 'Malta',
-      locationType: 'International',
-      duration: '3 Years',
-      students: '90+',
-      description: 'Master AI and machine learning in Mediterranean paradise.',
-      image: '/programs/data.jpg',
-      color: 'from-violet-600 to-fuchsia-600'
+      title: 'BA (Hons) Criminology and Psychology',
+      category: 'Psychology',
+      duration: '3 or 4 years',
+      students: '160+',
+      description: 'Explore the relationship between crime, behavior, and society. Combines the scientific study of the mind with an in-depth understanding of criminal behavior.',
+      fullDescription: 'Explore the relationship between crime, behavior, and society with our BA (Hons) Criminology and Psychology degree. Available over 3 or 4 years, this course combines the scientific study of the mind with an in-depth understanding of criminal behavior, justice systems, and social impact. Develop critical thinking, research, and analytical skills to prepare for careers in criminal justice, psychology, law enforcement, and social services.',
+      image: '/criminology.webp',
+      icon: '⚖️'
     },
     {
       id: 9,
-      title: 'BBA International Business',
-      category: 'Business',
-      location: 'Paris',
-      locationType: 'International',
-      duration: '3 Years',
+      title: 'LLB (Hons) Law',
+      category: 'Law',
+      duration: '3 or 4 years',
       students: '220+',
-      description: 'Study business in the fashion and culture capital of Europe.',
-      image: '/programs/paris-bba.jpg',
-      color: 'from-rose-600 to-pink-600'
+      description: 'Gain a solid foundation in legal knowledge and critical thinking. Covers criminal law, contract law, constitutional law, and human rights.',
+      fullDescription: 'Gain a solid foundation in legal knowledge and critical thinking with our LLB (Hons) Law degree, available over 3 or 4 years. This course covers key areas such as criminal law, contract law, constitutional law, and human rights, while developing your analytical, research, and advocacy skills. Prepare for a successful career in law, business, or public service with a degree that opens doors to diverse professional pathways.',
+      image: '/llb.webp',
+      icon: '⚖️'
     },
     {
       id: 10,
-      title: 'MSc Artificial Intelligence',
-      category: 'Computer Science',
-      location: 'Heidelberg',
-      locationType: 'International',
-      duration: '2 Years',
-      students: '140+',
-      description: 'Advance AI research in Germany\'s oldest university town.',
-      image: '/programs/ai.jpg',
-      color: 'from-sky-600 to-cyan-600'
+      title: 'BSc (Hons) International Hospitality and Tourism Management',
+      category: 'Hospitality',
+      duration: '3 or 4 years',
+      students: '150+',
+      description: 'Discover the dynamic world of global hospitality and tourism. Combines business management principles with practical industry insights.',
+      fullDescription: 'Discover the dynamic world of global hospitality and tourism with our BSc (Hons) International Hospitality and Tourism Management degree. Offered over 3 or 4 years, this course combines business management principles with practical industry insights. Explore key skills in customer service, leadership, and project management.',
+      image: '/international.webp',
+      icon: '🏨'
     },
     {
       id: 11,
-      title: 'BSc Environmental Science',
-      category: 'Engineering',
-      location: 'Tampa USA',
-      locationType: 'International',
-      duration: '4 Years',
-      students: '110+',
-      description: 'Lead the fight against climate change with cutting-edge research.',
-      image: '/programs/env.jpg',
-      color: 'from-emerald-600 to-green-600'
+      title: 'BSc (Hons) Digital Marketing',
+      category: 'Business',
+      duration: '3 or 4 years',
+      students: '200+',
+      description: 'Master the art of online engagement with our Digital Marketing degree. Covers social media marketing, SEO, analytics, branding, and digital advertising.',
+      fullDescription: 'Master the art of online engagement with our BSc (Hons) Digital Marketing degree, available over 3 or 4 years. This course blends creativity with data-driven strategy, covering key areas such as social media marketing, SEO, analytics, branding, and digital advertising. Gain the skills needed to succeed in today\'s digital economy.',
+      image: '/digital marketing.webp',
+      icon: '📱'
     },
     {
       id: 12,
-      title: 'BA Fine Arts',
-      category: 'Arts',
-      location: 'Madrid',
-      locationType: 'International',
-      duration: '4 Years',
-      students: '80+',
-      description: 'Unleash your creativity in Spain\'s vibrant artistic hub.',
-      image: '/programs/arts.jpg',
-      color: 'from-orange-600 to-red-600'
+      title: 'BSc (Hons) Project Management',
+      category: 'Business',
+      duration: '3 or 4 years',
+      students: '170+',
+      description: 'Develop the skills to lead projects successfully across industries. Learn key principles in planning, risk management, budgeting, and leadership.',
+      fullDescription: 'Develop the skills to lead projects successfully across industries with our BSc (Hons) Project Management degree, offered over 3 or 4 years. Learn key principles in planning, risk management, budgeting, and leadership while gaining practical experience through real-world projects.',
+      image: '/project.webp',
+      icon: '📋'
     }
   ];
 
   // Filter logic
   const filteredPrograms = programs.filter(program => {
     const matchesCategory = selectedCategory === 'All' || program.category === selectedCategory;
-    const matchesLocation = selectedLocation === 'All' || program.locationType === selectedLocation;
     const matchesSearch = program.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         program.location.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesLocation && matchesSearch;
+                         program.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         program.fullDescription.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
   });
 
+  const toggleDescription = (id) => {
+    setExpandedDescriptions(prev =>
+      prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]
+    );
+  };
+
+  const isExpanded = (id) => expandedDescriptions.includes(id);
+
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 via-blue-50/30 to-indigo-50/30">
+    <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-emerald-50/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -179,15 +174,15 @@ export default function Programs() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
             <GraduationCap className="w-4 h-4" />
-            Our Programs
+            Academic Programs
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Explore World-Class Programs
+            Explore Flexible Degree Programs
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover over 50 programs across 12 global locations designed to shape your future
+            Choose from a wide range of programs with flexible duration options to match your career goals
           </p>
         </motion.div>
 
@@ -206,8 +201,8 @@ export default function Programs() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search programs or locations..."
-              className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-all text-gray-800 bg-white shadow-sm"
+              placeholder="Search programs or keywords..."
+              className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gray-200 focus:border-emerald-500 focus:outline-none transition-all text-gray-800 bg-white shadow-sm"
             />
           </div>
 
@@ -219,29 +214,11 @@ export default function Programs() {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-6 py-3 rounded-full font-semibold transition-all ${
                   selectedCategory === category
-                    ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/30'
+                    ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-500/30'
                     : 'bg-white text-gray-700 hover:bg-gray-100 border-2 border-gray-200'
                 }`}
               >
                 {category}
-              </button>
-            ))}
-          </div>
-
-          {/* Location Filters */}
-          <div className="flex gap-3 justify-center">
-            {locationFilters.map((location) => (
-              <button
-                key={location}
-                onClick={() => setSelectedLocation(location)}
-                className={`px-6 py-2.5 rounded-full font-medium transition-all flex items-center gap-2 ${
-                  selectedLocation === location
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
-                }`}
-              >
-                <MapPin className="w-4 h-4" />
-                {location}
               </button>
             ))}
           </div>
@@ -253,13 +230,13 @@ export default function Programs() {
           animate={{ opacity: 1 }}
           className="text-center mb-8 text-gray-600"
         >
-          Showing <span className="font-bold text-blue-600">{filteredPrograms.length}</span> programs
+          Showing <span className="font-bold text-emerald-600">{filteredPrograms.length}</span> programs
         </motion.div>
 
         {/* Programs Grid */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={selectedCategory + selectedLocation + searchQuery}
+            key={selectedCategory + searchQuery}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -274,31 +251,46 @@ export default function Programs() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               >
-                {/* Image with Gradient Overlay */}
+                {/* Image without overlay */}
                 <div className="relative h-48 overflow-hidden">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${program.color} opacity-90`}></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <GraduationCap className="w-20 h-20 text-white/30" />
-                  </div>
-                  <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-semibold">
-                    {program.locationType}
+                  <Image
+                    src={program.image}
+                    alt={program.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1.5 rounded-lg text-xs font-bold">
+                    {program.icon} {program.category}
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                    <MapPin className="w-4 h-4" />
-                    <span>{program.location}</span>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                <div className="p-6 flex flex-col h-[calc(100%-12rem)]">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors">
                     {program.title}
                   </h3>
 
-                  <p className="text-gray-600 mb-4 line-clamp-2">
-                    {program.description}
-                  </p>
+                  {/* Description with See More link */}
+                  <div className="mb-4 flex-grow">
+                    <p className={`text-gray-600 ${!isExpanded(program.id) ? 'line-clamp-3' : ''}`}>
+                      {isExpanded(program.id) ? program.fullDescription : program.description}
+                    </p>
+                    <button
+                      onClick={() => toggleDescription(program.id)}
+                      className="text-emerald-600 hover:text-emerald-700 font-medium text-sm mt-2 flex items-center gap-1 transition-colors"
+                    >
+                      {isExpanded(program.id) ? (
+                        <>
+                          Show less <ChevronUp className="w-3 h-3" />
+                        </>
+                      ) : (
+                        <>
+                          See more <ChevronDown className="w-3 h-3" />
+                        </>
+                      )}
+                    </button>
+                  </div>
 
                   {/* Meta Info */}
                   <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
@@ -313,8 +305,8 @@ export default function Programs() {
                   </div>
 
                   {/* CTA */}
-                  <button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:from-blue-700 hover:to-indigo-700 transition-all group-hover:shadow-lg">
-                    Learn More
+                  <button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:from-emerald-700 hover:to-teal-700 transition-all group-hover:shadow-lg shadow-emerald-500/30 mt-auto">
+                    View Program Details
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
@@ -343,9 +335,7 @@ export default function Programs() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <button className="px-10 py-4 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold text-lg rounded-full hover:shadow-xl hover:shadow-amber-500/30 transition-all hover:scale-105">
-            View All Programs
-          </button>
+          <p className="text-gray-500 text-sm mt-4">Contact our admissions team for personalized guidance</p>
         </motion.div>
       </div>
     </section>

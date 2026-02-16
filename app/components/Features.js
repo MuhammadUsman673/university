@@ -114,7 +114,8 @@ export default function Features() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0.05
       }
     }
   };
@@ -125,7 +126,8 @@ export default function Features() {
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 0.5
+        duration: 0.5,
+        ease: "easeOut"
       }
     }
   };
@@ -142,17 +144,17 @@ export default function Features() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 shadow-md">
             <Star className="w-4 h-4" />
             Why Choose Uni Vivamus
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Excellence in Every Aspect
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Discover what makes us the preferred choice for students worldwide seeking world-class education
           </p>
         </motion.div>
@@ -172,7 +174,7 @@ export default function Features() {
               className="group relative"
             >
               {/* Card */}
-              <div className={`h-full ${feature.bgColor} rounded-2xl p-8 border-2 border-transparent hover:border-gray-200 transition-all duration-300 hover:shadow-xl cursor-pointer`}>
+              <div className={`h-full ${feature.bgColor} rounded-2xl p-8 border-2 border-transparent hover:border-gray-200 transition-all duration-300 hover:shadow-xl cursor-pointer relative overflow-hidden`}>
                 {/* Gradient Overlay on Hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`}></div>
                 
@@ -181,7 +183,7 @@ export default function Features() {
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className={`${feature.iconBg} w-16 h-16 rounded-xl flex items-center justify-center relative z-10`}
+                    className={`${feature.iconBg} w-16 h-16 rounded-xl flex items-center justify-center relative z-10 shadow-sm`}
                   >
                     <feature.icon className={`w-8 h-8 ${feature.iconColor}`} />
                   </motion.div>
@@ -191,7 +193,7 @@ export default function Features() {
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -202,7 +204,7 @@ export default function Features() {
                 <motion.div
                   initial={{ opacity: 0, x: -10 }}
                   whileHover={{ opacity: 1, x: 0 }}
-                  className="mt-4 flex items-center gap-2 text-blue-600 font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="mt-4 flex items-center gap-2 text-blue-600 font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 >
                   <span>Learn more</span>
                   <Rocket className="w-4 h-4" />
@@ -212,34 +214,42 @@ export default function Features() {
           ))}
         </motion.div>
 
-        {/* Bottom CTA Section */}
+        {/* Bottom CTA Section - Updated with your green colors */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-20 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden"
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+          className="mt-20 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden shadow-xl"
         >
+          {/* Background with your specified green gradient */}
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/95 via-teal-900/90 to-green-900/95 z-10"></div>
+            <div className="w-full h-full bg-gradient-to-br from-emerald-900 via-teal-800 to-green-900"></div>
+          </div>
+
           {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 opacity-10 z-20">
             <div className="absolute top-0 left-1/4 w-64 h-64 bg-white rounded-full filter blur-3xl"></div>
             <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-white rounded-full filter blur-3xl"></div>
           </div>
 
-          <div className="relative z-10">
+          <div className="relative z-30">
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Ready to Transform Your Future?
             </h3>
-            <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-emerald-100 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
               Join 15,000+ students who have already started their journey to success with Uni Vivamus
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-10 py-4 bg-white text-blue-600 font-bold text-lg rounded-full hover:bg-blue-50 transition-all shadow-xl hover:scale-105">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-10 py-4 bg-white text-emerald-900 font-bold text-lg rounded-full hover:bg-emerald-50 transition-all shadow-xl"
+              >
                 Apply Now
-              </button>
-              <button className="px-10 py-4 bg-white/10 backdrop-blur-sm text-white font-bold text-lg rounded-full border-2 border-white/30 hover:bg-white/20 transition-all hover:scale-105">
-                Schedule a Tour
-              </button>
+              </motion.button>
+             
             </div>
           </div>
         </motion.div>

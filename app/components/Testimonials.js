@@ -127,21 +127,21 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-amber-50 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="py-16 bg-gradient-to-br from-emerald-50 via-white to-teal-50 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4">
         
-        {/* Section Header */}
-        <div className="text-center mb-16">
+        {/* Section Header - Reduced font sizes */}
+        <div className="text-center mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4 font-['Playfair_Display']">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-3">
               Student Success Stories
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base text-gray-600 max-w-2xl mx-auto">
               Hear from our graduates who are making their mark in the world
             </p>
           </motion.div>
@@ -151,7 +151,7 @@ const Testimonials = () => {
         <div className="relative">
           
           {/* Main Testimonial Card */}
-          <div className="relative h-[500px] md:h-[450px] flex items-center justify-center">
+          <div className="relative h-[450px] md:h-[400px] flex items-center justify-center">
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={currentIndex}
@@ -178,66 +178,66 @@ const Testimonials = () => {
                 className="absolute w-full"
               >
                 <div className="max-w-4xl mx-auto">
-                  <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 relative overflow-hidden">
+                  <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 relative overflow-hidden">
                     
-                    {/* Decorative Elements */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-400/20 to-transparent rounded-bl-full"></div>
-                    <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-slate-200/50 to-transparent rounded-tr-full"></div>
+                    {/* Decorative Elements - Green theme */}
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-emerald-400/20 to-transparent rounded-bl-full"></div>
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-teal-200/50 to-transparent rounded-tr-full"></div>
                     
                     {/* Quote Icon */}
-                    <div className="absolute top-8 left-8 opacity-10">
-                      <Quote size={80} className="text-amber-500" />
+                    <div className="absolute top-6 left-6 opacity-10">
+                      <Quote size={60} className="text-emerald-500" />
                     </div>
 
                     <div className="relative z-10">
                       {/* Profile Section */}
-                      <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
+                      <div className="flex flex-col md:flex-row items-center gap-5 mb-6">
                         <motion.div
                           whileHover={{ scale: 1.05 }}
                           className="relative"
                         >
-                          <div className="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden ring-4 ring-amber-400 shadow-xl">
+                          <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-4 ring-emerald-400 shadow-lg">
                             <img 
                               src={testimonials[currentIndex].image} 
                               alt={testimonials[currentIndex].name}
                               className="w-full h-full object-cover"
                             />
                           </div>
-                          <div className="absolute -bottom-2 -right-2 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                          <div className="absolute -bottom-2 -right-2 bg-emerald-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
                             {testimonials[currentIndex].year}
                           </div>
                         </motion.div>
                         
                         <div className="text-center md:text-left flex-1">
-                          <h3 className="text-2xl font-bold text-slate-800 mb-1">
+                          <h3 className="text-xl font-bold text-slate-800 mb-1">
                             {testimonials[currentIndex].name}
                           </h3>
-                          <p className="text-amber-600 font-semibold mb-1">
+                          <p className="text-emerald-600 font-semibold text-sm mb-1">
                             {testimonials[currentIndex].role}
                           </p>
-                          <p className="text-gray-500 text-sm mb-2">
+                          <p className="text-gray-500 text-xs mb-2">
                             {testimonials[currentIndex].location}
                           </p>
                           
                           {/* Rating Stars */}
-                          <div className="flex gap-1 justify-center md:justify-start">
+                          <div className="flex gap-0.5 justify-center md:justify-start">
                             {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                              <Star key={i} size={18} className="fill-amber-400 text-amber-400" />
+                              <Star key={i} size={16} className="fill-emerald-400 text-emerald-400" />
                             ))}
                           </div>
                         </div>
 
                         {/* Program Badge */}
-                        <div className="bg-gradient-to-r from-slate-100 to-amber-50 px-4 py-2 rounded-full border border-amber-200">
-                          <p className="text-sm font-semibold text-slate-700">
+                        <div className="bg-gradient-to-r from-emerald-50 to-teal-50 px-3 py-1.5 rounded-full border border-emerald-200">
+                          <p className="text-xs font-semibold text-emerald-700">
                             {testimonials[currentIndex].program}
                           </p>
                         </div>
                       </div>
 
-                      {/* Testimonial Text */}
-                      <div className="bg-gradient-to-br from-slate-50 to-amber-50/30 rounded-2xl p-6 md:p-8">
-                        <p className="text-lg md:text-xl text-gray-700 leading-relaxed italic">
+                      {/* Testimonial Text - Reduced font size */}
+                      <div className="bg-gradient-to-br from-emerald-50 to-teal-50/30 rounded-xl p-5">
+                        <p className="text-base text-gray-700 leading-relaxed italic">
                           "{testimonials[currentIndex].text}"
                         </p>
                       </div>
@@ -248,47 +248,47 @@ const Testimonials = () => {
             </AnimatePresence>
           </div>
 
-          {/* Navigation Arrows */}
+          {/* Navigation Arrows - Green theme */}
           <button
             onClick={prevTestimonial}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-white hover:bg-amber-500 text-slate-700 hover:text-white rounded-full shadow-xl flex items-center justify-center transition-all hover:scale-110 z-20"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-10 h-10 bg-white hover:bg-emerald-500 text-slate-700 hover:text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 z-20"
             aria-label="Previous testimonial"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={20} />
           </button>
           
           <button
             onClick={nextTestimonial}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-white hover:bg-amber-500 text-slate-700 hover:text-white rounded-full shadow-xl flex items-center justify-center transition-all hover:scale-110 z-20"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-10 h-10 bg-white hover:bg-emerald-500 text-slate-700 hover:text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 z-20"
             aria-label="Next testimonial"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={20} />
           </button>
         </div>
 
         {/* Dots Navigation */}
-        <div className="flex justify-center gap-3 mt-8">
+        <div className="flex justify-center gap-2 mt-6">
           {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => goToTestimonial(index)}
               className={`transition-all ${
                 index === currentIndex 
-                  ? 'w-12 h-3 bg-amber-500' 
-                  : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
+                  ? 'w-10 h-2 bg-emerald-500' 
+                  : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
               } rounded-full`}
               aria-label={`Go to testimonial ${index + 1}`}
             />
           ))}
         </div>
 
-        {/* Stats Section */}
+        {/* Stats Section - Reduced font sizes */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
+          className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4"
         >
           {[
             { value: '98%', label: 'Student Satisfaction' },
@@ -296,11 +296,11 @@ const Testimonials = () => {
             { value: '4.9/5', label: 'Average Rating' },
             { value: '95%', label: 'Employment Rate' },
           ].map((stat, index) => (
-            <div key={index} className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
-              <div className="text-3xl md:text-4xl font-bold text-amber-600 mb-2">
+            <div key={index} className="bg-white rounded-lg p-4 text-center shadow-md hover:shadow-lg transition-shadow">
+              <div className="text-2xl font-bold text-emerald-600 mb-1">
                 {stat.value}
               </div>
-              <div className="text-sm text-gray-600 font-medium">
+              <div className="text-xs text-gray-600 font-medium">
                 {stat.label}
               </div>
             </div>

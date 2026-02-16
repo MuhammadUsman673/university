@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, ArrowRight, TrendingUp, Users, Award, Globe } from 'lucide-react';
+import { Calendar, Clock, TrendingUp, Users, Award, Globe, Mail } from 'lucide-react';
 
 export default function News() {
   const newsArticles = [
@@ -11,9 +11,9 @@ export default function News() {
       date: 'January 28, 2026',
       readTime: '5 min read',
       excerpt: 'Our commitment to excellence has placed us among the world\'s leading educational institutions for the third consecutive year.',
-      image: '/news/ranking.jpg',
       icon: TrendingUp,
-      color: 'from-blue-600 to-indigo-600'
+      color: 'from-emerald-600 to-teal-600',
+      bgColor: 'bg-emerald-50'
     },
     {
       id: 2,
@@ -22,9 +22,9 @@ export default function News() {
       date: 'January 25, 2026',
       readTime: '4 min read',
       excerpt: 'State-of-the-art facility to drive breakthrough research in artificial intelligence and machine learning.',
-      image: '/news/ai-center.jpg',
       icon: Award,
-      color: 'from-purple-600 to-pink-600'
+      color: 'from-teal-600 to-emerald-600',
+      bgColor: 'bg-teal-50'
     },
     {
       id: 3,
@@ -33,9 +33,9 @@ export default function News() {
       date: 'January 22, 2026',
       readTime: '6 min read',
       excerpt: 'Students can now experience education across five continents with our enhanced partnership network.',
-      image: '/news/exchange.jpg',
       icon: Globe,
-      color: 'from-green-600 to-teal-600'
+      color: 'from-green-600 to-emerald-600',
+      bgColor: 'bg-green-50'
     },
     {
       id: 4,
@@ -44,9 +44,9 @@ export default function News() {
       date: 'January 20, 2026',
       readTime: '3 min read',
       excerpt: 'Our graduates continue to excel in the job market with top companies worldwide.',
-      image: '/news/employment.jpg',
       icon: Users,
-      color: 'from-amber-600 to-orange-600'
+      color: 'from-emerald-600 to-green-600',
+      bgColor: 'bg-emerald-50'
     }
   ];
 
@@ -90,40 +90,34 @@ export default function News() {
   ];
 
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <section className="py-16 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header - Smaller font sizes */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
-          <div className="inline-flex items-center gap-2 bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-            <Calendar className="w-4 h-4" />
+          <div className="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded-full text-xs font-medium mb-3">
+            <Calendar className="w-3.5 h-3.5" />
             Latest Updates
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
             News & Events
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base text-gray-600 max-w-2xl mx-auto">
             Stay updated with the latest happenings across our global campuses
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Latest News - Left Side (2/3) */}
           <div className="lg:col-span-2">
-            <div className="flex items-center justify-between mb-8">
-              <h3 className="text-2xl font-bold text-gray-900">Latest News</h3>
-              <button className="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-2 group">
-                View All
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-6">Latest News</h3>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {newsArticles.map((article, index) => (
                 <motion.div
                   key={article.id}
@@ -131,46 +125,38 @@ export default function News() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group bg-gradient-to-br from-gray-50 to-blue-50/30 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  className="group bg-gradient-to-br from-gray-50 to-emerald-50/30 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100"
                 >
-                  <div className="flex flex-col md:flex-row">
-                    {/* Image */}
-                    <div className="relative md:w-1/3 h-48 md:h-auto overflow-hidden">
-                      <div className={`absolute inset-0 bg-gradient-to-br ${article.color} opacity-90`}></div>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <article.icon className="w-16 h-16 text-white/40" />
+                  {/* Content without image */}
+                  <div className="p-5">
+                    <div className="flex items-center gap-4 text-xs text-gray-500 mb-2">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="w-3.5 h-3.5" />
+                        <span>{article.date}</span>
                       </div>
-                      <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-semibold">
-                        {article.category}
+                      <div className="flex items-center gap-1">
+                        <Clock className="w-3.5 h-3.5" />
+                        <span>{article.readTime}</span>
                       </div>
                     </div>
 
-                    {/* Content */}
-                    <div className="p-6 md:w-2/3">
-                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          <span>{article.date}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Clock className="w-4 h-4" />
-                          <span>{article.readTime}</span>
-                        </div>
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className={`${article.bgColor} p-2.5 rounded-lg`}>
+                        <article.icon className={`w-5 h-5 ${article.color.replace('from-', 'text-').split(' ')[0]}`} />
                       </div>
-
-                      <h4 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                        {article.title}
-                      </h4>
-
-                      <p className="text-gray-600 mb-4 line-clamp-2">
-                        {article.excerpt}
-                      </p>
-
-                      <button className="text-blue-600 font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
-                        Read More
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
+                      <div className="flex-1">
+                        <div className="inline-block bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-semibold mb-2">
+                          {article.category}
+                        </div>
+                        <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
+                          {article.title}
+                        </h4>
+                      </div>
                     </div>
+
+                    <p className="text-sm text-gray-600">
+                      {article.excerpt}
+                    </p>
                   </div>
                 </motion.div>
               ))}
@@ -179,12 +165,10 @@ export default function News() {
 
           {/* Upcoming Events - Right Side (1/3) */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24">
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="text-2xl font-bold text-gray-900">Upcoming Events</h3>
-              </div>
+            <div className="sticky top-20">
+              <h3 className="text-xl font-bold text-gray-900 mb-6">Upcoming Events</h3>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {upcomingEvents.map((event, index) => (
                   <motion.div
                     key={event.id}
@@ -192,86 +176,77 @@ export default function News() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="group bg-white border-2 border-gray-200 rounded-xl p-5 hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer"
+                    className="group bg-white border border-gray-200 rounded-lg p-4 hover:border-emerald-500 hover:shadow-md transition-all"
                   >
                     {/* Date Badge */}
-                    <div className="flex items-start gap-4 mb-3">
-                      <div className="bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-lg p-3 text-center min-w-[60px]">
-                        <div className="text-2xl font-bold leading-none mb-1">
+                    <div className="flex items-start gap-3 mb-2">
+                      <div className="bg-gradient-to-br from-emerald-600 to-teal-600 text-white rounded-lg p-2.5 text-center min-w-[50px]">
+                        <div className="text-lg font-bold leading-none mb-1">
                           {event.date.split(' ')[1].replace(',', '')}
                         </div>
-                        <div className="text-xs uppercase">
+                        <div className="text-[10px] uppercase">
                           {event.date.split(' ')[0]}
                         </div>
                       </div>
 
                       <div className="flex-1">
-                        <div className="inline-block bg-indigo-100 text-indigo-700 px-2 py-1 rounded text-xs font-semibold mb-2">
+                        <div className="inline-block bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded text-xs font-semibold mb-1.5">
                           {event.type}
                         </div>
-                        <h4 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
+                        <h4 className="font-bold text-gray-900 text-sm group-hover:text-emerald-600 transition-colors">
                           {event.title}
                         </h4>
                       </div>
                     </div>
 
                     {/* Details */}
-                    <div className="space-y-2 text-sm text-gray-600 ml-[76px]">
-                      <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-gray-400" />
+                    <div className="space-y-1 text-xs text-gray-600 ml-[62px]">
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-gray-400" />
                         <span>{event.time}</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-gray-400" />
+                      <div className="flex items-center gap-1.5">
+                        <Calendar className="w-3.5 h-3.5 text-gray-400" />
                         <span>{event.location}</span>
                       </div>
-                      <div className="flex items-center justify-between pt-2 border-t border-gray-200">
-                        <span className="text-green-600 font-semibold text-xs">
+                      <div className="pt-1.5 border-t border-gray-200 mt-1.5">
+                        <span className={`text-xs font-semibold ${event.spots === 'Unlimited' ? 'text-emerald-600' : 'text-amber-600'}`}>
                           {event.spots}
                         </span>
-                        <button className="text-blue-600 font-semibold text-xs hover:underline">
-                          Register →
-                        </button>
                       </div>
                     </div>
                   </motion.div>
                 ))}
               </div>
-
-              {/* View All Events Button */}
-              <motion.button
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                className="w-full mt-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-xl"
-              >
-                View All Events
-              </motion.button>
             </div>
           </div>
         </div>
 
-        {/* Newsletter Subscription */}
+        {/* Newsletter Subscription - Smaller */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-20 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-3xl p-8 md:p-12 text-center text-white"
+          className="mt-12 bg-gradient-to-r from-emerald-900 via-teal-900 to-green-900 rounded-2xl p-6 md:p-8 text-center text-white"
         >
-          <h3 className="text-3xl md:text-4xl font-bold mb-4">
+          <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-medium mb-3">
+            <Mail className="w-3.5 h-3.5" />
+            Stay Connected
+          </div>
+          <h3 className="text-xl md:text-2xl font-bold mb-3">
             Never Miss an Update
           </h3>
-          <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-emerald-100 text-sm mb-6 max-w-xl mx-auto">
             Subscribe to our newsletter and get the latest news, events, and opportunities delivered to your inbox
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-6 py-4 rounded-full text-gray-800 focus:outline-none focus:ring-4 focus:ring-white/30"
+              className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/30 text-white placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all text-sm"
             />
-            <button className="bg-white text-blue-600 px-8 py-4 rounded-full font-bold hover:bg-blue-50 transition-all shadow-lg">
+            <button className="bg-white text-emerald-900 px-6 py-3 rounded-lg font-semibold text-sm hover:bg-emerald-50 transition-all shadow-sm">
               Subscribe
             </button>
           </div>

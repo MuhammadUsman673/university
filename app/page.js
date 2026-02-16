@@ -13,7 +13,7 @@ export default function Home() {
       <Hero />
       <Features />
       <Programs />
-      <StatsCounter />
+      <StatsCounter />  
       <News />
       <Testimonials />
       <Partners />

@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, ExternalLink } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowRight } from 'lucide-react';
 
 export default function CampusLocations() {
   const locations = [
@@ -13,7 +13,7 @@ export default function CampusLocations() {
           phone: "+44 20 7123 4567",
           email: "london@univavamus.com",
           students: "3,500+",
-          color: "from-blue-500 to-cyan-500"
+          color: "from-emerald-500 to-teal-500"
         },
         {
           city: "Manchester",
@@ -21,7 +21,7 @@ export default function CampusLocations() {
           phone: "+44 161 234 5678",
           email: "manchester@univavamus.com",
           students: "2,000+",
-          color: "from-indigo-500 to-blue-500"
+          color: "from-teal-500 to-emerald-500"
         },
         {
           city: "Birmingham",
@@ -29,7 +29,7 @@ export default function CampusLocations() {
           phone: "+44 121 345 6789",
           email: "birmingham@univavamus.com",
           students: "1,800+",
-          color: "from-purple-500 to-indigo-500"
+          color: "from-green-500 to-emerald-500"
         }
       ]
     },
@@ -42,7 +42,7 @@ export default function CampusLocations() {
           phone: "+33 1 23 45 67 89",
           email: "paris@univavamus.com",
           students: "1,500+",
-          color: "from-pink-500 to-rose-500"
+          color: "from-emerald-600 to-teal-600"
         },
         {
           city: "Berlin",
@@ -50,7 +50,7 @@ export default function CampusLocations() {
           phone: "+49 30 1234 5678",
           email: "berlin@univavamus.com",
           students: "1,200+",
-          color: "from-amber-500 to-orange-500"
+          color: "from-teal-500 to-green-500"
         }
       ]
     },
@@ -63,7 +63,7 @@ export default function CampusLocations() {
           phone: "+971 4 123 4567",
           email: "dubai@univavamus.com",
           students: "2,500+",
-          color: "from-emerald-500 to-teal-500"
+          color: "from-emerald-500 to-green-500"
         },
         {
           city: "Singapore",
@@ -71,7 +71,7 @@ export default function CampusLocations() {
           phone: "+65 6123 4567",
           email: "singapore@univavamus.com",
           students: "1,800+",
-          color: "from-cyan-500 to-blue-500"
+          color: "from-green-500 to-emerald-500"
         },
         {
           city: "Kuala Lumpur",
@@ -79,7 +79,7 @@ export default function CampusLocations() {
           phone: "+60 3 1234 5678",
           email: "kl@univavamus.com",
           students: "1,200+",
-          color: "from-violet-500 to-purple-500"
+          color: "from-teal-600 to-emerald-600"
         }
       ]
     }
@@ -97,7 +97,7 @@ export default function CampusLocations() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Our Global <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Campuses</span>
+            Our Global <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">Campuses</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             12 world-class campuses across 3 continents, bringing quality education closer to you
@@ -116,7 +116,7 @@ export default function CampusLocations() {
             >
               {/* Region Title */}
               <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <div className="w-2 h-8 bg-gradient-to-b from-blue-600 to-indigo-600 rounded-full"></div>
+                <div className="w-2 h-8 bg-gradient-to-b from-emerald-600 to-teal-600 rounded-full"></div>
                 {region.region}
               </h3>
 
@@ -153,22 +153,22 @@ export default function CampusLocations() {
                         </div>
                         <div className="flex items-center gap-3 text-gray-600">
                           <Phone className="w-5 h-5 flex-shrink-0 text-gray-400" />
-                          <a href={`tel:${campus.phone}`} className="text-sm hover:text-blue-600 transition-colors">
+                          <a href={`tel:${campus.phone}`} className="text-sm hover:text-emerald-600 transition-colors">
                             {campus.phone}
                           </a>
                         </div>
                         <div className="flex items-center gap-3 text-gray-600">
                           <Mail className="w-5 h-5 flex-shrink-0 text-gray-400" />
-                          <a href={`mailto:${campus.email}`} className="text-sm hover:text-blue-600 transition-colors">
+                          <a href={`mailto:${campus.email}`} className="text-sm hover:text-emerald-600 transition-colors">
                             {campus.email}
                           </a>
                         </div>
                       </div>
 
-                      {/* Visit Button */}
-                      <button className="w-full mt-4 py-3 bg-gray-50 hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 text-gray-700 hover:text-white rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 group">
-                        <span>Visit Campus</span>
-                        <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      {/* Apply Now Button - Replaced Visit Campus */}
+                      <button className="w-full mt-4 py-3 bg-gray-50 hover:bg-gradient-to-r hover:from-emerald-600 hover:to-teal-600 text-gray-700 hover:text-white rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 group">
+                        <span>Apply Now</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </button>
                     </div>
                   </motion.div>
@@ -184,7 +184,7 @@ export default function CampusLocations() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="mt-16 text-center bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-12"
+          className="mt-16 text-center bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8 md:p-12"
         >
           <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Can't Find a Campus Near You?
@@ -193,10 +193,10 @@ export default function CampusLocations() {
             Explore our online programs and bring world-class education to your home
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-bold text-lg hover:shadow-xl transition-all hover:scale-105">
+            <button className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-bold text-lg hover:shadow-xl transition-all hover:scale-105">
               Explore Online Programs
             </button>
-            <button className="px-8 py-4 bg-white text-blue-600 rounded-full font-bold text-lg border-2 border-blue-600 hover:bg-blue-50 transition-all hover:scale-105">
+            <button className="px-8 py-4 bg-white text-emerald-600 rounded-full font-bold text-lg border-2 border-emerald-600 hover:bg-emerald-50 transition-all hover:scale-105">
               Book Virtual Tour
             </button>
           </div>

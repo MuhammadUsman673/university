@@ -10,7 +10,7 @@ export default function AboutPage() {
       <AboutHero />
       <MissionVision />
       <OurStory />
-      <Leadership />
+      {/* <Leadership /> */}
       <CampusLocations />
     </div>
   );

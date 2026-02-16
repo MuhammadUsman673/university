@@ -9,14 +9,14 @@ export default function OurStory() {
       icon: Rocket,
       title: "The Beginning",
       description: "Uni-Vivamus was founded with a vision to provide accessible, quality education to students worldwide.",
-      color: "from-blue-500 to-cyan-500"
+      color: "from-emerald-500 to-teal-500"
     },
     {
       year: "2005",
       icon: Globe,
       title: "Global Expansion",
       description: "Opened our first international campus in Dubai, marking the start of our global presence.",
-      color: "from-purple-500 to-pink-500"
+      color: "from-teal-500 to-emerald-500"
     },
     {
       year: "2010",
@@ -30,21 +30,21 @@ export default function OurStory() {
       icon: Award,
       title: "Accreditation Excellence",
       description: "Received international accreditations from QAA, AACSB, and EQUIS.",
-      color: "from-amber-500 to-orange-500"
+      color: "from-emerald-600 to-teal-600"
     },
     {
       year: "2020",
       icon: Trophy,
       title: "Digital Innovation",
       description: "Launched cutting-edge online learning platform, adapting to the changing educational landscape.",
-      color: "from-indigo-500 to-blue-500"
+      color: "from-teal-500 to-green-500"
     },
     {
       year: "2024",
       icon: Globe,
       title: "12 Global Locations",
       description: "Expanded to 12 campuses across UK, Europe, Middle East, and Asia with 15,000+ students.",
-      color: "from-rose-500 to-red-500"
+      color: "from-emerald-500 to-green-500"
     }
   ];
 
@@ -60,7 +60,7 @@ export default function OurStory() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Journey</span>
+            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">Journey</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             25+ years of excellence, innovation, and transforming lives through education
@@ -70,7 +70,7 @@ export default function OurStory() {
         {/* Timeline */}
         <div className="relative">
           {/* Center Line */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-200 via-purple-200 to-pink-200"></div>
+          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-emerald-200 via-teal-200 to-green-200"></div>
 
           {/* Timeline Items */}
           <div className="space-y-12">
@@ -119,14 +119,14 @@ export default function OurStory() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 md:p-12 shadow-xl">
+          <div className="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl p-8 md:p-12 shadow-xl">
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Be Part of Our Story
             </h3>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-emerald-100 mb-8 max-w-2xl mx-auto">
               Join thousands of students who are writing their success stories with us
             </p>
-            <button className="bg-white text-blue-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all hover:scale-105 shadow-lg">
+            <button className="bg-white text-emerald-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all hover:scale-105 shadow-lg">
               Start Your Journey
             </button>
           </div>
