@@ -2,15 +2,10 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
-  Facebook, 
-  Twitter, 
-  Instagram, 
-  Linkedin, 
-  Youtube,
   Mail,
   Phone,
-  MapPin,
   Send,
   ChevronRight,
   ArrowRight
@@ -33,42 +28,30 @@ const Footer = () => {
   };
 
   const quickLinks = [
-    { name: 'About Us', href: '/about' },
-    { name: 'Our Mission', href: '/about#mission' },
-    { name: 'Leadership Team', href: '/about/leadership' },
-    { name: 'Accreditations', href: '/about/accreditations' },
-    { name: 'News & Events', href: '/news' },
-    { name: 'Careers', href: '/careers' },
+    { name: 'About Us' },
+    { name: 'Our Mission' },
+    { name: 'Leadership Team' },
+    { name: 'Accreditations' },
+    { name: 'News & Events' },
+    { name: 'Careers' },
   ];
 
   const programsLinks = [
-    { name: 'Home Students (UK)', href: '/home-students' },
-    { name: 'International Students', href: '/international' },
-    { name: 'Undergraduate Programs', href: '/programs/undergraduate' },
-    { name: 'Postgraduate Programs', href: '/programs/postgraduate' },
-    { name: 'Online Courses', href: '/programs/online' },
-    { name: 'Summer Programs', href: '/programs/summer' },
+    { name: 'Home Students (UK)' },
+    { name: 'International Students' },
+    { name: 'Undergraduate Programs' },
+    { name: 'Postgraduate Programs' },
+    { name: 'Online Courses' },
+    { name: 'Summer Programs' },
   ];
 
   const supportLinks = [
-    { name: 'Student Portal', href: '/portal' },
-    { name: 'Library Services', href: '/library' },
-    { name: 'Financial Aid', href: '/admissions/fees' },
-    { name: 'Housing', href: '/student-life/housing' },
-    { name: 'Career Services', href: '/career' },
-    { name: 'Help Center', href: '/help' },
-  ];
-
-  const ukLocations = [
-    { name: 'London', href: '/home-students/london' },
-    { name: 'Birmingham', href: '/home-students/birmingham' },
-    { name: 'Manchester', href: '/home-students/manchester' },
-  ];
-
-  const internationalLocations = [
-    { name: 'Dubai', href: '/international/dubai' },
-    { name: 'Paris', href: '/international/paris' },
-    { name: 'Madrid', href: '/international/madrid' },
+    { name: 'Student Portal' },
+    { name: 'Library Services' },
+    { name: 'Financial Aid' },
+    { name: 'Housing' },
+    { name: 'Career Services' },
+    { name: 'Help Center' },
   ];
 
   return (
@@ -116,118 +99,96 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           
-          {/* Brand Column */}
+          {/* Brand Column - EXACT SAME LOGO AS NAVBAR */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block mb-5 group">
+            <Link href="/" className="flex items-center gap-3 group mb-5">
               <motion.div 
                 whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-2"
+                transition={{ duration: 0.3 }}
+                className="w-12 h-12 bg-gradient-to-br from-[#355E47] to-[#2D5F3F] rounded-lg flex items-center justify-center shadow-lg overflow-hidden"
               >
-                <div className="w-10 h-10 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-lg flex items-center justify-center shadow-md">
-                  <span className="text-white font-bold text-lg">UV</span>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold">Uni Vivamus</h3>
-                  <p className="text-xs text-gray-400">Empowering Education</p>
-                </div>
+                <Image
+                  src="/logo.jpeg"
+                  alt="Uni Vivamus Logo"
+                  width={60}
+                  height={60}
+                  className="object-contain"
+                  priority
+                />
               </motion.div>
+              <div>
+                <h1 className="text-2xl font-bold text-white">
+                  Uni Vivamus
+                </h1>
+                <p className="text-xs text-gray-400">Empowering Education</p>
+              </div>
             </Link>
             <p className="text-gray-400 text-xs mb-5 leading-relaxed">
               Building futures and connecting worlds through innovative education and global opportunities.
             </p>
-            
-            {/* Social Media */}
-            <div className="flex gap-2">
-              {[
-                { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
-                { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-                { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
-                { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-                { icon: Youtube, href: 'https://youtube.com', label: 'YouTube' },
-              ].map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="w-8 h-8 bg-slate-800 hover:bg-emerald-600 rounded-full flex items-center justify-center transition-colors"
-                  aria-label={social.label}
-                >
-                  <social.icon size={14} />
-                </motion.a>
-              ))}
-            </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links - Non-clickable */}
           <div>
             <h4 className="text-base font-bold mb-4 text-emerald-400">Quick Links</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-1.5 group"
-                  >
-                    <ChevronRight size={14} className="text-emerald-500 group-hover:translate-x-1 transition-transform" />
+                  <span className="text-gray-400 text-sm flex items-center gap-1.5">
+                    <ChevronRight size={14} className="text-emerald-500" />
                     {link.name}
-                  </Link>
+                  </span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Programs */}
+          {/* Programs - Non-clickable */}
           <div>
             <h4 className="text-base font-bold mb-4 text-emerald-400">Programs</h4>
             <ul className="space-y-2">
               {programsLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-1.5 group"
-                  >
-                    <ChevronRight size={14} className="text-emerald-500 group-hover:translate-x-1 transition-transform" />
+                  <span className="text-gray-400 text-sm flex items-center gap-1.5">
+                    <ChevronRight size={14} className="text-emerald-500" />
                     {link.name}
-                  </Link>
+                  </span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Support & Resources */}
+          {/* Support & Resources - Non-clickable */}
           <div>
             <h4 className="text-base font-bold mb-4 text-emerald-400">Support</h4>
             <ul className="space-y-2">
               {supportLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-1.5 group"
-                  >
-                    <ChevronRight size={14} className="text-emerald-500 group-hover:translate-x-1 transition-transform" />
+                  <span className="text-gray-400 text-sm flex items-center gap-1.5">
+                    <ChevronRight size={14} className="text-emerald-500" />
                     {link.name}
-                  </Link>
+                  </span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact Info & Locations */}
+          {/* Contact Info - Only Email is clickable */}
           <div>
             <h4 className="text-base font-bold mb-4 text-emerald-400">Contact Us</h4>
             
-            {/* Contact Details */}
+            {/* Contact Details - Phone (non-clickable), Email (clickable) */}
             <div className="space-y-3 mb-5">
-              <a href="tel:+447466685430" className="flex items-start gap-2 text-gray-400 hover:text-white transition-colors group">
+              {/* Phone - Non-clickable */}
+              <div className="flex items-start gap-2 text-gray-400">
                 <Phone size={14} className="mt-0.5 text-emerald-500" />
                 <div>
                   <p className="font-medium text-sm">Phone</p>
                   <p className="text-xs">+44 7466 685430</p>
                 </div>
-              </a>
+              </div>
               
+              {/* Email - Clickable (ONLY ONE) */}
               <a href="mailto:Admin@uni-vivamus.com" className="flex items-start gap-2 text-gray-400 hover:text-white transition-colors group">
                 <Mail size={14} className="mt-0.5 text-emerald-500" />
                 <div>
@@ -235,35 +196,14 @@ const Footer = () => {
                   <p className="text-xs">Admin@uni-vivamus.com</p>
                 </div>
               </a>
-              
-              <div className="flex items-start gap-2 text-gray-400">
-                <MapPin size={14} className="mt-0.5 text-emerald-500" />
-                <div>
-                  <p className="font-medium text-sm mb-1">Locations</p>
-                  <div className="text-xs space-y-0.5">
-                    <p className="text-emerald-400 font-medium">UK</p>
-                    {ukLocations.map((loc) => (
-                      <Link key={loc.name} href={loc.href} className="block hover:text-white transition-colors">
-                        {loc.name}
-                      </Link>
-                    ))}
-                    <p className="text-emerald-400 font-medium mt-1">International</p>
-                    {internationalLocations.map((loc) => (
-                      <Link key={loc.name} href={loc.href} className="block hover:text-white transition-colors">
-                        {loc.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
             </div>
 
-            {/* Apply Button */}
+            {/* Apply Online - Clickable (ONLY ONE) */}
             <Link 
               href="/apply"
               className="inline-flex items-center gap-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-5 py-2.5 rounded-full font-semibold text-sm shadow-md hover:shadow-lg transition-all hover:scale-105"
             >
-              Apply Now
+              Apply Online
               <ArrowRight size={14} />
             </Link>
           </div>
@@ -275,18 +215,19 @@ const Footer = () => {
         <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-gray-400">
             <div className="flex flex-wrap justify-center md:justify-start gap-4">
-              <Link href="/privacy" className="hover:text-white transition-colors">
+              {/* All bottom links - Non-clickable */}
+              <span className="hover:text-white transition-colors cursor-default">
                 Privacy Policy
-              </Link>
-              <Link href="/terms" className="hover:text-white transition-colors">
+              </span>
+              <span className="hover:text-white transition-colors cursor-default">
                 Terms of Service
-              </Link>
-              <Link href="/cookies" className="hover:text-white transition-colors">
+              </span>
+              <span className="hover:text-white transition-colors cursor-default">
                 Cookie Policy
-              </Link>
-              <Link href="/accessibility" className="hover:text-white transition-colors">
+              </span>
+              <span className="hover:text-white transition-colors cursor-default">
                 Accessibility
-              </Link>
+              </span>
             </div>
             <div className="text-center md:text-right">
               <p>© {new Date().getFullYear()} Uni Vivamus. All rights reserved.</p>
@@ -299,7 +240,7 @@ const Footer = () => {
       <motion.button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        whileTap={{ scale: 0.95 }}
         className="fixed bottom-6 right-6 w-10 h-10 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 rounded-full flex items-center justify-center shadow-lg z-40"
         aria-label="Back to top"
       >

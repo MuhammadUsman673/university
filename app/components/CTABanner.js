@@ -1,151 +1,288 @@
 'use client';
 import { motion } from 'framer-motion';
-import { ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
+import { Calendar, Clock, TrendingUp, Users, Award, Globe, ArrowRight, Mail, Send } from 'lucide-react';
+import Link from 'next/link';
 
-export default function CTABanner() {
+export default function News() {
+  const newsArticles = [
+    {
+      id: 1,
+      title: 'Uni Vivamus Ranks Top 5 in Global University Rankings 2026',
+      category: 'Achievement',
+      date: 'January 28, 2026',
+      readTime: '5 min read',
+      excerpt: 'Our commitment to excellence has placed us among the world\'s leading educational institutions for the third consecutive year.',
+      icon: TrendingUp,
+      color: 'from-[#355E47] to-[#2D5F3F]',
+      bgColor: 'bg-[#355E47]/10'
+    },
+    {
+      id: 2,
+      title: 'New AI Research Center Opens in Manchester Campus',
+      category: 'Innovation',
+      date: 'January 25, 2026',
+      readTime: '4 min read',
+      excerpt: 'State-of-the-art facility to drive breakthrough research in artificial intelligence and machine learning.',
+      icon: Award,
+      color: 'from-[#2D5F3F] to-[#355E47]',
+      bgColor: 'bg-[#2D5F3F]/10'
+    },
+    {
+      id: 3,
+      title: 'International Student Exchange Program Expands to 50 Countries',
+      category: 'Global',
+      date: 'January 22, 2026',
+      readTime: '6 min read',
+      excerpt: 'Students can now experience education across five continents with our enhanced partnership network.',
+      icon: Globe,
+      color: 'from-[#3A5F4A] to-[#355E47]',
+      bgColor: 'bg-[#3A5F4A]/10'
+    },
+    {
+      id: 4,
+      title: 'Record Breaking Graduate Employment Rate: 98.5%',
+      category: 'Success',
+      date: 'January 20, 2026',
+      readTime: '3 min read',
+      excerpt: 'Our graduates continue to excel in the job market with top companies worldwide.',
+      icon: Users,
+      color: 'from-[#355E47] to-[#2D5F3F]',
+      bgColor: 'bg-[#355E47]/10'
+    }
+  ];
+
+  const upcomingEvents = [
+    {
+      id: 1,
+      title: 'Open Day - London Campus',
+      date: 'Feb 15, 2026',
+      time: '10:00 AM - 4:00 PM',
+      location: 'London',
+      type: 'Campus Tour',
+      spots: '50 spots left'
+    },
+    {
+      id: 2,
+      title: 'Virtual Information Session',
+      date: 'Feb 18, 2026',
+      time: '2:00 PM - 3:30 PM',
+      location: 'Online',
+      type: 'Webinar',
+      spots: 'Unlimited'
+    },
+    {
+      id: 3,
+      title: 'International Student Fair - Dubai',
+      date: 'Feb 22, 2026',
+      time: '9:00 AM - 6:00 PM',
+      location: 'Dubai',
+      type: 'Fair',
+      spots: '200 spots left'
+    },
+    {
+      id: 4,
+      title: 'Career Development Workshop',
+      date: 'Feb 25, 2026',
+      time: '1:00 PM - 5:00 PM',
+      location: 'Manchester',
+      type: 'Workshop',
+      spots: '30 spots left'
+    }
+  ];
+
   return (
-    <section className="py-16 bg-gradient-to-br from-emerald-900 via-teal-900 to-green-900 relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-80 h-80 bg-emerald-500/20 rounded-full filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-teal-500/20 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-      </div>
-
-      {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
-                           linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: '40px 40px'
-        }}></div>
-      </div>
-
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Main CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, type: "spring" }}
-            className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 text-white px-5 py-2.5 rounded-full text-xs font-medium mb-5"
-          >
-            🎓 Applications Open for 2026
-          </motion.div>
-
-          <h2 className="text-2xl md:text-4xl font-bold text-white mb-5 leading-tight">
-            Start Your Journey to
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-300 to-green-300">
-              Excellence Today
-            </span>
-          </h2>
-
-          <p className="text-base text-emerald-100 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Join 15,000+ students across 12 global locations. Your world-class education awaits.
-            Apply now and take the first step toward transforming your future.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-10">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-base rounded-full shadow-lg hover:shadow-emerald-500/50 transition-all flex items-center gap-2"
-            >
-              Apply Now
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
-          </div>
-
-          {/* Trust Badge - Smaller */}
-          <div className="flex flex-wrap justify-center gap-6 text-white/80 text-xs">
-            <div className="flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
-              <span>No Application Fee</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
-              <span>Scholarships Available</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
-              <span>Rolling Admissions</span>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Quick Actions Grid - 2 columns instead of 3 */}
+    <section className="py-16 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10"
         >
-          {/* Talk to Admissions */}
-          <motion.div
-            whileHover={{ y: -5 }}
-            className="bg-white/10 backdrop-blur-lg rounded-xl p-5 border border-white/20 hover:bg-white/15 transition-all cursor-pointer group"
-          >
-            <div className="bg-emerald-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-              <Phone className="w-6 h-6 text-emerald-300" />
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">Talk to Admissions</h3>
-            <p className="text-emerald-200 text-sm mb-3">
-              Get personalized guidance from our admissions team
-            </p>
-            <button className="text-emerald-300 font-semibold text-xs flex items-center gap-1.5 group-hover:gap-2 transition-all">
-              Contact Us
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </motion.div>
-
-          {/* Request Information */}
-          <motion.div
-            whileHover={{ y: -5 }}
-            className="bg-white/10 backdrop-blur-lg rounded-xl p-5 border border-white/20 hover:bg-white/15 transition-all cursor-pointer group"
-          >
-            <div className="bg-teal-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-              <Mail className="w-6 h-6 text-teal-300" />
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">Request Information</h3>
-            <p className="text-emerald-200 text-sm mb-3">
-              Receive detailed information about programs & admissions
-            </p>
-            <button className="text-emerald-300 font-semibold text-xs flex items-center gap-1.5 group-hover:gap-2 transition-all">
-              Get Info
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </motion.div>
+          <div className="inline-flex items-center gap-1.5 bg-[#355E47]/10 text-[#355E47] px-3 py-1.5 rounded-full text-xs font-medium mb-3">
+            <Calendar className="w-3.5 h-3.5" />
+            Latest Updates
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+            News & Events
+          </h2>
+          <p className="text-base text-gray-600 max-w-2xl mx-auto">
+            Stay updated with the latest happenings across our global campuses
+          </p>
         </motion.div>
 
-        {/* Bottom Contact Info - Smaller */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Latest News - Left Side (2/3) */}
+          <div className="lg:col-span-2">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-bold text-gray-900">Latest News</h3>
+              <Link href="/news" className="group flex items-center gap-1 text-sm text-[#355E47] hover:text-[#2D5F3F] font-medium transition-colors">
+                View all
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
+            <div className="space-y-4">
+              {newsArticles.map((article, index) => (
+                <motion.div
+                  key={article.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="group bg-gradient-to-br from-gray-50 to-[#355E47]/5 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100"
+                >
+                  <div className="p-5">
+                    <div className="flex items-center gap-4 text-xs text-gray-500 mb-2">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="w-3.5 h-3.5" />
+                        <span>{article.date}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Clock className="w-3.5 h-3.5" />
+                        <span>{article.readTime}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className={`${article.bgColor} p-2.5 rounded-lg`}>
+                        <article.icon className="w-5 h-5 text-[#355E47]" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="inline-block bg-[#355E47]/10 text-[#355E47] px-2 py-1 rounded text-xs font-semibold mb-2">
+                          {article.category}
+                        </div>
+                        <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-[#355E47] transition-colors">
+                          {article.title}
+                        </h4>
+                      </div>
+                    </div>
+
+                    <p className="text-sm text-gray-600">
+                      {article.excerpt}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Upcoming Events - Right Side (1/3) */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-bold text-gray-900">Upcoming Events</h3>
+              <Link href="/events" className="group flex items-center gap-1 text-sm text-[#355E47] hover:text-[#2D5F3F] font-medium transition-colors">
+                View all
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
+            <div className="space-y-3">
+              {upcomingEvents.map((event, index) => (
+                <motion.div
+                  key={event.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="group bg-white border border-gray-200 rounded-lg p-4 hover:border-[#355E47] hover:shadow-md transition-all"
+                >
+                  {/* Date Badge */}
+                  <div className="flex items-start gap-3 mb-2">
+                    <div className="bg-gradient-to-br from-[#355E47] to-[#2D5F3F] text-white rounded-lg p-2.5 text-center min-w-[50px]">
+                      <div className="text-lg font-bold leading-none mb-1">
+                        {event.date.split(' ')[1].replace(',', '')}
+                      </div>
+                      <div className="text-[10px] uppercase">
+                        {event.date.split(' ')[0]}
+                      </div>
+                    </div>
+
+                    <div className="flex-1">
+                      <div className="inline-block bg-[#355E47]/10 text-[#355E47] px-2 py-0.5 rounded text-xs font-semibold mb-1.5">
+                        {event.type}
+                      </div>
+                      <h4 className="font-bold text-gray-900 text-sm group-hover:text-[#355E47] transition-colors">
+                        {event.title}
+                      </h4>
+                    </div>
+                  </div>
+
+                  {/* Details */}
+                  <div className="space-y-1 text-xs text-gray-600 ml-[62px]">
+                    <div className="flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-gray-400" />
+                      <span>{event.time}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-gray-400" />
+                      <span>{event.location}</span>
+                    </div>
+                    <div className="pt-1.5 border-t border-gray-200 mt-1.5">
+                      <span className={`text-xs font-semibold ${event.spots === 'Unlimited' ? 'text-[#355E47]' : 'text-amber-600'}`}>
+                        {event.spots}
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Action Buttons Section */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-12 pt-6 border-t border-white/10 text-center"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-12"
         >
-          <div className="flex flex-wrap justify-center gap-6 text-emerald-200 text-sm">
-            <div className="flex items-center gap-1.5">
-              <Phone className="w-4 h-4" />
-              <span>+44 20 1234 5678</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <Mail className="w-4 h-4" />
-              <span>Admin@uni-vivamus.com</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <MapPin className="w-4 h-4" />
-              <span>12 Global Locations</span>
+          <div className="bg-gradient-to-r from-[#355E47] via-[#2D5F3F] to-[#3A5F4A] rounded-2xl p-8 text-white">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+              {/* Left Text */}
+              <div className="md:col-span-1">
+                <h3 className="text-xl font-bold mb-1">Ready to Begin?</h3>
+                <p className="text-sm text-white/80">Join our global community today</p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="md:col-span-2 flex flex-col sm:flex-row gap-3 justify-end">
+                <Link href="/admissions">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full sm:w-auto bg-white text-[#355E47] px-6 py-3 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-all shadow-lg flex items-center justify-center gap-2"
+                  >
+                    <Send className="w-4 h-4" />
+                    Apply Now
+                  </motion.button>
+                </Link>
+                
+                <a href="mailto:admissions@univivamus.edu">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full sm:w-auto bg-white/10 backdrop-blur-sm text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-white/20 transition-all border border-white/30 flex items-center justify-center gap-2"
+                  >
+                    <Mail className="w-4 h-4" />
+                    Email Us
+                  </motion.button>
+                </a>
+                
+                <Link href="/contact">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full sm:w-auto bg-transparent text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-white/10 transition-all border-2 border-white/30 flex items-center justify-center gap-2"
+                  >
+                    <Calendar className="w-4 h-4" />
+                    Contact
+                  </motion.button>
+                </Link>
+              </div>
             </div>
           </div>
         </motion.div>

@@ -20,7 +20,7 @@ export default function LocationHero({ location = {} }) {
   } = stats;
 
   return (
-    <div className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white overflow-hidden">
+    <div className="relative bg-gradient-to-br from-[#1a2e23] via-[#2D5F3F] to-[#355E47] text-white overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div
@@ -33,12 +33,12 @@ export default function LocationHero({ location = {} }) {
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         {/* Breadcrumb */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-2 text-sm text-blue-200 mb-8"
+          className="flex items-center gap-2 text-sm text-[#a3c9b3] mb-6"
         >
           <a href="/" className="hover:text-white transition-colors">Home</a>
           <span>/</span>
@@ -52,24 +52,24 @@ export default function LocationHero({ location = {} }) {
           <span className="text-white">{name}</span>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 items-center">
           {/* Left Content */}
           <div>
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
-              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6"
+              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full mb-4"
             >
-              <MapPin className="w-4 h-4 text-blue-300" />
-              <span className="text-sm">{country}</span>
+              <MapPin className="w-3.5 h-3.5 text-[#a3c9b3]" />
+              <span className="text-xs">{country}</span>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent"
+              className="text-3xl lg:text-4xl font-bold mb-3 bg-gradient-to-r from-white via-[#d0e3d7] to-white bg-clip-text text-transparent"
             >
               {name}
             </motion.h1>
@@ -78,7 +78,7 @@ export default function LocationHero({ location = {} }) {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-xl text-blue-100 mb-8 leading-relaxed"
+              className="text-base text-[#d0e3d7] mb-6 leading-relaxed"
             >
               {tagline}
             </motion.p>
@@ -87,17 +87,17 @@ export default function LocationHero({ location = {} }) {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-3"
             >
               <a
                 href="/programs"
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105"
+                className="bg-[#355E47] text-white px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#2D5F3F] transition-all shadow-xl hover:shadow-2xl hover:scale-105"
               >
                 View Programs
               </a>
               <a
                 href="/contact"
-                className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/20 transition-all border border-white/20"
+                className="bg-white/10 backdrop-blur-sm text-white px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-white/20 transition-all border border-white/20"
               >
                 Contact Campus
               </a>
@@ -109,27 +109,27 @@ export default function LocationHero({ location = {} }) {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 }}
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-2 gap-3"
           >
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
-              <Users className="w-10 h-10 text-blue-300 mb-3" />
-              <div className="text-3xl font-bold mb-1">{students}</div>
-              <div className="text-sm text-blue-200">Students</div>
+            <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
+              <Users className="w-8 h-8 text-[#a3c9b3] mb-2" />
+              <div className="text-xl font-bold mb-0.5">{students}</div>
+              <div className="text-xs text-[#d0e3d7]">Students</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
-              <GraduationCap className="w-10 h-10 text-blue-300 mb-3" />
-              <div className="text-3xl font-bold mb-1">{programs}+</div>
-              <div className="text-sm text-blue-200">Programs</div>
+            <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
+              <GraduationCap className="w-8 h-8 text-[#a3c9b3] mb-2" />
+              <div className="text-xl font-bold mb-0.5">{programs}+</div>
+              <div className="text-xs text-[#d0e3d7]">Programs</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
-              <Building2 className="w-10 h-10 text-blue-300 mb-3" />
-              <div className="text-3xl font-bold mb-1">{campusSize}</div>
-              <div className="text-sm text-blue-200">Campus Size</div>
+            <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
+              <Building2 className="w-8 h-8 text-[#a3c9b3] mb-2" />
+              <div className="text-xl font-bold mb-0.5">{campusSize}</div>
+              <div className="text-xs text-[#d0e3d7]">Campus Size</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
-              <MapPin className="w-10 h-10 text-blue-300 mb-3" />
-              <div className="text-3xl font-bold mb-1">{established}</div>
-              <div className="text-sm text-blue-200">Established</div>
+            <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
+              <MapPin className="w-8 h-8 text-[#a3c9b3] mb-2" />
+              <div className="text-xl font-bold mb-0.5">{established}</div>
+              <div className="text-xs text-[#d0e3d7]">Established</div>
             </div>
           </motion.div>
         </div>

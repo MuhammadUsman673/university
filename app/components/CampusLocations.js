@@ -1,6 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, ArrowRight } from 'lucide-react';
+import { MapPin, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export default function CampusLocations() {
   const locations = [
@@ -10,26 +11,20 @@ export default function CampusLocations() {
         {
           city: "London",
           address: "123 Education Street, Westminster",
-          phone: "+44 20 7123 4567",
-          email: "london@univavamus.com",
           students: "3,500+",
-          color: "from-emerald-500 to-teal-500"
+          image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80"
         },
         {
           city: "Manchester",
           address: "45 Academic Road, City Centre",
-          phone: "+44 161 234 5678",
-          email: "manchester@univavamus.com",
           students: "2,000+",
-          color: "from-teal-500 to-emerald-500"
+          image: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=600&q=80"
         },
         {
           city: "Birmingham",
           address: "78 University Lane, Central",
-          phone: "+44 121 345 6789",
-          email: "birmingham@univavamus.com",
           students: "1,800+",
-          color: "from-green-500 to-emerald-500"
+          image: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=600&q=80"
         }
       ]
     },
@@ -39,18 +34,14 @@ export default function CampusLocations() {
         {
           city: "Paris",
           address: "56 Rue de l'Université",
-          phone: "+33 1 23 45 67 89",
-          email: "paris@univavamus.com",
           students: "1,500+",
-          color: "from-emerald-600 to-teal-600"
+          image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80"
         },
         {
           city: "Berlin",
           address: "89 Bildungsstraße, Mitte",
-          phone: "+49 30 1234 5678",
-          email: "berlin@univavamus.com",
           students: "1,200+",
-          color: "from-teal-500 to-green-500"
+          image: "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=600&q=80"
         }
       ]
     },
@@ -60,33 +51,27 @@ export default function CampusLocations() {
         {
           city: "Dubai",
           address: "Dubai Knowledge Park, Block 12",
-          phone: "+971 4 123 4567",
-          email: "dubai@univavamus.com",
           students: "2,500+",
-          color: "from-emerald-500 to-green-500"
+          image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80"
         },
         {
           city: "Singapore",
           address: "88 Education Boulevard",
-          phone: "+65 6123 4567",
-          email: "singapore@univavamus.com",
           students: "1,800+",
-          color: "from-green-500 to-emerald-500"
+          image: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&q=80"
         },
         {
           city: "Kuala Lumpur",
           address: "KL Education City, Tower B",
-          phone: "+60 3 1234 5678",
-          email: "kl@univavamus.com",
           students: "1,200+",
-          color: "from-teal-600 to-emerald-600"
+          image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&q=80"
         }
       ]
     }
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -94,18 +79,22 @@ export default function CampusLocations() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Our Global <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">Campuses</span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium mb-3" style={{ backgroundColor: 'rgba(53,94,71,0.1)', color: '#355E47' }}>
+            <MapPin className="w-3.5 h-3.5" />
+            Global Campuses
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+            Our Global <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #355E47, #2D5F3F)' }}>Campuses</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base text-gray-600 max-w-2xl mx-auto">
             12 world-class campuses across 3 continents, bringing quality education closer to you
           </p>
         </motion.div>
 
         {/* Locations by Region */}
-        <div className="space-y-12">
+        <div className="space-y-10">
           {locations.map((region, regionIndex) => (
             <motion.div
               key={regionIndex}
@@ -115,13 +104,13 @@ export default function CampusLocations() {
               viewport={{ once: true }}
             >
               {/* Region Title */}
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <div className="w-2 h-8 bg-gradient-to-b from-emerald-600 to-teal-600 rounded-full"></div>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-5 flex items-center gap-3">
+                <div className="w-1.5 h-6 rounded-full" style={{ background: 'linear-gradient(to bottom, #355E47, #2D5F3F)' }}></div>
                 {region.region}
               </h3>
 
               {/* Campus Cards */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {region.campuses.map((campus, campusIndex) => (
                   <motion.div
                     key={campusIndex}
@@ -131,45 +120,52 @@ export default function CampusLocations() {
                     viewport={{ once: true }}
                     className="group relative"
                   >
-                    <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1">
-                      {/* City Name with Gradient */}
-                      <div className="flex items-start justify-between mb-4">
-                        <div>
-                          <h4 className="text-2xl font-bold text-gray-900 mb-1">{campus.city}</h4>
-                          <div className={`inline-block px-3 py-1 rounded-full bg-gradient-to-r ${campus.color} text-white text-sm font-semibold`}>
-                            {campus.students} Students
+                    <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1">
+                      
+                      {/* City Photo */}
+                      <div className="relative h-40 overflow-hidden">
+                        <img
+                          src={campus.image}
+                          alt={campus.city}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-black/20" />
+                        {/* Students badge overlaid on image */}
+                        <div className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-white text-xs font-semibold" style={{ background: 'linear-gradient(to right, #355E47, #2D5F3F)' }}>
+                          {campus.students} Students
+                        </div>
+                      </div>
+
+                      <div className="p-5">
+                        {/* City Name */}
+                        <div className="flex items-start justify-between mb-3">
+                          <h4 className="text-lg font-bold text-gray-900">{campus.city}</h4>
+                          <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(to bottom right, #355E47, #2D5F3F)' }}>
+                            <MapPin className="w-5 h-5 text-white" />
                           </div>
                         </div>
-                        <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${campus.color} flex items-center justify-center`}>
-                          <MapPin className="w-6 h-6 text-white" />
-                        </div>
-                      </div>
 
-                      {/* Contact Info */}
-                      <div className="space-y-3 mb-4">
-                        <div className="flex items-start gap-3 text-gray-600">
-                          <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5 text-gray-400" />
-                          <span className="text-sm">{campus.address}</span>
+                        {/* Address Only */}
+                        <div className="space-y-2 mb-3">
+                          <div className="flex items-start gap-2 text-gray-600">
+                            <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5 text-gray-400" />
+                            <span className="text-xs">{campus.address}</span>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-3 text-gray-600">
-                          <Phone className="w-5 h-5 flex-shrink-0 text-gray-400" />
-                          <a href={`tel:${campus.phone}`} className="text-sm hover:text-emerald-600 transition-colors">
-                            {campus.phone}
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-3 text-gray-600">
-                          <Mail className="w-5 h-5 flex-shrink-0 text-gray-400" />
-                          <a href={`mailto:${campus.email}`} className="text-sm hover:text-emerald-600 transition-colors">
-                            {campus.email}
-                          </a>
-                        </div>
-                      </div>
 
-                      {/* Apply Now Button - Replaced Visit Campus */}
-                      <button className="w-full mt-4 py-3 bg-gray-50 hover:bg-gradient-to-r hover:from-emerald-600 hover:to-teal-600 text-gray-700 hover:text-white rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 group">
-                        <span>Apply Now</span>
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </button>
+                        {/* Apply Now Button - Clickable */}
+                        <Link href="/apply" className="block w-full">
+                          <button
+                            className="w-full mt-3 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2"
+                            style={{ backgroundColor: '#f9fafb', color: '#374151' }}
+                            onMouseEnter={e => { e.currentTarget.style.background = 'linear-gradient(to right, #355E47, #2D5F3F)'; e.currentTarget.style.color = 'white'; }}
+                            onMouseLeave={e => { e.currentTarget.style.background = '#f9fafb'; e.currentTarget.style.color = '#374151'; }}
+                          >
+                            <span>Apply Now</span>
+                            <ArrowRight className="w-3.5 h-3.5" />
+                          </button>
+                        </Link>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
@@ -177,30 +173,6 @@ export default function CampusLocations() {
             </motion.div>
           ))}
         </div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8 md:p-12"
-        >
-          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Can't Find a Campus Near You?
-          </h3>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Explore our online programs and bring world-class education to your home
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-bold text-lg hover:shadow-xl transition-all hover:scale-105">
-              Explore Online Programs
-            </button>
-            <button className="px-8 py-4 bg-white text-emerald-600 rounded-full font-bold text-lg border-2 border-emerald-600 hover:bg-emerald-50 transition-all hover:scale-105">
-              Book Virtual Tour
-            </button>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

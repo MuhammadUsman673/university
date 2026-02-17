@@ -56,7 +56,7 @@ const ProgramFilters = ({ onFilterChange, onSearch }) => {
               value={searchTerm}
               onChange={handleSearch}
               placeholder="Search programs by name, keyword, or field..."
-              className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-full text-gray-800 placeholder-gray-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-200 transition-all"
+              className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-full text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#355E47] focus:ring-2 focus:ring-[#355E47]/20 transition-all"
             />
           </div>
         </div>
@@ -76,7 +76,7 @@ const ProgramFilters = ({ onFilterChange, onSearch }) => {
                 onClick={() => handleLevelChange(level.id)}
                 className={`px-4 md:px-6 py-2 rounded-full font-medium transition-all text-sm md:text-base ${
                   activeLevel === level.id
-                    ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-[#355E47] to-[#2D5F3F] text-white shadow-lg'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -101,7 +101,7 @@ const ProgramFilters = ({ onFilterChange, onSearch }) => {
                 onClick={() => handleCategoryChange(category.id)}
                 className={`px-4 md:px-6 py-2 rounded-full font-medium transition-all text-sm md:text-base ${
                   activeCategory === category.id
-                    ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-[#355E47] to-[#2D5F3F] text-white shadow-lg'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >

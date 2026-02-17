@@ -162,13 +162,14 @@ const FeesScholarships = () => {
           </div>
         </div>
 
-        {/* Additional Financial Info */}
+        {/* Additional Financial Info - GREEN COLORS APPLIED HERE */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-8 md:p-12 text-white"
+          className="rounded-3xl p-8 md:p-12 text-white"
+          style={{ background: 'linear-gradient(to right, #355E47, #2D5F3F)' }}
         >
           <div className="grid md:grid-cols-2 gap-8">
             <div>
@@ -184,7 +185,7 @@ const FeesScholarships = () => {
                   'Student loans supported',
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+                    <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: 'rgba(255,255,255,0.8)' }}></div>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -203,7 +204,7 @@ const FeesScholarships = () => {
                   'Student welfare services',
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+                    <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: 'rgba(255,255,255,0.8)' }}></div>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -214,7 +215,8 @@ const FeesScholarships = () => {
           <div className="mt-8 text-center">
             <Link
               href="/apply"
-              className="inline-block bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105"
+              className="inline-block text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105"
+              style={{ background: 'rgba(255,255,255,0.2)', border: '2px solid rgba(255,255,255,0.4)' }}
             >
               Apply for Scholarship
             </Link>

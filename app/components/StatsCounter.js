@@ -34,9 +34,8 @@ export default function StatsCounter() {
       suffix: '+',
       label: 'Active Students',
       description: 'Learning across our campuses',
-      color: 'from-emerald-600 to-teal-600',
-      bgColor: 'bg-emerald-100',
-      iconColor: 'text-emerald-600'
+      iconBg: 'rgba(53,94,71,0.25)',
+      iconColor: 'rgba(255,255,255,0.9)'
     },
     {
       id: 2,
@@ -45,9 +44,8 @@ export default function StatsCounter() {
       suffix: '%',
       label: 'Graduate Success Rate',
       description: 'Employed within 6 months',
-      color: 'from-green-600 to-emerald-600',
-      bgColor: 'bg-green-100',
-      iconColor: 'text-green-600'
+      iconBg: 'rgba(45,95,63,0.25)',
+      iconColor: 'rgba(255,255,255,0.9)'
     },
     {
       id: 3,
@@ -56,9 +54,8 @@ export default function StatsCounter() {
       suffix: '',
       label: 'Global Locations',
       description: 'Across 3 continents',
-      color: 'from-teal-600 to-emerald-600',
-      bgColor: 'bg-teal-100',
-      iconColor: 'text-teal-600'
+      iconBg: 'rgba(58,95,74,0.25)',
+      iconColor: 'rgba(255,255,255,0.9)'
     },
     {
       id: 4,
@@ -67,9 +64,8 @@ export default function StatsCounter() {
       suffix: '+',
       label: 'Programs Offered',
       description: 'Undergraduate & Graduate',
-      color: 'from-amber-600 to-emerald-600',
-      bgColor: 'bg-amber-100',
-      iconColor: 'text-amber-600'
+      iconBg: 'rgba(53,94,71,0.25)',
+      iconColor: 'rgba(255,255,255,0.9)'
     },
     {
       id: 5,
@@ -78,9 +74,8 @@ export default function StatsCounter() {
       suffix: '%',
       label: 'Student Satisfaction',
       description: 'Based on annual survey',
-      color: 'from-cyan-600 to-teal-600',
-      bgColor: 'bg-cyan-100',
-      iconColor: 'text-cyan-600'
+      iconBg: 'rgba(45,95,63,0.25)',
+      iconColor: 'rgba(255,255,255,0.9)'
     },
     {
       id: 6,
@@ -89,22 +84,24 @@ export default function StatsCounter() {
       suffix: '+',
       label: 'Expert Faculty',
       description: 'Industry professionals',
-      color: 'from-emerald-600 to-green-600',
-      bgColor: 'bg-emerald-100',
-      iconColor: 'text-emerald-600'
+      iconBg: 'rgba(58,95,74,0.25)',
+      iconColor: 'rgba(255,255,255,0.9)'
     }
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-br from-emerald-900 via-teal-900 to-green-900 relative overflow-hidden">
+    <section
+      className="py-16 relative overflow-hidden"
+      style={{ background: 'linear-gradient(to bottom right, #1a2e23, #2D5F3F, #3A5F4A)' }}
+    >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-emerald-500 rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-teal-500 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full filter blur-3xl" style={{ backgroundColor: '#355E47' }}></div>
+        <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full filter blur-3xl" style={{ backgroundColor: '#2D5F3F' }}></div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header - Even smaller font sizes */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -119,7 +116,7 @@ export default function StatsCounter() {
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
             Numbers That Speak
           </h2>
-          <p className="text-base text-emerald-200 max-w-2xl mx-auto">
+          <p className="text-base max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.75)' }}>
             Join thousands of students who have transformed their future with us
           </p>
         </motion.div>
@@ -135,17 +132,24 @@ export default function StatsCounter() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group relative"
             >
-              {/* Card */}
-              <div className="bg-white/10 backdrop-blur-lg rounded-lg p-5 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                {/* Gradient Border Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-20 rounded-lg transition-opacity duration-300`}></div>
-                
+              <div
+                className="relative bg-white/10 backdrop-blur-lg rounded-lg p-5 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 hover:shadow-lg overflow-hidden"
+              >
+                {/* Hover overlay */}
+                <div
+                  className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: 'linear-gradient(to bottom right, rgba(53,94,71,0.2), rgba(45,95,63,0.2))' }}
+                ></div>
+
                 {/* Icon */}
-                <div className={`${stat.bgColor} w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <stat.icon className={`w-6 h-6 ${stat.iconColor}`} />
+                <div
+                  className="w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                  style={{ backgroundColor: stat.iconBg }}
+                >
+                  <stat.icon className="w-6 h-6" style={{ color: stat.iconColor }} />
                 </div>
 
-                {/* Number - Even smaller font sizes */}
+                {/* Number */}
                 <div className="mb-2">
                   <span className="text-3xl md:text-4xl font-bold text-white">
                     <AnimatedCounter value={stat.value} duration={2.5} />
@@ -153,24 +157,27 @@ export default function StatsCounter() {
                   </span>
                 </div>
 
-                {/* Label - Even smaller font size */}
+                {/* Label */}
                 <h3 className="text-base font-bold text-white mb-1.5">
                   {stat.label}
                 </h3>
 
-                {/* Description - Smaller font size */}
-                <p className="text-emerald-200 text-xs">
+                {/* Description */}
+                <p className="text-xs" style={{ color: 'rgba(255,255,255,0.7)' }}>
                   {stat.description}
                 </p>
 
                 {/* Decorative Element */}
-                <div className={`absolute top-3 right-3 w-12 h-12 bg-gradient-to-br ${stat.color} opacity-10 rounded-full filter blur-lg`}></div>
+                <div
+                  className="absolute top-3 right-3 w-12 h-12 rounded-full filter blur-lg opacity-10"
+                  style={{ background: 'linear-gradient(to bottom right, #355E47, #2D5F3F)' }}
+                ></div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Bottom CTA - Even smaller font sizes */}
+        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -178,11 +185,16 @@ export default function StatsCounter() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mt-10 text-center"
         >
-          <p className="text-emerald-200 text-sm mb-3">
+          <p className="text-sm mb-3" style={{ color: 'rgba(255,255,255,0.75)' }}>
             Ready to become part of our success story?
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button className="px-6 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold text-sm rounded-full hover:shadow-md hover:shadow-emerald-500/30 transition-all hover:scale-105">
+            <button
+              className="px-6 py-2.5 text-white font-semibold text-sm rounded-full transition-all hover:scale-105"
+              style={{ background: 'linear-gradient(to right, rgba(255,255,255,0.15), rgba(255,255,255,0.1))', border: '1px solid rgba(255,255,255,0.3)' }}
+              onMouseEnter={e => e.currentTarget.style.background = 'linear-gradient(to right, rgba(255,255,255,0.25), rgba(255,255,255,0.15))'}
+              onMouseLeave={e => e.currentTarget.style.background = 'linear-gradient(to right, rgba(255,255,255,0.15), rgba(255,255,255,0.1))'}
+            >
               Start Your Application
             </button>
           </div>

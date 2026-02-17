@@ -68,21 +68,21 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href="tel:+447466685430" className="flex items-center gap-2 hover:text-emerald-400 transition-colors">
+            <a href="tel:+447466685430" className="flex items-center gap-2 hover:text-[#355E47]/80 transition-colors">
               <Phone size={14} />
               <span>+44 7466 685430</span>
             </a>
-            <a href="mailto:Admin@uni-vivamus.com" className="flex items-center gap-2 hover:text-emerald-400 transition-colors">
+            <a href="mailto:Admin@uni-vivamus.com" className="flex items-center gap-2 hover:text-[#355E47]/80 transition-colors">
               <Mail size={14} />
               <span>Admin@uni-vivamus.com</span>
             </a>
           </div>
           <div className="flex items-center gap-4">
-            <button className="hover:text-emerald-400 transition-colors flex items-center gap-1">
+            <button className="hover:text-[#355E47]/80 transition-colors flex items-center gap-1">
               <Globe size={14} />
               <span>Student Portal</span>
             </button>
-            <Link href="/apply" className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-1 rounded-full font-semibold transition-all hover:scale-105">
+            <Link href="/apply" className="bg-[#355E47] hover:bg-[#2D5F3F] text-white px-4 py-1 rounded-full font-semibold transition-all hover:scale-105">
               Apply Now
             </Link>
           </div>
@@ -108,7 +108,7 @@ const Navbar = () => {
               <motion.div 
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
-                className="w-12 h-12 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-lg flex items-center justify-center shadow-lg overflow-hidden"
+                className="w-12 h-12 bg-gradient-to-br from-[#355E47] to-[#2D5F3F] rounded-lg flex items-center justify-center shadow-lg overflow-hidden"
               >
                 <Image
                   src="/logo.jpeg"
@@ -135,7 +135,7 @@ const Navbar = () => {
                 onMouseEnter={() => setActiveDropdown('about')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <button className="px-4 py-2 text-slate-700 hover:text-emerald-600 font-medium flex items-center gap-1 transition-colors">
+                <button className="px-4 py-2 text-slate-700 hover:text-[#355E47] font-medium flex items-center gap-1 transition-colors">
                   About
                   <ChevronDown size={16} className={`transition-transform ${activeDropdown === 'about' ? 'rotate-180' : ''}`} />
                 </button>
@@ -152,7 +152,7 @@ const Navbar = () => {
                         <Link
                           key={link.name}
                           href={link.href}
-                          className="block px-6 py-3 hover:bg-emerald-50 hover:text-emerald-600 transition-colors border-b border-slate-50 last:border-0"
+                          className="block px-6 py-3 hover:bg-[#355E47]/5 hover:text-[#355E47] transition-colors border-b border-slate-50 last:border-0"
                         >
                           {link.name}
                         </Link>
@@ -168,7 +168,7 @@ const Navbar = () => {
                 onMouseEnter={() => setActiveDropdown('home')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <button className="px-4 py-2 text-slate-700 hover:text-emerald-600 font-medium flex items-center gap-1 transition-colors">
+                <button className="px-4 py-2 text-slate-700 hover:text-[#355E47] font-medium flex items-center gap-1 transition-colors">
                   Home Students
                   <ChevronDown size={16} className={`transition-transform ${activeDropdown === 'home' ? 'rotate-180' : ''}`} />
                 </button>
@@ -181,9 +181,9 @@ const Navbar = () => {
                       exit={{ opacity: 0, y: 10 }}
                       className="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden"
                     >
-                      <div className="p-4 bg-gradient-to-r from-slate-50 to-emerald-50 border-b border-slate-100">
+                      <div className="p-4 bg-gradient-to-r from-slate-50 to-[#355E47]/5 border-b border-slate-100">
                         <h3 className="font-bold text-slate-800 flex items-center gap-2">
-                          <MapPin size={16} className="text-emerald-600" />
+                          <MapPin size={16} className="text-[#355E47]" />
                           UK Locations
                         </h3>
                         <p className="text-xs text-slate-600 mt-1">Study in leading UK cities</p>
@@ -193,7 +193,7 @@ const Navbar = () => {
                           <Link
                             key={location.name}
                             href={location.href}
-                            className="px-4 py-3 hover:bg-emerald-50 hover:text-emerald-600 transition-colors rounded-lg m-1"
+                            className="px-4 py-3 hover:bg-[#355E47]/5 hover:text-[#355E47] transition-colors rounded-lg m-1"
                           >
                             {location.name}
                           </Link>
@@ -210,7 +210,7 @@ const Navbar = () => {
                 onMouseEnter={() => setActiveDropdown('international')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <button className="px-4 py-2 text-slate-700 hover:text-emerald-600 font-medium flex items-center gap-1 transition-colors">
+                <button className="px-4 py-2 text-slate-700 hover:text-[#355E47] font-medium flex items-center gap-1 transition-colors">
                   International
                   <ChevronDown size={16} className={`transition-transform ${activeDropdown === 'international' ? 'rotate-180' : ''}`} />
                 </button>
@@ -223,9 +223,9 @@ const Navbar = () => {
                       exit={{ opacity: 0, y: 10 }}
                       className="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden"
                     >
-                      <div className="p-4 bg-gradient-to-r from-slate-50 to-emerald-50 border-b border-slate-100">
+                      <div className="p-4 bg-gradient-to-r from-slate-50 to-[#355E47]/5 border-b border-slate-100">
                         <h3 className="font-bold text-slate-800 flex items-center gap-2">
-                          <Globe size={16} className="text-emerald-600" />
+                          <Globe size={16} className="text-[#355E47]" />
                           Global Campuses
                         </h3>
                         <p className="text-xs text-slate-600 mt-1">Experience world-class education globally</p>
@@ -235,7 +235,7 @@ const Navbar = () => {
                           <Link
                             key={location.name}
                             href={location.href}
-                            className="flex items-center gap-3 px-4 py-3 hover:bg-emerald-50 hover:text-emerald-600 transition-colors rounded-lg m-1"
+                            className="flex items-center gap-3 px-4 py-3 hover:bg-[#355E47]/5 hover:text-[#355E47] transition-colors rounded-lg m-1"
                           >
                             <span className="text-2xl">{location.flag}</span>
                             <span>{location.name}</span>
@@ -253,7 +253,7 @@ const Navbar = () => {
                 onMouseEnter={() => setActiveDropdown('admissions')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <button className="px-4 py-2 text-slate-700 hover:text-emerald-600 font-medium flex items-center gap-1 transition-colors">
+                <button className="px-4 py-2 text-slate-700 hover:text-[#355E47] font-medium flex items-center gap-1 transition-colors">
                   Admissions
                   <ChevronDown size={16} className={`transition-transform ${activeDropdown === 'admissions' ? 'rotate-180' : ''}`} />
                 </button>
@@ -270,7 +270,7 @@ const Navbar = () => {
                         <Link
                           key={link.name}
                           href={link.href}
-                          className="block px-6 py-3 hover:bg-emerald-50 hover:text-emerald-600 transition-colors border-b border-slate-50 last:border-0"
+                          className="block px-6 py-3 hover:bg-[#355E47]/5 hover:text-[#355E47] transition-colors border-b border-slate-50 last:border-0"
                         >
                           {link.name}
                         </Link>
@@ -280,11 +280,11 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
 
-              <Link href="/studentlife" className="px-4 py-2 text-slate-700 hover:text-emerald-600 font-medium transition-colors">
+              <Link href="/studentlife" className="px-4 py-2 text-slate-700 hover:text-[#355E47] font-medium transition-colors">
                 Student Life
               </Link>
               
-              <Link href="/contact" className="px-4 py-2 text-slate-700 hover:text-emerald-600 font-medium transition-colors">
+              <Link href="/contact" className="px-4 py-2 text-slate-700 hover:text-[#355E47] font-medium transition-colors">
                 Contact
               </Link>
             </div>
@@ -293,7 +293,7 @@ const Navbar = () => {
             <div className="hidden lg:flex items-center gap-3">
               <Link 
                 href="/apply"
-                className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                className="bg-gradient-to-r from-[#355E47] to-[#2D5F3F] hover:from-[#2D5F3F] hover:to-[#3A5F4A] text-white px-6 py-2.5 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
               >
                 Apply Now
               </Link>

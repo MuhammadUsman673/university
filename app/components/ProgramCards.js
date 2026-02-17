@@ -15,13 +15,13 @@ const ProgramCards = ({ programs }) => {
   }
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-50 via-white to-amber-50 min-h-screen">
+    <section className="py-16 bg-gradient-to-br from-slate-50 via-white to-gray-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4">
         
         {/* Results Count */}
         <div className="mb-8 pt-4">
           <h2 className="text-2xl font-bold text-gray-800">
-            Showing <span className="text-amber-600">{programs.length}</span> Programs
+            Showing <span style={{ color: '#355E47' }}>{programs.length}</span> Programs
           </h2>
         </div>
 
@@ -45,7 +45,7 @@ const ProgramCards = ({ programs }) => {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-amber-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                  <span style={{ backgroundColor: '#355E47' }} className="text-white px-4 py-1 rounded-full text-sm font-semibold">
                     {program.level}
                   </span>
                 </div>
@@ -58,7 +58,12 @@ const ProgramCards = ({ programs }) => {
 
               {/* Program Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-amber-600 transition-colors">
+                <h3
+                  className="text-xl font-bold text-slate-800 mb-3 transition-colors"
+                  style={{ '--hover-color': '#355E47' }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#355E47'}
+                  onMouseLeave={e => e.currentTarget.style.color = ''}
+                >
                   {program.name}
                 </h3>
                 <p className="text-gray-600 text-sm mb-4 line-clamp-2">
@@ -68,20 +73,20 @@ const ProgramCards = ({ programs }) => {
                 {/* Program Info */}
                 <div className="space-y-2 mb-6">
                   <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Clock size={16} className="text-amber-500" />
+                    <Clock size={16} style={{ color: '#355E47' }} />
                     <span>{program.duration}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <MapPin size={16} className="text-amber-500" />
+                    <MapPin size={16} style={{ color: '#355E47' }} />
                     <span>{program.location}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Users size={16} className="text-amber-500" />
+                    <Users size={16} style={{ color: '#355E47' }} />
                     <span>{program.students} students</span>
                   </div>
                   {program.accreditation && (
                     <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Award size={16} className="text-amber-500" />
+                      <Award size={16} style={{ color: '#355E47' }} />
                       <span>{program.accreditation}</span>
                     </div>
                   )}
@@ -90,13 +95,13 @@ const ProgramCards = ({ programs }) => {
                 {/* Key Features */}
                 <div className="mb-6">
                   <div className="flex items-center gap-2 mb-2">
-                    <BookOpen size={16} className="text-amber-500" />
+                    <BookOpen size={16} style={{ color: '#355E47' }} />
                     <span className="text-sm font-semibold text-gray-700">Key Features:</span>
                   </div>
                   <ul className="space-y-1">
                     {program.features.slice(0, 3).map((feature, i) => (
                       <li key={i} className="text-xs text-gray-600 flex items-start gap-2">
-                        <span className="text-amber-500 mt-1">✓</span>
+                        <span style={{ color: '#355E47' }} className="mt-1">✓</span>
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -107,7 +112,8 @@ const ProgramCards = ({ programs }) => {
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Link
                     href={`/programs/${program.slug}`}
-                    className="flex-1 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white py-3 rounded-full font-semibold text-sm flex items-center justify-center gap-2 transition-all hover:shadow-lg text-center"
+                    style={{ background: 'linear-gradient(to right, #355E47, #2D5F3F)' }}
+                    className="flex-1 text-white py-3 rounded-full font-semibold text-sm flex items-center justify-center gap-2 transition-all hover:shadow-lg text-center hover:opacity-90"
                   >
                     Learn More
                     <ArrowRight size={16} />

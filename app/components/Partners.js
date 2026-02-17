@@ -35,7 +35,7 @@ export default function Partners() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <div className="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded-full text-xs font-medium mb-3">
+          <div className="inline-flex items-center gap-1.5 bg-[#355E47]/10 text-[#355E47] px-3 py-1.5 rounded-full text-xs font-medium mb-3">
             <MapPin className="w-3.5 h-3.5" />
             Global Presence
           </div>
@@ -65,10 +65,10 @@ export default function Partners() {
               {[...partners, ...partners].map((partner, index) => (
                 <div
                   key={`${partner.id}-${index}`}
-                  className="flex-shrink-0 bg-emerald-50 rounded-lg px-6 py-5 border border-emerald-200 hover:border-emerald-400 hover:shadow-md transition-all group cursor-pointer min-w-[160px]"
+                  className="flex-shrink-0 bg-[#355E47]/5 rounded-lg px-6 py-5 border border-[#355E47]/20 hover:border-[#355E47] hover:shadow-md transition-all group cursor-pointer min-w-[160px]"
                 >
                   <div className="text-center">
-                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:from-emerald-700 group-hover:to-teal-700 transition-all">
+                    <div className="w-10 h-10 bg-gradient-to-br from-[#355E47] to-[#2D5F3F] rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:from-[#2D5F3F] group-hover:to-[#3A5F4A] transition-all">
                       <MapPin className="w-4 h-4 text-white" />
                     </div>
                     <p className="font-bold text-gray-900 text-sm mb-1">{partner.logo}</p>
@@ -86,7 +86,7 @@ export default function Partners() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6 border border-emerald-100"
+          className="bg-gradient-to-r from-[#355E47]/5 to-[#2D5F3F]/5 rounded-xl p-6 border border-[#355E47]/10"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
             {recognitions.map((recognition, index) => (
@@ -98,7 +98,7 @@ export default function Partners() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="flex items-start gap-2 bg-white rounded-lg p-3 hover:shadow-sm transition-all"
               >
-                <Award className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                <Award className="w-4 h-4 text-[#355E47] flex-shrink-0 mt-0.5" />
                 <p className="text-xs text-gray-700 font-medium">{recognition}</p>
               </motion.div>
             ))}

@@ -146,7 +146,6 @@ export default function Programs() {
     }
   ];
 
-  // Filter logic
   const filteredPrograms = programs.filter(program => {
     const matchesCategory = selectedCategory === 'All' || program.category === selectedCategory;
     const matchesSearch = program.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -164,7 +163,7 @@ export default function Programs() {
   const isExpanded = (id) => expandedDescriptions.includes(id);
 
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-emerald-50/30">
+    <section className="py-16 bg-gradient-to-br from-gray-50 via-white to-[#355E47]/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -172,16 +171,16 @@ export default function Programs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
-            <GraduationCap className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#355E47] to-[#2D5F3F] text-white px-4 py-2 rounded-full text-xs font-semibold mb-4">
+            <GraduationCap className="w-3.5 h-3.5" />
             Academic Programs
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
             Explore Flexible Degree Programs
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base text-gray-600 max-w-3xl mx-auto">
             Choose from a wide range of programs with flexible duration options to match your career goals
           </p>
         </motion.div>
@@ -192,29 +191,29 @@ export default function Programs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-12"
+          className="mb-10"
         >
           {/* Search Bar */}
-          <div className="relative max-w-2xl mx-auto mb-8">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <div className="relative max-w-2xl mx-auto mb-6">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search programs or keywords..."
-              className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gray-200 focus:border-emerald-500 focus:outline-none transition-all text-gray-800 bg-white shadow-sm"
+              className="w-full pl-11 pr-4 py-3 rounded-2xl border-2 border-gray-200 focus:border-[#355E47] focus:outline-none transition-all text-sm text-gray-800 bg-white shadow-sm"
             />
           </div>
 
           {/* Category Filters */}
-          <div className="flex flex-wrap gap-3 justify-center mb-6">
+          <div className="flex flex-wrap gap-2 justify-center">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all ${
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
                   selectedCategory === category
-                    ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-500/30'
+                    ? 'bg-gradient-to-r from-[#355E47] to-[#2D5F3F] text-white shadow-lg shadow-[#355E47]/30'
                     : 'bg-white text-gray-700 hover:bg-gray-100 border-2 border-gray-200'
                 }`}
               >
@@ -228,9 +227,9 @@ export default function Programs() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-center mb-8 text-gray-600"
+          className="text-center mb-6 text-sm text-gray-600"
         >
-          Showing <span className="font-bold text-emerald-600">{filteredPrograms.length}</span> programs
+          Showing <span className="font-bold text-[#355E47]">{filteredPrograms.length}</span> programs
         </motion.div>
 
         {/* Programs Grid */}
@@ -241,7 +240,7 @@ export default function Programs() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {filteredPrograms.map((program, index) => (
               <motion.div
@@ -251,8 +250,8 @@ export default function Programs() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               >
-                {/* Image without overlay */}
-                <div className="relative h-48 overflow-hidden">
+                {/* Image */}
+                <div className="relative h-44 overflow-hidden">
                   <Image
                     src={program.image}
                     alt={program.title}
@@ -260,54 +259,50 @@ export default function Programs() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1.5 rounded-lg text-xs font-bold">
+                  <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-gray-800 px-2.5 py-1 rounded-lg text-xs font-bold">
                     {program.icon} {program.category}
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6 flex flex-col h-[calc(100%-12rem)]">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors">
+                <div className="p-5 flex flex-col h-[calc(100%-11rem)]">
+                  <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-[#355E47] transition-colors">
                     {program.title}
                   </h3>
 
-                  {/* Description with See More link */}
-                  <div className="mb-4 flex-grow">
-                    <p className={`text-gray-600 ${!isExpanded(program.id) ? 'line-clamp-3' : ''}`}>
+                  {/* Description with See More */}
+                  <div className="mb-3 flex-grow">
+                    <p className={`text-gray-600 text-sm ${!isExpanded(program.id) ? 'line-clamp-3' : ''}`}>
                       {isExpanded(program.id) ? program.fullDescription : program.description}
                     </p>
                     <button
                       onClick={() => toggleDescription(program.id)}
-                      className="text-emerald-600 hover:text-emerald-700 font-medium text-sm mt-2 flex items-center gap-1 transition-colors"
+                      className="text-[#355E47] hover:text-[#2D5F3F] font-medium text-xs mt-1.5 flex items-center gap-1 transition-colors"
                     >
                       {isExpanded(program.id) ? (
-                        <>
-                          Show less <ChevronUp className="w-3 h-3" />
-                        </>
+                        <>Show less <ChevronUp className="w-3 h-3" /></>
                       ) : (
-                        <>
-                          See more <ChevronDown className="w-3 h-3" />
-                        </>
+                        <>See more <ChevronDown className="w-3 h-3" /></>
                       )}
                     </button>
                   </div>
 
                   {/* Meta Info */}
-                  <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                  <div className="flex items-center gap-4 mb-3 text-xs text-gray-500">
                     <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
+                      <Clock className="w-3.5 h-3.5" />
                       <span>{program.duration}</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <Users className="w-4 h-4" />
+                      <Users className="w-3.5 h-3.5" />
                       <span>{program.students}</span>
                     </div>
                   </div>
 
                   {/* CTA */}
-                  <button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:from-emerald-700 hover:to-teal-700 transition-all group-hover:shadow-lg shadow-emerald-500/30 mt-auto">
+                  <button className="w-full bg-gradient-to-r from-[#355E47] to-[#2D5F3F] text-white py-2.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:from-[#2D5F3F] hover:to-[#3A5F4A] transition-all group-hover:shadow-lg shadow-[#355E47]/30 mt-auto">
                     View Program Details
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </motion.div>
@@ -322,20 +317,20 @@ export default function Programs() {
             animate={{ opacity: 1 }}
             className="text-center py-16"
           >
-            <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">No programs found</h3>
-            <p className="text-gray-600">Try adjusting your filters or search query</p>
+            <div className="text-5xl mb-4">🔍</div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">No programs found</h3>
+            <p className="text-sm text-gray-600">Try adjusting your filters or search query</p>
           </motion.div>
         )}
 
-        {/* View All CTA */}
+        {/* Bottom note */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-center mt-12"
         >
-          <p className="text-gray-500 text-sm mt-4">Contact our admissions team for personalized guidance</p>
+          <p className="text-gray-500 text-xs mt-4">Contact our admissions team for personalized guidance</p>
         </motion.div>
       </div>
     </section>

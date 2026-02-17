@@ -71,7 +71,7 @@ const ApplicationProcess = () => {
         {/* Steps */}
         <div className="relative">
           {/* Connection Line */}
-          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-200 via-amber-300 to-amber-400 transform -translate-x-1/2"></div>
+          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-1 transform -translate-x-1/2" style={{ background: 'linear-gradient(to bottom, rgba(53,94,71,0.2), rgba(53,94,71,0.5), rgba(45,95,63,0.2))' }}></div>
 
           <div className="space-y-12 lg:space-y-24">
             {steps.map((step, index) => (
@@ -89,10 +89,10 @@ const ApplicationProcess = () => {
                 <div className={`flex-1 ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
                   <motion.div
                     whileHover={{ scale: 1.02 }}
-                    className="bg-gradient-to-br from-slate-50 to-amber-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all"
+                    className="bg-gradient-to-br from-slate-50 to-[#355E47]/5 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all"
                   >
                     <div className="flex items-center gap-4 mb-4 lg:justify-end">
-                      <span className="text-sm font-semibold text-amber-600 bg-amber-100 px-3 py-1 rounded-full">
+                      <span className="text-sm font-semibold px-3 py-1 rounded-full" style={{ backgroundColor: 'rgba(53,94,71,0.1)', color: '#355E47' }}>
                         {step.duration}
                       </span>
                     </div>
@@ -113,10 +113,10 @@ const ApplicationProcess = () => {
                   >
                     <step.icon size={40} className="text-white" />
                   </motion.div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-200 to-amber-300 rounded-full blur-xl opacity-50"></div>
+                  <div className="absolute inset-0 rounded-full blur-xl opacity-50" style={{ background: 'linear-gradient(to bottom right, rgba(53,94,71,0.3), rgba(45,95,63,0.3))' }}></div>
                   
                   {/* Step Number Badge */}
-                  <div className="absolute -top-2 -right-2 w-10 h-10 bg-white rounded-full flex items-center justify-center font-bold text-slate-800 shadow-lg z-20 border-4 border-amber-200">
+                  <div className="absolute -top-2 -right-2 w-10 h-10 bg-white rounded-full flex items-center justify-center font-bold text-white shadow-lg z-20 border-4" style={{ backgroundColor: '#355E47', borderColor: 'rgba(53,94,71,0.2)' }}>
                     {step.number}
                   </div>
                 </div>
@@ -128,23 +128,25 @@ const ApplicationProcess = () => {
           </div>
         </div>
 
-        {/* CTA Section */}
+        {/* CTA Section - Ready to Begin */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-20 text-center bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-12"
+          className="mt-20 text-center rounded-3xl p-12"
+          style={{ background: 'linear-gradient(to right, #355E47, #2D5F3F)' }}
         >
           <h3 className="text-3xl font-bold text-white mb-4 font-['Playfair_Display']">
             Ready to Begin?
           </h3>
-          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+          <p className="mb-8 max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.85)' }}>
             Start your application today and take the first step towards your dream education.
           </p>
           <Link
             href="/apply"
-            className="inline-block bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105"
+            className="inline-block text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105"
+            style={{ backgroundColor: 'rgba(255,255,255,0.2)', border: '2px solid rgba(255,255,255,0.4)' }}
           >
             Start Application Now
           </Link>

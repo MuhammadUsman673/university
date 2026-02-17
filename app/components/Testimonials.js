@@ -127,7 +127,7 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-br from-emerald-50 via-white to-teal-50 overflow-hidden">
+    <section className="py-16 bg-gradient-to-br from-[#355E47]/5 via-white to-[#2D5F3F]/5 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4">
         
         {/* Section Header - Reduced font sizes */}
@@ -181,12 +181,12 @@ const Testimonials = () => {
                   <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 relative overflow-hidden">
                     
                     {/* Decorative Elements - Green theme */}
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-emerald-400/20 to-transparent rounded-bl-full"></div>
-                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-teal-200/50 to-transparent rounded-tr-full"></div>
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#355E47]/20 to-transparent rounded-bl-full"></div>
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-[#2D5F3F]/20 to-transparent rounded-tr-full"></div>
                     
                     {/* Quote Icon */}
                     <div className="absolute top-6 left-6 opacity-10">
-                      <Quote size={60} className="text-emerald-500" />
+                      <Quote size={60} className="text-[#355E47]" />
                     </div>
 
                     <div className="relative z-10">
@@ -196,14 +196,14 @@ const Testimonials = () => {
                           whileHover={{ scale: 1.05 }}
                           className="relative"
                         >
-                          <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-4 ring-emerald-400 shadow-lg">
+                          <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-4 ring-[#355E47] shadow-lg">
                             <img 
                               src={testimonials[currentIndex].image} 
                               alt={testimonials[currentIndex].name}
                               className="w-full h-full object-cover"
                             />
                           </div>
-                          <div className="absolute -bottom-2 -right-2 bg-emerald-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
+                          <div className="absolute -bottom-2 -right-2 bg-[#355E47] text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
                             {testimonials[currentIndex].year}
                           </div>
                         </motion.div>
@@ -212,7 +212,7 @@ const Testimonials = () => {
                           <h3 className="text-xl font-bold text-slate-800 mb-1">
                             {testimonials[currentIndex].name}
                           </h3>
-                          <p className="text-emerald-600 font-semibold text-sm mb-1">
+                          <p className="text-[#355E47] font-semibold text-sm mb-1">
                             {testimonials[currentIndex].role}
                           </p>
                           <p className="text-gray-500 text-xs mb-2">
@@ -222,21 +222,21 @@ const Testimonials = () => {
                           {/* Rating Stars */}
                           <div className="flex gap-0.5 justify-center md:justify-start">
                             {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                              <Star key={i} size={16} className="fill-emerald-400 text-emerald-400" />
+                              <Star key={i} size={16} className="fill-[#355E47] text-[#355E47]" />
                             ))}
                           </div>
                         </div>
 
                         {/* Program Badge */}
-                        <div className="bg-gradient-to-r from-emerald-50 to-teal-50 px-3 py-1.5 rounded-full border border-emerald-200">
-                          <p className="text-xs font-semibold text-emerald-700">
+                        <div className="bg-gradient-to-r from-[#355E47]/10 to-[#2D5F3F]/10 px-3 py-1.5 rounded-full border border-[#355E47]/20">
+                          <p className="text-xs font-semibold text-[#355E47]">
                             {testimonials[currentIndex].program}
                           </p>
                         </div>
                       </div>
 
                       {/* Testimonial Text - Reduced font size */}
-                      <div className="bg-gradient-to-br from-emerald-50 to-teal-50/30 rounded-xl p-5">
+                      <div className="bg-gradient-to-br from-[#355E47]/10 to-[#2D5F3F]/5 rounded-xl p-5">
                         <p className="text-base text-gray-700 leading-relaxed italic">
                           "{testimonials[currentIndex].text}"
                         </p>
@@ -251,7 +251,7 @@ const Testimonials = () => {
           {/* Navigation Arrows - Green theme */}
           <button
             onClick={prevTestimonial}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-10 h-10 bg-white hover:bg-emerald-500 text-slate-700 hover:text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 z-20"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-10 h-10 bg-white hover:bg-[#355E47] text-slate-700 hover:text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 z-20"
             aria-label="Previous testimonial"
           >
             <ChevronLeft size={20} />
@@ -259,7 +259,7 @@ const Testimonials = () => {
           
           <button
             onClick={nextTestimonial}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-10 h-10 bg-white hover:bg-emerald-500 text-slate-700 hover:text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 z-20"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-10 h-10 bg-white hover:bg-[#355E47] text-slate-700 hover:text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 z-20"
             aria-label="Next testimonial"
           >
             <ChevronRight size={20} />
@@ -274,7 +274,7 @@ const Testimonials = () => {
               onClick={() => goToTestimonial(index)}
               className={`transition-all ${
                 index === currentIndex 
-                  ? 'w-10 h-2 bg-emerald-500' 
+                  ? 'w-10 h-2 bg-[#355E47]' 
                   : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
               } rounded-full`}
               aria-label={`Go to testimonial ${index + 1}`}
@@ -297,7 +297,7 @@ const Testimonials = () => {
             { value: '95%', label: 'Employment Rate' },
           ].map((stat, index) => (
             <div key={index} className="bg-white rounded-lg p-4 text-center shadow-md hover:shadow-lg transition-shadow">
-              <div className="text-2xl font-bold text-emerald-600 mb-1">
+              <div className="text-2xl font-bold text-[#355E47] mb-1">
                 {stat.value}
               </div>
               <div className="text-xs text-gray-600 font-medium">

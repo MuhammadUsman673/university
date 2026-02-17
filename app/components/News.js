@@ -12,8 +12,8 @@ export default function News() {
       readTime: '5 min read',
       excerpt: 'Our commitment to excellence has placed us among the world\'s leading educational institutions for the third consecutive year.',
       icon: TrendingUp,
-      color: 'from-emerald-600 to-teal-600',
-      bgColor: 'bg-emerald-50'
+      color: 'from-[#355E47] to-[#2D5F3F]',
+      bgColor: 'bg-[#355E47]/10'
     },
     {
       id: 2,
@@ -23,8 +23,8 @@ export default function News() {
       readTime: '4 min read',
       excerpt: 'State-of-the-art facility to drive breakthrough research in artificial intelligence and machine learning.',
       icon: Award,
-      color: 'from-teal-600 to-emerald-600',
-      bgColor: 'bg-teal-50'
+      color: 'from-[#2D5F3F] to-[#355E47]',
+      bgColor: 'bg-[#2D5F3F]/10'
     },
     {
       id: 3,
@@ -34,8 +34,8 @@ export default function News() {
       readTime: '6 min read',
       excerpt: 'Students can now experience education across five continents with our enhanced partnership network.',
       icon: Globe,
-      color: 'from-green-600 to-emerald-600',
-      bgColor: 'bg-green-50'
+      color: 'from-[#3A5F4A] to-[#355E47]',
+      bgColor: 'bg-[#3A5F4A]/10'
     },
     {
       id: 4,
@@ -45,8 +45,8 @@ export default function News() {
       readTime: '3 min read',
       excerpt: 'Our graduates continue to excel in the job market with top companies worldwide.',
       icon: Users,
-      color: 'from-emerald-600 to-green-600',
-      bgColor: 'bg-emerald-50'
+      color: 'from-[#355E47] to-[#2D5F3F]',
+      bgColor: 'bg-[#355E47]/10'
     }
   ];
 
@@ -100,7 +100,7 @@ export default function News() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <div className="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded-full text-xs font-medium mb-3">
+          <div className="inline-flex items-center gap-1.5 bg-[#355E47]/10 text-[#355E47] px-3 py-1.5 rounded-full text-xs font-medium mb-3">
             <Calendar className="w-3.5 h-3.5" />
             Latest Updates
           </div>
@@ -125,7 +125,7 @@ export default function News() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group bg-gradient-to-br from-gray-50 to-emerald-50/30 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100"
+                  className="group bg-gradient-to-br from-gray-50 to-[#355E47]/5 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100"
                 >
                   {/* Content without image */}
                   <div className="p-5">
@@ -142,13 +142,13 @@ export default function News() {
 
                     <div className="flex items-start gap-3 mb-3">
                       <div className={`${article.bgColor} p-2.5 rounded-lg`}>
-                        <article.icon className={`w-5 h-5 ${article.color.replace('from-', 'text-').split(' ')[0]}`} />
+                        <article.icon className="w-5 h-5 text-[#355E47]" />
                       </div>
                       <div className="flex-1">
-                        <div className="inline-block bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-semibold mb-2">
+                        <div className="inline-block bg-[#355E47]/10 text-[#355E47] px-2 py-1 rounded text-xs font-semibold mb-2">
                           {article.category}
                         </div>
-                        <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
+                        <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-[#355E47] transition-colors">
                           {article.title}
                         </h4>
                       </div>
@@ -176,11 +176,11 @@ export default function News() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="group bg-white border border-gray-200 rounded-lg p-4 hover:border-emerald-500 hover:shadow-md transition-all"
+                    className="group bg-white border border-gray-200 rounded-lg p-4 hover:border-[#355E47] hover:shadow-md transition-all"
                   >
                     {/* Date Badge */}
                     <div className="flex items-start gap-3 mb-2">
-                      <div className="bg-gradient-to-br from-emerald-600 to-teal-600 text-white rounded-lg p-2.5 text-center min-w-[50px]">
+                      <div className="bg-gradient-to-br from-[#355E47] to-[#2D5F3F] text-white rounded-lg p-2.5 text-center min-w-[50px]">
                         <div className="text-lg font-bold leading-none mb-1">
                           {event.date.split(' ')[1].replace(',', '')}
                         </div>
@@ -190,10 +190,10 @@ export default function News() {
                       </div>
 
                       <div className="flex-1">
-                        <div className="inline-block bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded text-xs font-semibold mb-1.5">
+                        <div className="inline-block bg-[#355E47]/10 text-[#355E47] px-2 py-0.5 rounded text-xs font-semibold mb-1.5">
                           {event.type}
                         </div>
-                        <h4 className="font-bold text-gray-900 text-sm group-hover:text-emerald-600 transition-colors">
+                        <h4 className="font-bold text-gray-900 text-sm group-hover:text-[#355E47] transition-colors">
                           {event.title}
                         </h4>
                       </div>
@@ -210,7 +210,7 @@ export default function News() {
                         <span>{event.location}</span>
                       </div>
                       <div className="pt-1.5 border-t border-gray-200 mt-1.5">
-                        <span className={`text-xs font-semibold ${event.spots === 'Unlimited' ? 'text-emerald-600' : 'text-amber-600'}`}>
+                        <span className={`text-xs font-semibold ${event.spots === 'Unlimited' ? 'text-[#355E47]' : 'text-amber-600'}`}>
                           {event.spots}
                         </span>
                       </div>
@@ -228,7 +228,7 @@ export default function News() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-12 bg-gradient-to-r from-emerald-900 via-teal-900 to-green-900 rounded-2xl p-6 md:p-8 text-center text-white"
+          className="mt-12 bg-gradient-to-r from-[#355E47] via-[#2D5F3F] to-[#3A5F4A] rounded-2xl p-6 md:p-8 text-center text-white"
         >
           <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-medium mb-3">
             <Mail className="w-3.5 h-3.5" />
@@ -237,7 +237,7 @@ export default function News() {
           <h3 className="text-xl md:text-2xl font-bold mb-3">
             Never Miss an Update
           </h3>
-          <p className="text-emerald-100 text-sm mb-6 max-w-xl mx-auto">
+          <p className="text-white/90 text-sm mb-6 max-w-xl mx-auto">
             Subscribe to our newsletter and get the latest news, events, and opportunities delivered to your inbox
           </p>
           <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
@@ -246,7 +246,7 @@ export default function News() {
               placeholder="Enter your email"
               className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/30 text-white placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all text-sm"
             />
-            <button className="bg-white text-emerald-900 px-6 py-3 rounded-lg font-semibold text-sm hover:bg-emerald-50 transition-all shadow-sm">
+            <button className="bg-white text-[#355E47] px-6 py-3 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-all shadow-sm">
               Subscribe
             </button>
           </div>

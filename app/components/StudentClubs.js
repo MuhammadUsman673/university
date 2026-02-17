@@ -55,7 +55,7 @@ export default function StudentClubs() {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -63,18 +63,22 @@ export default function StudentClubs() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Clubs & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Activities</span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium mb-3" style={{ backgroundColor: 'rgba(53,94,71,0.1)', color: '#355E47' }}>
+            <Rocket className="w-3.5 h-3.5" />
+            Student Life
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+            Clubs & <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #355E47, #2D5F3F)' }}>Activities</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base text-gray-600 max-w-2xl mx-auto">
             Join over 100 student-led clubs and organizations. Find your passion, make friends, and create memories.
           </p>
         </motion.div>
 
         {/* Clubs Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {clubCategories.map((category, index) => (
             <motion.div
               key={index}
@@ -84,21 +88,21 @@ export default function StudentClubs() {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1">
+              <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-5 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1">
                 {/* Icon */}
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                  <category.icon className="w-8 h-8 text-white" />
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
+                  <category.icon className="w-6 h-6 text-white" />
                 </div>
 
                 {/* Category Name */}
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{category.category}</h3>
+                <h3 className="text-base font-bold text-gray-900 mb-3">{category.category}</h3>
 
                 {/* Clubs List */}
-                <ul className="space-y-2">
+                <ul className="space-y-1.5">
                   {category.clubs.map((club, clubIndex) => (
                     <li key={clubIndex} className="flex items-start gap-2">
-                      <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${category.color} mt-2 flex-shrink-0`}></span>
-                      <span className="text-gray-600 text-sm">{club}</span>
+                      <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${category.color} mt-1.5 flex-shrink-0`}></span>
+                      <span className="text-gray-600 text-xs">{club}</span>
                     </li>
                   ))}
                 </ul>
@@ -107,21 +111,25 @@ export default function StudentClubs() {
           ))}
         </div>
 
-        {/* Bottom CTA */}
+        {/* Bottom CTA - Can't Find Your Club */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="mt-16 text-center bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-12"
+          className="mt-10 text-center rounded-2xl p-6 md:p-8 border"
+          style={{ background: 'linear-gradient(to right, rgba(53,94,71,0.05), rgba(45,95,63,0.08))', borderColor: 'rgba(53,94,71,0.15)' }}
         >
-          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
             Can't Find Your Club?
           </h3>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-sm text-gray-600 mb-5 max-w-xl mx-auto">
             Start your own! We support student initiatives and provide resources to launch new clubs.
           </p>
-          <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all hover:scale-105">
+          <button
+            className="text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg transition-all hover:scale-105"
+            style={{ background: 'linear-gradient(to right, #355E47, #2D5F3F)' }}
+          >
             Start a New Club
           </button>
         </motion.div>

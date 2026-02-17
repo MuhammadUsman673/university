@@ -34,7 +34,7 @@ export default function ContactFAQ() {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-16 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -42,12 +42,12 @@ export default function ContactFAQ() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Questions</span>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+            Frequently Asked <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #355E47, #2D5F3F)' }}>Questions</span>
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-base text-gray-600">
             Quick answers to common questions. Can't find what you're looking for? Contact us directly.
           </p>
         </motion.div>
@@ -61,19 +61,21 @@ export default function ContactFAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-gray-50 rounded-2xl overflow-hidden border border-gray-200 hover:border-blue-300 transition-colors"
+              className="bg-gray-50 rounded-2xl overflow-hidden border border-gray-200 transition-colors"
+              style={{ borderColor: openIndex === index ? '#355E47' : '' }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(53,94,71,0.4)'}
+              onMouseLeave={e => e.currentTarget.style.borderColor = openIndex === index ? '#355E47' : ''}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-100 transition-colors"
+                className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-100 transition-colors"
               >
-                <span className="text-lg font-semibold text-gray-900 pr-8">
+                <span className="text-base font-semibold text-gray-900 pr-8">
                   {faq.question}
                 </span>
                 <ChevronDown
-                  className={`w-6 h-6 text-blue-600 flex-shrink-0 transition-transform duration-300 ${
-                    openIndex === index ? 'rotate-180' : ''
-                  }`}
+                  className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`}
+                  style={{ color: '#355E47' }}
                 />
               </button>
 
@@ -86,7 +88,7 @@ export default function ContactFAQ() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-5 text-gray-600 leading-relaxed">
+                    <div className="px-6 pb-5 text-sm text-gray-600 leading-relaxed">
                       {faq.answer}
                     </div>
                   </motion.div>
@@ -102,15 +104,21 @@ export default function ContactFAQ() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="mt-12 text-center bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8"
+          className="mt-10 text-center rounded-2xl p-8"
+          style={{ background: 'linear-gradient(to right, rgba(53,94,71,0.08), rgba(45,95,63,0.08))' }}
         >
-          <h3 className="text-2xl font-bold text-gray-900 mb-3">
+          <h3 className="text-xl font-bold text-gray-900 mb-3">
             Still have questions?
           </h3>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-600 text-sm mb-6">
             Our team is here to help. Get in touch and we'll respond as soon as possible.
           </p>
-          <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-full font-bold hover:shadow-xl transition-all hover:scale-105">
+          <button
+            className="text-white px-8 py-2.5 rounded-full font-bold text-sm transition-all hover:scale-105 hover:shadow-xl"
+            style={{ background: 'linear-gradient(to right, #355E47, #2D5F3F)' }}
+            onMouseEnter={e => e.currentTarget.style.background = 'linear-gradient(to right, #2D5F3F, #1a2e23)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'linear-gradient(to right, #355E47, #2D5F3F)'}
+          >
             Contact Support Team
           </button>
         </motion.div>
