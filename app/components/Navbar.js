@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Globe, Phone, Mail, MapPin } from 'lucide-react';
+import { Menu, X, ChevronDown, Globe, Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,20 +37,26 @@ const Navbar = () => {
   ];
 
   const aboutLinks = [
-    { name: 'Our Story', href: '/about' },
-    { name: 'Mission & Vision', href: '/about#mission' },
-    { name: 'Leadership', href: '/about#mission' },
+    { name: 'Our Story', href: '/about', desc: 'How we started' },
+    { name: 'Mission & Vision', href: '/about#mission', desc: 'What drives us' },
+    { name: 'Leadership', href: '/about#mission', desc: 'Meet the team' },
   ];
 
   const admissionLinks = [
-    { name: 'How to Apply', href: '/admissions' },
-    { name: 'Entry Requirements', href: '/admissions' },
-    { name: 'Tuition & Fees', href: '/admissions' },
-    { name: 'Scholarships', href: '/admissions' },
+    { name: 'How to Apply', href: '/admissions', desc: 'Step-by-step guide' },
+    { name: 'Entry Requirements', href: '/admissions', desc: 'Qualifications needed' },
+    { name: 'Tuition & Fees', href: '/admissions', desc: 'Costs & payment plans' },
+    { name: 'Scholarships', href: '/admissions', desc: 'Funding opportunities' },
   ];
 
   const toggleMobileSection = (section) => {
     setMobileExpanded(mobileExpanded === section ? null : section);
+  };
+
+  const dropdownVariants = {
+    hidden: { opacity: 0, y: 8, scale: 0.97 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.18, ease: 'easeOut' } },
+    exit: { opacity: 0, y: 6, scale: 0.97, transition: { duration: 0.12 } },
   };
 
   return (
@@ -63,17 +69,17 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href="tel:+447466685430" className="flex items-center gap-2 hover:text-[#355E47]/80 transition-colors">
+            <a href="tel:+447466685430" className="flex items-center gap-2 hover:text-[#6DB890] transition-colors">
               <Phone size={14} />
               <span>+44 7466 685430</span>
             </a>
-            <a href="mailto:Admin@uni-vivamus.com" className="flex items-center gap-2 hover:text-[#355E47]/80 transition-colors">
+            <a href="mailto:Admin@uni-vivamus.com" className="flex items-center gap-2 hover:text-[#6DB890] transition-colors">
               <Mail size={14} />
               <span>Admin@uni-vivamus.com</span>
             </a>
           </div>
           <div className="flex items-center gap-4">
-            <button className="hover:text-[#355E47]/80 transition-colors flex items-center gap-1">
+            <button className="hover:text-[#6DB890] transition-colors flex items-center gap-1">
               <Globe size={14} />
               <span>Student Portal</span>
             </button>
@@ -115,20 +121,36 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-1">
+
               {/* About */}
               <div className="relative" onMouseEnter={() => setActiveDropdown('about')} onMouseLeave={() => setActiveDropdown(null)}>
-                <button className="px-4 py-2 text-slate-700 hover:text-[#355E47] font-medium flex items-center gap-1 transition-colors">
-                  About <ChevronDown size={16} className={`transition-transform ${activeDropdown === 'about' ? 'rotate-180' : ''}`} />
+                <button className={`px-4 py-2 font-medium flex items-center gap-1 transition-colors rounded-lg ${activeDropdown === 'about' ? 'text-[#355E47] bg-[#355E47]/5' : 'text-slate-700 hover:text-[#355E47] hover:bg-[#355E47]/5'}`}>
+                  About <ChevronDown size={15} className={`transition-transform duration-200 ${activeDropdown === 'about' ? 'rotate-180' : ''}`} />
                 </button>
                 <AnimatePresence>
                   {activeDropdown === 'about' && (
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden">
-                      {aboutLinks.map((link) => (
-                        <Link key={link.name} href={link.href} className="block px-6 py-3 hover:bg-[#355E47]/5 hover:text-[#355E47] transition-colors border-b border-slate-50 last:border-0">
-                          {link.name}
-                        </Link>
-                      ))}
+                    <motion.div
+                      variants={dropdownVariants}
+                      initial="hidden" animate="visible" exit="exit"
+                      className="absolute top-full left-0 mt-3 w-64 bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-slate-100 overflow-hidden"
+                    >
+                      {/* Dropdown header accent */}
+                      <div className="h-1 w-full" style={{ background: 'linear-gradient(to right, #355E47, #2D9B5A)' }} />
+                      <div className="p-2">
+                        {aboutLinks.map((link) => (
+                          <Link
+                            key={link.name}
+                            href={link.href}
+                            className="group flex items-center justify-between px-4 py-3 rounded-xl hover:bg-[#355E47]/5 transition-all"
+                          >
+                            <div>
+                              <div className="text-sm font-semibold text-slate-800 group-hover:text-[#355E47] transition-colors">{link.name}</div>
+                              <div className="text-xs text-slate-400 mt-0.5">{link.desc}</div>
+                            </div>
+                            <ArrowRight size={14} className="text-slate-300 group-hover:text-[#355E47] group-hover:translate-x-0.5 transition-all" />
+                          </Link>
+                        ))}
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -136,21 +158,37 @@ const Navbar = () => {
 
               {/* Home Students */}
               <div className="relative" onMouseEnter={() => setActiveDropdown('home')} onMouseLeave={() => setActiveDropdown(null)}>
-                <button className="px-4 py-2 text-slate-700 hover:text-[#355E47] font-medium flex items-center gap-1 transition-colors">
-                  Home Students <ChevronDown size={16} className={`transition-transform ${activeDropdown === 'home' ? 'rotate-180' : ''}`} />
+                <button className={`px-4 py-2 font-medium flex items-center gap-1 transition-colors rounded-lg ${activeDropdown === 'home' ? 'text-[#355E47] bg-[#355E47]/5' : 'text-slate-700 hover:text-[#355E47] hover:bg-[#355E47]/5'}`}>
+                  Home Students <ChevronDown size={15} className={`transition-transform duration-200 ${activeDropdown === 'home' ? 'rotate-180' : ''}`} />
                 </button>
                 <AnimatePresence>
                   {activeDropdown === 'home' && (
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden">
-                      <div className="p-4 bg-gradient-to-r from-slate-50 to-[#355E47]/5 border-b border-slate-100">
-                        <h3 className="font-bold text-slate-800 flex items-center gap-2"><MapPin size={16} className="text-[#355E47]" />UK Locations</h3>
-                        <p className="text-xs text-slate-600 mt-1">Study in leading UK cities</p>
+                    <motion.div
+                      variants={dropdownVariants}
+                      initial="hidden" animate="visible" exit="exit"
+                      className="absolute top-full left-0 mt-3 w-72 bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-slate-100 overflow-hidden"
+                    >
+                      <div className="h-1 w-full" style={{ background: 'linear-gradient(to right, #355E47, #2D9B5A)' }} />
+                      <div className="px-4 py-3 border-b border-slate-50">
+                        <div className="flex items-center gap-2">
+                          <div className="w-7 h-7 rounded-lg bg-[#355E47]/10 flex items-center justify-center">
+                            <MapPin size={14} className="text-[#355E47]" />
+                          </div>
+                          <div>
+                            <div className="text-sm font-bold text-slate-800">UK Locations</div>
+                            <div className="text-xs text-slate-400">Study in leading UK cities</div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="grid grid-cols-2 p-2">
+                      <div className="p-2 grid grid-cols-2 gap-1">
                         {homeStudentsLocations.map((location) => (
-                          <Link key={location.name} href={location.href} className="px-4 py-3 hover:bg-[#355E47]/5 hover:text-[#355E47] transition-colors rounded-lg m-1">
-                            {location.name}
+                          <Link
+                            key={location.name}
+                            href={location.href}
+                            className="group flex items-center gap-2 px-3 py-2.5 rounded-xl hover:bg-[#355E47]/5 transition-all"
+                          >
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#355E47]/30 group-hover:bg-[#355E47] transition-colors" />
+                            <span className="text-sm text-slate-700 group-hover:text-[#355E47] font-medium transition-colors">{location.name}</span>
                           </Link>
                         ))}
                       </div>
@@ -161,22 +199,40 @@ const Navbar = () => {
 
               {/* International */}
               <div className="relative" onMouseEnter={() => setActiveDropdown('international')} onMouseLeave={() => setActiveDropdown(null)}>
-                <button className="px-4 py-2 text-slate-700 hover:text-[#355E47] font-medium flex items-center gap-1 transition-colors">
-                  International <ChevronDown size={16} className={`transition-transform ${activeDropdown === 'international' ? 'rotate-180' : ''}`} />
+                <button className={`px-4 py-2 font-medium flex items-center gap-1 transition-colors rounded-lg ${activeDropdown === 'international' ? 'text-[#355E47] bg-[#355E47]/5' : 'text-slate-700 hover:text-[#355E47] hover:bg-[#355E47]/5'}`}>
+                  International <ChevronDown size={15} className={`transition-transform duration-200 ${activeDropdown === 'international' ? 'rotate-180' : ''}`} />
                 </button>
                 <AnimatePresence>
                   {activeDropdown === 'international' && (
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden">
-                      <div className="p-4 bg-gradient-to-r from-slate-50 to-[#355E47]/5 border-b border-slate-100">
-                        <h3 className="font-bold text-slate-800 flex items-center gap-2"><Globe size={16} className="text-[#355E47]" />Global Campuses</h3>
-                        <p className="text-xs text-slate-600 mt-1">Experience world-class education globally</p>
+                    <motion.div
+                      variants={dropdownVariants}
+                      initial="hidden" animate="visible" exit="exit"
+                      className="absolute top-full left-0 mt-3 w-72 bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-slate-100 overflow-hidden"
+                    >
+                      <div className="h-1 w-full" style={{ background: 'linear-gradient(to right, #355E47, #2D9B5A)' }} />
+                      <div className="px-4 py-3 border-b border-slate-50">
+                        <div className="flex items-center gap-2">
+                          <div className="w-7 h-7 rounded-lg bg-[#355E47]/10 flex items-center justify-center">
+                            <Globe size={14} className="text-[#355E47]" />
+                          </div>
+                          <div>
+                            <div className="text-sm font-bold text-slate-800">Global Campuses</div>
+                            <div className="text-xs text-slate-400">World-class education globally</div>
+                          </div>
+                        </div>
                       </div>
                       <div className="p-2">
                         {internationalLocations.map((location) => (
-                          <Link key={location.name} href={location.href} className="flex items-center gap-3 px-4 py-3 hover:bg-[#355E47]/5 hover:text-[#355E47] transition-colors rounded-lg m-1">
-                            <span className="text-2xl">{location.flag}</span>
-                            <span>{location.name}</span>
+                          <Link
+                            key={location.name}
+                            href={location.href}
+                            className="group flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-[#355E47]/5 transition-all"
+                          >
+                            <div className="flex items-center gap-3">
+                              <span className="text-xl">{location.flag}</span>
+                              <span className="text-sm font-medium text-slate-700 group-hover:text-[#355E47] transition-colors">{location.name}</span>
+                            </div>
+                            <ArrowRight size={13} className="text-slate-200 group-hover:text-[#355E47] group-hover:translate-x-0.5 transition-all" />
                           </Link>
                         ))}
                       </div>
@@ -187,25 +243,45 @@ const Navbar = () => {
 
               {/* Admissions */}
               <div className="relative" onMouseEnter={() => setActiveDropdown('admissions')} onMouseLeave={() => setActiveDropdown(null)}>
-                <button className="px-4 py-2 text-slate-700 hover:text-[#355E47] font-medium flex items-center gap-1 transition-colors">
-                  Admissions <ChevronDown size={16} className={`transition-transform ${activeDropdown === 'admissions' ? 'rotate-180' : ''}`} />
+                <button className={`px-4 py-2 font-medium flex items-center gap-1 transition-colors rounded-lg ${activeDropdown === 'admissions' ? 'text-[#355E47] bg-[#355E47]/5' : 'text-slate-700 hover:text-[#355E47] hover:bg-[#355E47]/5'}`}>
+                  Admissions <ChevronDown size={15} className={`transition-transform duration-200 ${activeDropdown === 'admissions' ? 'rotate-180' : ''}`} />
                 </button>
                 <AnimatePresence>
                   {activeDropdown === 'admissions' && (
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden">
-                      {admissionLinks.map((link) => (
-                        <Link key={link.name} href={link.href} className="block px-6 py-3 hover:bg-[#355E47]/5 hover:text-[#355E47] transition-colors border-b border-slate-50 last:border-0">
-                          {link.name}
+                    <motion.div
+                      variants={dropdownVariants}
+                      initial="hidden" animate="visible" exit="exit"
+                      className="absolute top-full left-0 mt-3 w-64 bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-slate-100 overflow-hidden"
+                    >
+                      <div className="h-1 w-full" style={{ background: 'linear-gradient(to right, #355E47, #2D9B5A)' }} />
+                      <div className="p-2">
+                        {admissionLinks.map((link) => (
+                          <Link
+                            key={link.name}
+                            href={link.href}
+                            className="group flex items-center justify-between px-4 py-3 rounded-xl hover:bg-[#355E47]/5 transition-all"
+                          >
+                            <div>
+                              <div className="text-sm font-semibold text-slate-800 group-hover:text-[#355E47] transition-colors">{link.name}</div>
+                              <div className="text-xs text-slate-400 mt-0.5">{link.desc}</div>
+                            </div>
+                            <ArrowRight size={14} className="text-slate-300 group-hover:text-[#355E47] group-hover:translate-x-0.5 transition-all" />
+                          </Link>
+                        ))}
+                      </div>
+                      {/* CTA inside dropdown */}
+                      <div className="mx-3 mb-3 mt-1 rounded-xl p-3 text-center" style={{ background: 'linear-gradient(135deg, rgba(53,94,71,0.08), rgba(45,155,90,0.08))' }}>
+                        <Link href="/apply" className="text-xs font-bold text-[#355E47] hover:underline">
+                          Ready to apply? Start here →
                         </Link>
-                      ))}
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
 
-              <Link href="/studentlife" className="px-4 py-2 text-slate-700 hover:text-[#355E47] font-medium transition-colors">Student Life</Link>
-              <Link href="/contact" className="px-4 py-2 text-slate-700 hover:text-[#355E47] font-medium transition-colors">Contact</Link>
+              <Link href="/studentlife" className="px-4 py-2 text-slate-700 hover:text-[#355E47] hover:bg-[#355E47]/5 font-medium transition-colors rounded-lg">Student Life</Link>
+              <Link href="/contact" className="px-4 py-2 text-slate-700 hover:text-[#355E47] hover:bg-[#355E47]/5 font-medium transition-colors rounded-lg">Contact</Link>
             </div>
 
             {/* Desktop Apply Button */}

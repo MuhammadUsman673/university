@@ -178,9 +178,8 @@ export default function Features() {
                   {feature.description}
                 </p>
 
-                {/* Fixed: descriptive link text for SEO */}
                 <Link
-                  href="/admissions"
+                  href="/apply"
                   className="mt-3 flex items-center gap-2 font-semibold text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ color: '#355E47' }}
                 >
@@ -213,7 +212,7 @@ export default function Features() {
               Join 15,000+ students who have already started their journey to success with Uni Vivamus
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/admissions">
+              <Link href="/apply">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

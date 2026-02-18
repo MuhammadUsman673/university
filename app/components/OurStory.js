@@ -1,8 +1,11 @@
 'use client';
 import { motion } from 'framer-motion';
 import { Calendar, Rocket, Trophy, Globe, Users, Award } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function OurStory() {
+  const router = useRouter();
+
   const milestones = [
     {
       year: "1999",
@@ -134,7 +137,10 @@ export default function OurStory() {
             <p className="text-sm text-white/90 mb-6 max-w-xl mx-auto">
               Join thousands of students who are writing their success stories with us
             </p>
-            <button className="bg-white text-[#355E47] px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-gray-50 transition-all hover:scale-105 shadow-lg">
+            <button
+              onClick={() => router.push('/apply')}
+              className="bg-white text-[#355E47] px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-gray-50 transition-all hover:scale-105 shadow-lg"
+            >
               Start Your Journey
             </button>
           </div>

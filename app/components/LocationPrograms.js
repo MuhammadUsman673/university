@@ -189,7 +189,6 @@ export default function LocationPrograms({ programs }) {
                   </p>
 
                   <div className="flex gap-3">
-                    {/* Fixed: descriptive link text for SEO */}
                     <a
                       href={`/programs/${program.slug || program.name.toLowerCase().replace(/\s+/g, '-')}`}
                       className="flex-1 bg-[#355E47] text-white py-2.5 rounded-lg font-semibold text-sm text-center hover:bg-[#2D5F3F] transition-all group-hover:shadow-lg flex items-center justify-center gap-2"
@@ -198,7 +197,7 @@ export default function LocationPrograms({ programs }) {
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </a>
                     <a
-                      href="/admissions"
+                      href="/apply"
                       className="px-5 py-2.5 border-2 border-[#355E47] text-[#355E47] rounded-lg font-semibold text-sm hover:bg-[#355E47] hover:text-white transition-all"
                     >
                       Apply

@@ -1,8 +1,11 @@
 'use client';
 import { motion } from 'framer-motion';
 import { Quote, MapPin, GraduationCap } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function StudentTestimonials() {
+  const router = useRouter();
+
   const testimonials = [
     {
       name: "Emma Thompson",
@@ -131,14 +134,13 @@ export default function StudentTestimonials() {
           <p className="text-sm mb-6 max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.9)' }}>
             Join our vibrant community and create memories that will last a lifetime
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button className="px-6 py-2.5 rounded-full font-semibold text-sm transition-all hover:scale-105" style={{ backgroundColor: 'white', color: '#355E47' }}>
-              Apply Now
-            </button>
-            <button className="px-6 py-2.5 rounded-full font-semibold text-sm border-2 border-white transition-all hover:scale-105" style={{ backgroundColor: 'rgba(45,95,63,0.3)', color: 'white' }}>
-              Book Campus Tour
-            </button>
-          </div>
+          <button
+            onClick={() => router.push('/apply')}
+            className="px-6 py-2.5 rounded-full font-semibold text-sm transition-all hover:scale-105"
+            style={{ backgroundColor: 'white', color: '#355E47' }}
+          >
+            Apply Now
+          </button>
         </motion.div>
       </div>
     </section>
