@@ -3,9 +3,7 @@ import Features from './components/Features';
 import Programs from './components/Programs';
 import StatsCounter from './components/StatsCounter';
 import News from './components/News';
-import Testimonials from './components/Testimonials';
 import Partners from './components/Partners';
-import CTABanner from './components/CTABanner';
 
 export default function Home() {
   return (
@@ -13,11 +11,9 @@ export default function Home() {
       <Hero />
       <Features />
       <Programs />
-      <StatsCounter />  
+      <StatsCounter />
       <News />
-      <Testimonials />
       <Partners />
-      <CTABanner />
     </>
   );
 }
