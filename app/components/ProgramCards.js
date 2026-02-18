@@ -17,15 +17,13 @@ const ProgramCards = ({ programs }) => {
   return (
     <section className="py-16 bg-gradient-to-br from-slate-50 via-white to-gray-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4">
-        
-        {/* Results Count */}
+
         <div className="mb-8 pt-4">
           <h2 className="text-2xl font-bold text-gray-800">
             Showing <span style={{ color: '#355E47' }}>{programs.length}</span> Programs
           </h2>
         </div>
 
-        {/* Program Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {programs.map((program, index) => (
             <motion.div
@@ -37,7 +35,6 @@ const ProgramCards = ({ programs }) => {
               whileHover={{ y: -8 }}
               className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all overflow-hidden group"
             >
-              {/* Program Image */}
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={program.image}
@@ -56,11 +53,9 @@ const ProgramCards = ({ programs }) => {
                 </div>
               </div>
 
-              {/* Program Content */}
               <div className="p-6">
                 <h3
                   className="text-xl font-bold text-slate-800 mb-3 transition-colors"
-                  style={{ '--hover-color': '#355E47' }}
                   onMouseEnter={e => e.currentTarget.style.color = '#355E47'}
                   onMouseLeave={e => e.currentTarget.style.color = ''}
                 >
@@ -70,7 +65,6 @@ const ProgramCards = ({ programs }) => {
                   {program.description}
                 </p>
 
-                {/* Program Info */}
                 <div className="space-y-2 mb-6">
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <Clock size={16} style={{ color: '#355E47' }} />
@@ -92,7 +86,6 @@ const ProgramCards = ({ programs }) => {
                   )}
                 </div>
 
-                {/* Key Features */}
                 <div className="mb-6">
                   <div className="flex items-center gap-2 mb-2">
                     <BookOpen size={16} style={{ color: '#355E47' }} />
@@ -108,14 +101,14 @@ const ProgramCards = ({ programs }) => {
                   </ul>
                 </div>
 
-                {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3">
+                  {/* Fixed: descriptive link text for SEO */}
                   <Link
                     href={`/programs/${program.slug}`}
                     style={{ background: 'linear-gradient(to right, #355E47, #2D5F3F)' }}
                     className="flex-1 text-white py-3 rounded-full font-semibold text-sm flex items-center justify-center gap-2 transition-all hover:shadow-lg text-center hover:opacity-90"
                   >
-                    Learn More
+                    Learn more about {program.name}
                     <ArrowRight size={16} />
                   </Link>
                   <Link
