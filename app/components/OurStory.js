@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Calendar, Rocket, Trophy, Globe, Users, Award } from 'lucide-react';
+import { Calendar, Rocket, Trophy, Globe, Users, Award, Star } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export default function OurStory() {
@@ -8,45 +8,45 @@ export default function OurStory() {
 
   const milestones = [
     {
-      year: "1999",
+      year: "2025",
       icon: Rocket,
       title: "The Beginning",
-      description: "Uni-Vivamus was founded with a vision to provide accessible, quality education to students worldwide.",
+      description: "Uni-Vivamus was founded with a bold vision to provide accessible, quality education to students worldwide.",
       color: "from-[#355E47] to-[#2D5F3F]"
     },
     {
-      year: "2005",
+      year: "2025",
       icon: Globe,
-      title: "Global Expansion",
-      description: "Opened our first international campus in Dubai, marking the start of our global presence.",
+      title: "Global Presence from Day One",
+      description: "Launched with campuses across the UK — London, Manchester, Birmingham, and Leeds — and an international campus in Dubai.",
       color: "from-[#2D5F3F] to-[#355E47]"
     },
     {
-      year: "2010",
-      icon: Users,
-      title: "10,000 Students",
-      description: "Reached a milestone of 10,000 enrolled students across 6 locations worldwide.",
+      year: "2025",
+      icon: Award,
+      title: "British Council Certified",
+      description: "Achieved British Council Certified Education Agent status, cementing our commitment to ethical, high-quality student guidance.",
       color: "from-[#3A5F4A] to-[#355E47]"
     },
     {
-      year: "2015",
-      icon: Award,
-      title: "Accreditation Excellence",
-      description: "Received international accreditations from QAA, AACSB, and EQUIS.",
+      year: "2025",
+      icon: Users,
+      title: "First Student Cohort",
+      description: "Welcomed our founding cohort of students from over 30 countries, marking the start of our international student community.",
       color: "from-[#355E47] to-[#3A5F4A]"
     },
     {
-      year: "2020",
-      icon: Trophy,
-      title: "Digital Innovation",
-      description: "Launched cutting-edge online learning platform, adapting to the changing educational landscape.",
+      year: "2025",
+      icon: Star,
+      title: "Multi-Continent Expansion",
+      description: "Extended our footprint to Europe and Malta, bringing world-class education across 3 continents in our first year.",
       color: "from-[#2D5F3F] to-[#3A5F4A]"
     },
     {
-      year: "2024",
-      icon: Globe,
-      title: "12 Global Locations",
-      description: "Expanded to 12 campuses across UK, Europe, Middle East, and Asia with 15,000+ students.",
+      year: "2025",
+      icon: Trophy,
+      title: "10 Global Campuses",
+      description: "Reached 10 campuses across the UK, UAE, France, Spain, Germany, USA, and Malta — and we're just getting started.",
       color: "from-[#355E47] to-[#2D5F3F]"
     }
   ];
@@ -54,6 +54,7 @@ export default function OurStory() {
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -70,14 +71,14 @@ export default function OurStory() {
             Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#355E47] to-[#2D5F3F]">Journey</span>
           </h2>
           <p className="text-base text-gray-600 max-w-2xl mx-auto">
-            25+ years of excellence, innovation, and transforming lives through education
+            Founded in 2025 — a bold new chapter in global education begins
           </p>
         </motion.div>
 
         {/* Timeline */}
         <div className="relative">
           {/* Center Line */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-[#355E47]/30 via-[#2D5F3F]/30 to-[#3A5F4A]/30"></div>
+          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-[#355E47]/30 via-[#2D5F3F]/30 to-[#3A5F4A]/30" />
 
           {/* Timeline Items */}
           <div className="space-y-10">
@@ -112,7 +113,7 @@ export default function OurStory() {
                 </div>
 
                 {/* Empty Space for Alignment */}
-                <div className="hidden md:block w-5/12"></div>
+                <div className="hidden md:block w-5/12" />
               </motion.div>
             ))}
           </div>
@@ -135,7 +136,7 @@ export default function OurStory() {
               Be Part of Our Story
             </h3>
             <p className="text-sm text-white/90 mb-6 max-w-xl mx-auto">
-              Join thousands of students who are writing their success stories with us
+              We're just getting started — join the founding generation of students shaping Uni-Vivamus's legacy
             </p>
             <button
               onClick={() => router.push('/apply')}
@@ -145,6 +146,7 @@ export default function OurStory() {
             </button>
           </div>
         </motion.div>
+
       </div>
     </section>
   );

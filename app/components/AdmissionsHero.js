@@ -18,7 +18,7 @@ export default function LocationHero({ location = {} }) {
       {/* Responsive Container */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-24">
         
-        {/* Breadcrumb - Responsive text size */}
+        {/* Breadcrumb */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -34,13 +34,13 @@ export default function LocationHero({ location = {} }) {
           <span className="text-white font-medium truncate">{location?.name}</span>
         </motion.div>
 
-        {/* Responsive Grid - Stack on mobile, side by side on larger screens */}
+        {/* Responsive Grid */}
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center">
           
-          {/* Left Content - Full width on mobile */}
+          {/* Left Content */}
           <div className="w-full text-center lg:text-left">
             
-            {/* Location Badge - Responsive sizing */}
+            {/* Location Badge */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -52,7 +52,7 @@ export default function LocationHero({ location = {} }) {
               <span className="text-xs sm:text-sm">{location?.country}</span>
             </motion.div>
 
-            {/* Heading - Responsive font sizes */}
+            {/* Heading */}
             <motion.h1
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -62,7 +62,7 @@ export default function LocationHero({ location = {} }) {
               {location?.name}
             </motion.h1>
 
-            {/* Tagline - Responsive text */}
+            {/* Tagline */}
             <motion.p
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -73,22 +73,13 @@ export default function LocationHero({ location = {} }) {
               {location?.tagline}
             </motion.p>
 
-            {/* Buttons - Responsive layout */}
+            {/* Single Contact Button */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
+              className="flex justify-center lg:justify-start"
             >
-              <a
-                href="/programs"
-                className="text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-sm sm:text-base transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center"
-                style={{ background: 'linear-gradient(to right, #355E47, #2D5F3F)' }}
-                onMouseEnter={e => e.target.style.background = 'linear-gradient(to right, #2D5F3F, #1a3d2a)'}
-                onMouseLeave={e => e.target.style.background = 'linear-gradient(to right, #355E47, #2D5F3F)'}
-              >
-                View Programs
-              </a>
               <a
                 href="/contact"
                 className="backdrop-blur-sm text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-sm sm:text-base transition-all text-center"
@@ -99,7 +90,7 @@ export default function LocationHero({ location = {} }) {
             </motion.div>
           </div>
 
-          {/* Right Stats - Responsive grid */}
+          {/* Right Stats */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
