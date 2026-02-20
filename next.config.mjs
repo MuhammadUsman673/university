@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',        // ✅ Static export for GoDaddy
   reactCompiler: true,
   reactStrictMode: false,
 
@@ -11,9 +12,14 @@ const nextConfig = {
     removeConsole: true,
   },
 
-  // ⭐ ADD THIS SECTION
   images: {
-    domains: ['images.unsplash.com'],
+    unoptimized: true,     // ✅ Required for static export
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
   },
 };
 
