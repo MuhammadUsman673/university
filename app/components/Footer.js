@@ -6,27 +6,24 @@ import Image from 'next/image';
 import { 
   Mail,
   Phone,
-  Send,
   ChevronRight,
-  ArrowRight
+  ArrowRight,
+  Clock
 } from 'lucide-react';
-import { useState } from 'react';
+
+const hours = [
+  { day: 'Mon', time: '09:00 – 17:00' },
+  { day: 'Tue', time: '09:00 – 17:00' },
+  { day: 'Wed', time: '09:00 – 17:00' },
+  { day: 'Thu', time: '09:00 – 17:00' },
+  { day: 'Fri', time: '09:00 – 17:00' },
+  { day: 'Sat', time: 'Closed' },
+  { day: 'Sun', time: 'Closed' },
+];
+
+const today = new Date().toLocaleDateString('en-GB', { weekday: 'short' });
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleNewsletterSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    // Add your newsletter logic here
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setEmail('');
-      alert('Thank you for subscribing!');
-    }, 1000);
-  };
-
   const quickLinks = [
     { name: 'About Us' },
     { name: 'Our Mission' },
@@ -56,41 +53,33 @@ const Footer = () => {
 
   return (
     <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-      {/* Newsletter Section */}
+
+      {/* Hours Banner */}
       <div className="border-b border-slate-700">
         <div className="max-w-6xl mx-auto px-4 py-8">
-          <div className="grid md:grid-cols-2 gap-6 items-center">
-            <div>
-              <h3 className="text-xl font-bold mb-2">
-                Stay Connected
-              </h3>
-              <p className="text-gray-400 text-sm">
-                Subscribe to our newsletter for the latest updates, news, and opportunities.
-              </p>
-            </div>
-            <form onSubmit={handleNewsletterSubmit} className="flex gap-3">
-              <div className="flex-1 relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  required
-                  className="w-full pl-10 pr-4 py-3 bg-slate-800/50 border border-slate-700 rounded-full text-white placeholder-gray-400 text-sm focus:outline-none focus:border-emerald-500 transition-colors"
-                />
-              </div>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                type="submit"
-                disabled={isSubmitting}
-                className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 px-6 py-3 rounded-full font-semibold text-sm flex items-center gap-2 shadow-md hover:shadow-lg transition-all disabled:opacity-50"
-              >
-                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
-                <Send size={16} />
-              </motion.button>
-            </form>
+          <div className="flex items-center gap-3 mb-5">
+            <Clock size={18} className="text-emerald-400" />
+            <h3 className="text-lg font-bold text-white">Opening Hours</h3>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3">
+            {hours.map(({ day, time }) => {
+              const isToday = today === day;
+              return (
+                <div
+                  key={day}
+                  className={`rounded-xl px-3 py-2.5 text-center ${
+                    isToday
+                      ? 'bg-emerald-600/20 border border-emerald-500/40'
+                      : 'bg-slate-800/50 border border-slate-700/50'
+                  }`}
+                >
+                  <p className={`text-xs font-bold mb-1 ${isToday ? 'text-emerald-400' : 'text-gray-400'}`}>{day}</p>
+                  <p className={`text-xs font-semibold ${time === 'Closed' ? 'text-gray-500' : isToday ? 'text-white' : 'text-gray-300'}`}>
+                    {time}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -99,7 +88,7 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           
-          {/* Brand Column - EXACT SAME LOGO AS NAVBAR */}
+          {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 group mb-5">
               <motion.div 
@@ -128,7 +117,7 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links - Non-clickable */}
+          {/* Quick Links */}
           <div>
             <h4 className="text-base font-bold mb-4 text-emerald-400">Quick Links</h4>
             <ul className="space-y-2">
@@ -143,7 +132,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Programs - Non-clickable */}
+          {/* Programs */}
           <div>
             <h4 className="text-base font-bold mb-4 text-emerald-400">Programs</h4>
             <ul className="space-y-2">
@@ -158,7 +147,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Support & Resources - Non-clickable */}
+          {/* Support */}
           <div>
             <h4 className="text-base font-bold mb-4 text-emerald-400">Support</h4>
             <ul className="space-y-2">
@@ -173,13 +162,10 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info - Only Email is clickable */}
+          {/* Contact Info */}
           <div>
             <h4 className="text-base font-bold mb-4 text-emerald-400">Contact Us</h4>
-            
-            {/* Contact Details - Phone (non-clickable), Email (clickable) */}
             <div className="space-y-3 mb-5">
-              {/* Phone - Non-clickable */}
               <div className="flex items-start gap-2 text-gray-400">
                 <Phone size={14} className="mt-0.5 text-emerald-500" />
                 <div>
@@ -187,8 +173,6 @@ const Footer = () => {
                   <p className="text-xs">+44 7466 685430</p>
                 </div>
               </div>
-              
-              {/* Email - Clickable (ONLY ONE) */}
               <a href="mailto:Admin@uni-vivamus.com" className="flex items-start gap-2 text-gray-400 hover:text-white transition-colors group">
                 <Mail size={14} className="mt-0.5 text-emerald-500" />
                 <div>
@@ -197,8 +181,6 @@ const Footer = () => {
                 </div>
               </a>
             </div>
-
-            {/* Apply Online - Clickable (ONLY ONE) */}
             <Link 
               href="/apply"
               className="inline-flex items-center gap-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-5 py-2.5 rounded-full font-semibold text-sm shadow-md hover:shadow-lg transition-all hover:scale-105"
@@ -215,19 +197,10 @@ const Footer = () => {
         <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-gray-400">
             <div className="flex flex-wrap justify-center md:justify-start gap-4">
-              {/* All bottom links - Non-clickable */}
-              <span className="hover:text-white transition-colors cursor-default">
-                Privacy Policy
-              </span>
-              <span className="hover:text-white transition-colors cursor-default">
-                Terms of Service
-              </span>
-              <span className="hover:text-white transition-colors cursor-default">
-                Cookie Policy
-              </span>
-              <span className="hover:text-white transition-colors cursor-default">
-                Accessibility
-              </span>
+              <span className="hover:text-white transition-colors cursor-default">Privacy Policy</span>
+              <span className="hover:text-white transition-colors cursor-default">Terms of Service</span>
+              <span className="hover:text-white transition-colors cursor-default">Cookie Policy</span>
+              <span className="hover:text-white transition-colors cursor-default">Accessibility</span>
             </div>
             <div className="text-center md:text-right">
               <p>© {new Date().getFullYear()} Uni Vivamus. All rights reserved.</p>

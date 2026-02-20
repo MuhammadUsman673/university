@@ -56,7 +56,7 @@ const INFO_CARDS = [
     title: 'Global Campuses',
     subtitle: '12 campuses across UK & worldwide',
     value: 'Find Your Campus →',
-    href: '/campuses',
+    href: '#',
     gradient: 'from-emerald-700 to-teal-600',
   },
 ];
@@ -342,4 +342,4 @@ export default function ContactForm() {
       </div>
     </section>
   );
-} 
+}
