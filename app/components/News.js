@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Calendar, ArrowRight, Mail } from 'lucide-react';
-import Link from 'next/link';
+import { Calendar, ArrowRight } from 'lucide-react';
 
 export default function News() {
   const newsArticles = [
@@ -107,30 +106,18 @@ export default function News() {
           transition={{ duration: 0.7 }}
           className="mb-14"
         >
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="h-px w-8" style={{ backgroundColor: '#355E47' }} />
-                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: '#6DB890' }}>
-                  Latest from Uni Vivamus
-                </span>
-              </div>
-              <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight">
-                News &{' '}
-                <span style={{ WebkitTextStroke: '1.5px #355E47', color: 'transparent' }}>
-                  Events
-                </span>
-              </h2>
-            </div>
-            <Link
-              href="/news"
-              className="group inline-flex items-center gap-2 text-sm font-semibold transition-all"
-              style={{ color: '#6DB890' }}
-            >
-              View all stories
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
+          <div className="flex items-center gap-2 mb-4">
+            <div className="h-px w-8" style={{ backgroundColor: '#355E47' }} />
+            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: '#6DB890' }}>
+              Latest from Uni Vivamus
+            </span>
           </div>
+          <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight">
+            News &{' '}
+            <span style={{ WebkitTextStroke: '1.5px #355E47', color: 'transparent' }}>
+              Events
+            </span>
+          </h2>
         </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
@@ -226,15 +213,10 @@ export default function News() {
               style={{ background: 'rgba(255,255,255,0.04)', borderColor: 'rgba(53,94,71,0.3)' }}>
 
               {/* Events header */}
-              <div className="px-5 py-4 border-b flex items-center justify-between flex-shrink-0"
+              <div className="px-5 py-4 border-b flex items-center gap-2 flex-shrink-0"
                 style={{ borderColor: 'rgba(53,94,71,0.3)', background: 'rgba(53,94,71,0.2)' }}>
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4" style={{ color: '#6DB890' }} />
-                  <span className="text-sm font-black text-white uppercase tracking-wide">Upcoming</span>
-                </div>
-                <Link href="/events" className="text-xs font-semibold" style={{ color: '#6DB890' }}>
-                  All events →
-                </Link>
+                <Calendar className="w-4 h-4" style={{ color: '#6DB890' }} />
+                <span className="text-sm font-black text-white uppercase tracking-wide">Upcoming Events</span>
               </div>
 
               {/* Events list */}
@@ -273,33 +255,6 @@ export default function News() {
                 ))}
               </div>
 
-              {/* Newsletter */}
-              <div className="px-5 py-4 border-t flex-shrink-0"
-                style={{ borderColor: 'rgba(53,94,71,0.3)', background: 'rgba(53,94,71,0.1)' }}>
-                <p className="text-xs font-bold text-white mb-1 flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5" style={{ color: '#6DB890' }} />
-                  Get updates in your inbox
-                </p>
-                <p className="text-xs mb-3" style={{ color: 'rgba(255,255,255,0.4)' }}>Weekly digest of news and events.</p>
-                <div className="flex gap-2">
-                  <input
-                    type="email"
-                    placeholder="your@email.com"
-                    className="flex-1 text-xs px-3 py-2 rounded-lg min-w-0 outline-none"
-                    style={{
-                      background: 'rgba(255,255,255,0.07)',
-                      border: '1px solid rgba(53,94,71,0.5)',
-                      color: 'white',
-                    }}
-                  />
-                  <button
-                    className="text-white text-xs px-3 py-2 rounded-lg font-bold flex-shrink-0 hover:opacity-90 transition-opacity"
-                    style={{ background: 'linear-gradient(135deg, #355E47, #2D9B5A)' }}
-                  >
-                    Go
-                  </button>
-                </div>
-              </div>
             </div>
           </motion.div>
 

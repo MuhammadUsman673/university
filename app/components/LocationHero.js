@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { MapPin, Users, GraduationCap, Building2 } from 'lucide-react';
 
 export default function LocationHero({ location = {} }) {
-  // Destructure with defaults
   const {
     name = "Unknown Campus",
     country = "Unknown Country",
@@ -26,8 +25,7 @@ export default function LocationHero({ location = {} }) {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage:
-              'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
             backgroundSize: '40px 40px'
           }}
         />
@@ -41,13 +39,6 @@ export default function LocationHero({ location = {} }) {
           className="flex items-center gap-2 text-sm text-[#a3c9b3] mb-6"
         >
           <a href="/" className="hover:text-white transition-colors">Home</a>
-          <span>/</span>
-          <a
-            href={isInternational ? "/international" : "/homestudents"}
-            className="hover:text-white transition-colors"
-          >
-            {isInternational ? "International" : "Home Students"}
-          </a>
           <span>/</span>
           <span className="text-white">{name}</span>
         </motion.div>
@@ -89,12 +80,6 @@ export default function LocationHero({ location = {} }) {
               transition={{ delay: 0.4 }}
               className="flex flex-wrap gap-3"
             >
-              <a
-                href="/programs"
-                className="bg-[#355E47] text-white px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#2D5F3F] transition-all shadow-xl hover:shadow-2xl hover:scale-105"
-              >
-                View Programs
-              </a>
               <a
                 href="/contact"
                 className="bg-white/10 backdrop-blur-sm text-white px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-white/20 transition-all border border-white/20"

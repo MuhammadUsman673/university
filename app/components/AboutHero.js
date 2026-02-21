@@ -96,8 +96,8 @@ export default function AboutHero() {
                 <Award className="w-5 h-5 text-white" />
               </div>
               <div className="text-left">
-                <div className="text-xl md:text-2xl font-bold text-white">25+</div>
-                <div className="text-xs" style={{ color: 'rgba(255,255,255,0.7)' }}>Years</div>
+                <div className="text-xl md:text-2xl font-bold text-white">Est. 2025</div>
+                <div className="text-xs" style={{ color: 'rgba(255,255,255,0.7)' }}>Founded</div>
               </div>
             </div>
           </motion.div>
