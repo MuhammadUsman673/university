@@ -1,6 +1,11 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
+import emailjs from '@emailjs/browser';
+
+const EMAILJS_SERVICE_ID  = 'service_mnyveua';
+const EMAILJS_TEMPLATE_ID = 'template_822havh';
+const EMAILJS_PUBLIC_KEY  = 'oZeXWmfniEfCZEWu3';
 
 export default function ApplyPage() {
   const [formData, setFormData] = useState({
@@ -10,7 +15,6 @@ export default function ApplyPage() {
     phone: '',
     country: '',
     program: '',
-    intake: '',
     level: '',
     message: ''
   });
@@ -18,10 +22,7 @@ export default function ApplyPage() {
   const [status, setStatus] = useState('');
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -29,25 +30,28 @@ export default function ApplyPage() {
     setLoading(true);
     setStatus('');
 
-    // EmailJS Integration (You'll add your keys later)
     try {
-      // Simulate form submission - Replace with EmailJS
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name:    `${formData.firstName} ${formData.lastName}`,
+          email:   formData.email,
+          phone:   formData.phone,
+          subject: 'Application Form Submission',
+          campus:  `${formData.program} — ${formData.level} (${formData.country})`,
+          message: formData.message || 'No additional information provided.',
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
       setStatus('success');
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        country: '',
-        program: '',
-        intake: '',
-        level: '',
-        message: ''
-      });
+      setFormData({ firstName: '', lastName: '', email: '', phone: '', country: '', program: '', level: '', message: '' });
+      setTimeout(() => setStatus(''), 5000);
     } catch (error) {
+      console.error('EmailJS error:', error);
       setStatus('error');
+      setTimeout(() => setStatus(''), 5000);
     } finally {
       setLoading(false);
     }
@@ -63,9 +67,7 @@ export default function ApplyPage() {
         <div className="absolute inset-0 bg-black/30"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              Start Your Journey
-            </h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">Start Your Journey</h1>
             <p className="text-base md:text-lg text-white/85">
               Apply now to join thousands of students achieving their dreams at Uni Vivamus
             </p>
@@ -77,8 +79,7 @@ export default function ApplyPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            
-            {/* Success/Error Messages */}
+
             {status === 'success' && (
               <div className="mb-8 p-6 bg-green-50 border-l-4 border-green-500 rounded-r-lg">
                 <div className="flex items-center">
@@ -115,203 +116,114 @@ export default function ApplyPage() {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Personal Information */}
+
+                {/* Name */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      First Name *
-                    </label>
-                    <input
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition"
-                      style={{ '--tw-ring-color': '#355E47' }}
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">First Name *</label>
+                    <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg transition"
                       onFocus={e => e.target.style.boxShadow = '0 0 0 2px rgba(53,94,71,0.3)'}
-                      onBlur={e => e.target.style.boxShadow = ''}
-                      placeholder="John"
-                    />
+                      onBlur={e => e.target.style.boxShadow = ''} placeholder="John" />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Last Name *
-                    </label>
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition"
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Last Name *</label>
+                    <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg transition"
                       onFocus={e => e.target.style.boxShadow = '0 0 0 2px rgba(53,94,71,0.3)'}
-                      onBlur={e => e.target.style.boxShadow = ''}
-                      placeholder="Doe"
-                    />
+                      onBlur={e => e.target.style.boxShadow = ''} placeholder="Doe" />
                   </div>
                 </div>
 
-                {/* Contact Information */}
+                {/* Email & Phone */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                    <input type="email" name="email" value={formData.email} onChange={handleChange} required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg transition"
                       onFocus={e => e.target.style.boxShadow = '0 0 0 2px rgba(53,94,71,0.3)'}
-                      onBlur={e => e.target.style.boxShadow = ''}
-                      placeholder="john.doe@email.com"
-                    />
+                      onBlur={e => e.target.style.boxShadow = ''} placeholder="john.doe@email.com" />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Phone Number *
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
+                    <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg transition"
                       onFocus={e => e.target.style.boxShadow = '0 0 0 2px rgba(53,94,71,0.3)'}
-                      onBlur={e => e.target.style.boxShadow = ''}
-                      placeholder="+44 123 456 7890"
-                    />
+                      onBlur={e => e.target.style.boxShadow = ''} placeholder="+44 123 456 7890" />
                   </div>
                 </div>
 
                 {/* Country */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Country of Residence *
-                  </label>
-                  <select
-                    name="country"
-                    value={formData.country}
-                    onChange={handleChange}
-                    required
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Country of Residence *</label>
+                  <select name="country" value={formData.country} onChange={handleChange} required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg transition"
                     onFocus={e => e.target.style.boxShadow = '0 0 0 2px rgba(53,94,71,0.3)'}
-                    onBlur={e => e.target.style.boxShadow = ''}
-                  >
+                    onBlur={e => e.target.style.boxShadow = ''}>
                     <option value="">Select Country</option>
-                    <option value="uk">United Kingdom</option>
-                    <option value="uae">United Arab Emirates</option>
-                    <option value="malta">Malta</option>
-                    <option value="france">France</option>
-                    <option value="germany">Germany</option>
-                    <option value="usa">United States</option>
-                    <option value="spain">Spain</option>
-                    <option value="pakistan">Pakistan</option>
-                    <option value="india">India</option>
-                    <option value="other">Other</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="United Arab Emirates">United Arab Emirates</option>
+                    <option value="Malta">Malta</option>
+                    <option value="France">France</option>
+                    <option value="Germany">Germany</option>
+                    <option value="United States">United States</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Pakistan">Pakistan</option>
+                    <option value="India">India</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
 
-                {/* Program Details */}
+                {/* Program & Level */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Program Interest *
-                    </label>
-                    <select
-                      name="program"
-                      value={formData.program}
-                      onChange={handleChange}
-                      required
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Program Interest *</label>
+                    <select name="program" value={formData.program} onChange={handleChange} required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg transition"
                       onFocus={e => e.target.style.boxShadow = '0 0 0 2px rgba(53,94,71,0.3)'}
-                      onBlur={e => e.target.style.boxShadow = ''}
-                    >
+                      onBlur={e => e.target.style.boxShadow = ''}>
                       <option value="">Select Program</option>
-                      <option value="business">Business & Management</option>
-                      <option value="computing">Computing & IT</option>
-                      <option value="health">Health & Social Care</option>
-                      <option value="hospitality">Hospitality & Tourism</option>
-                      <option value="law">Law</option>
-                      <option value="engineering">Engineering</option>
-                      <option value="arts">Arts & Design</option>
+                      <option value="Business & Management">Business & Management</option>
+                      <option value="Computing & IT">Computing & IT</option>
+                      <option value="Health & Social Care">Health & Social Care</option>
+                      <option value="Hospitality & Tourism">Hospitality & Tourism</option>
+                      <option value="Law">Law</option>
+                      <option value="Engineering">Engineering</option>
+                      <option value="Arts & Design">Arts & Design</option>
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Study Level *
-                    </label>
-                    <select
-                      name="level"
-                      value={formData.level}
-                      onChange={handleChange}
-                      required
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Study Level *</label>
+                    <select name="level" value={formData.level} onChange={handleChange} required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg transition"
                       onFocus={e => e.target.style.boxShadow = '0 0 0 2px rgba(53,94,71,0.3)'}
-                      onBlur={e => e.target.style.boxShadow = ''}
-                    >
+                      onBlur={e => e.target.style.boxShadow = ''}>
                       <option value="">Select Level</option>
-                      <option value="undergraduate">Undergraduate</option>
-                      <option value="postgraduate">Postgraduate</option>
-                      <option value="diploma">Diploma</option>
-                      <option value="certificate">Certificate</option>
+                      <option value="Undergraduate">Undergraduate</option>
+                      <option value="Postgraduate">Postgraduate</option>
+                      <option value="Diploma">Diploma</option>
+                      <option value="Certificate">Certificate</option>
                     </select>
                   </div>
                 </div>
 
-                {/* Intake */}
+                {/* Message */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Preferred Intake *
-                  </label>
-                  <select
-                    name="intake"
-                    value={formData.intake}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg transition"
-                    onFocus={e => e.target.style.boxShadow = '0 0 0 2px rgba(53,94,71,0.3)'}
-                    onBlur={e => e.target.style.boxShadow = ''}
-                  >
-                    <option value="">Select Intake</option>
-                    <option value="jan2026">January 2026</option>
-                    <option value="apr2026">April 2026</option>
-                    <option value="sep2026">September 2026</option>
-                    <option value="jan2027">January 2027</option>
-                  </select>
-                </div>
-
-                {/* Additional Message */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Additional Information (Optional)
-                  </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows="4"
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Additional Information (Optional)</label>
+                  <textarea name="message" value={formData.message} onChange={handleChange} rows="4"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg transition resize-none"
                     onFocus={e => e.target.style.boxShadow = '0 0 0 2px rgba(53,94,71,0.3)'}
                     onBlur={e => e.target.style.boxShadow = ''}
-                    placeholder="Tell us about your educational background, career goals, or any questions you have..."
-                  ></textarea>
+                    placeholder="Tell us about your educational background, career goals, or any questions you have..."></textarea>
                 </div>
 
-                {/* Submit Button */}
+                {/* Submit */}
                 <div className="pt-4">
-                  <button
-                    type="submit"
-                    disabled={loading}
+                  <button type="submit" disabled={loading}
                     className="w-full text-white font-bold py-4 px-8 rounded-lg transform hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                     style={{ background: 'linear-gradient(to right, #355E47, #2D5F3F)' }}
                     onMouseEnter={e => !loading && (e.currentTarget.style.background = 'linear-gradient(to right, #2D5F3F, #1a2e23)')}
-                    onMouseLeave={e => !loading && (e.currentTarget.style.background = 'linear-gradient(to right, #355E47, #2D5F3F)')}
-                  >
+                    onMouseLeave={e => !loading && (e.currentTarget.style.background = 'linear-gradient(to right, #355E47, #2D5F3F)')}>
                     {loading ? (
                       <span className="flex items-center justify-center">
                         <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
@@ -320,9 +232,7 @@ export default function ApplyPage() {
                         </svg>
                         Submitting...
                       </span>
-                    ) : (
-                      'Submit Application'
-                    )}
+                    ) : 'Submit Application'}
                   </button>
                   <p className="text-center text-sm text-gray-500 mt-4">
                     By submitting this form, you agree to our Privacy Policy and Terms of Service
@@ -334,10 +244,7 @@ export default function ApplyPage() {
             {/* Why Apply Section */}
             <div className="mt-16 grid md:grid-cols-3 gap-8">
               <div className="text-center">
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{ backgroundColor: 'rgba(53,94,71,0.1)' }}
-                >
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'rgba(53,94,71,0.1)' }}>
                   <svg className="w-8 h-8" style={{ color: '#355E47' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                   </svg>
@@ -346,10 +253,7 @@ export default function ApplyPage() {
                 <p className="text-gray-600 text-sm">Get a response within 48 hours</p>
               </div>
               <div className="text-center">
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{ backgroundColor: 'rgba(53,94,71,0.1)' }}
-                >
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'rgba(53,94,71,0.1)' }}>
                   <svg className="w-8 h-8" style={{ color: '#355E47' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                   </svg>
@@ -358,10 +262,7 @@ export default function ApplyPage() {
                 <p className="text-gray-600 text-sm">Simple application steps</p>
               </div>
               <div className="text-center">
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{ backgroundColor: 'rgba(53,94,71,0.1)' }}
-                >
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'rgba(53,94,71,0.1)' }}>
                   <svg className="w-8 h-8" style={{ color: '#355E47' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
                   </svg>
@@ -370,6 +271,7 @@ export default function ApplyPage() {
                 <p className="text-gray-600 text-sm">Dedicated admissions advisors</p>
               </div>
             </div>
+
           </div>
         </div>
       </section>
