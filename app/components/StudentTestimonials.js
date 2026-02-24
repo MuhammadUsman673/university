@@ -38,7 +38,7 @@ export default function StudentTestimonials() {
       name: "James Chen",
       program: "Engineering",
       year: "3rd Year",
-      location: "Singapore Campus",
+      location: "Leeds Campus",
       image: "/students/james.jpg",
       quote: "The innovation labs and maker spaces have been incredible for bringing my ideas to life. Plus, the sports facilities are top-notch!",
       highlight: "Robotics Team Captain"
