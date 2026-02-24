@@ -32,10 +32,18 @@ const Footer = () => {
   ];
 
   const programsLinks = [
-    { name: 'All Programs', href: '/programs' },
-    { name: 'Home Students (UK)', href: '/homestudents/london' },
-    { name: 'International Students', href: '/international/dubai' },
-    { name: 'Apply Now', href: '/apply' },
+    { name: 'BA (Hons) Business and Management', href: '/programs' },
+    { name: 'BSc (Hons) Cyber Security', href: '/programs' },
+    { name: 'BSc (Hons) Accounting and Finance', href: '/programs' },
+    { name: 'BSc (Hons) Health and Social Care', href: '/programs' },
+    { name: 'BSc Computer Science', href: '/programs' },
+    { name: 'BSc (Hons) Data Science', href: '/programs' },
+    { name: 'BSc Psychology', href: '/programs' },
+    { name: 'BA (Hons) Criminology and Psychology', href: '/programs' },
+    { name: 'LLB (Hons) Law', href: '/programs' },
+    { name: 'BSc (Hons) Hospitality and Tourism', href: '/programs' },
+    { name: 'BSc (Hons) Digital Marketing', href: '/programs' },
+    { name: 'BSc (Hons) Project Management', href: '/programs' },
   ];
 
   const ukCampuses = [
@@ -213,12 +221,7 @@ const Footer = () => {
       <div className="border-t border-slate-800">
         <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-gray-400">
-            <div className="flex flex-wrap justify-center md:justify-start gap-4">
-              <Link href="/contact" className="hover:text-white transition-colors">Privacy Policy</Link>
-              <Link href="/contact" className="hover:text-white transition-colors">Terms of Service</Link>
-              <Link href="/contact" className="hover:text-white transition-colors">Cookie Policy</Link>
-              <Link href="/contact" className="hover:text-white transition-colors">Accessibility</Link>
-            </div>
+
             <div className="text-center md:text-right">
               <p>© {new Date().getFullYear()} Uni Vivamus. All rights reserved.</p>
             </div>
