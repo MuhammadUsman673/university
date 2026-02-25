@@ -21,7 +21,7 @@ export default function ContactFAQ() {
     },
     {
       question: "Do you offer scholarships for international students?",
-      answer: "Yes! We offer merit-based and need-based scholarships for international students. Scholarship applications are reviewed automatically when you apply for admission. We award over $10M annually in scholarships."
+      answer: "Yes! We offer merit-based and need-based scholarships for international students. Scholarship applications are reviewed automatically when you apply for admission."
     },
     {
       question: "What English language requirements do you have?",
