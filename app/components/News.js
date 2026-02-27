@@ -87,7 +87,7 @@ const paths = [
     alumni: [
       { name: 'Kwame Mensah', role: 'Solicitor @ Clifford Chance', year: '2020', avatar: 'KM' },
       { name: 'Isabelle Roy', role: 'Policy Advisor @ Home Office', year: '2022', avatar: 'IR' },
-      { name: 'Ravi Gupta', role: 'Barrister @ Gray\'s Inn', year: '2021', avatar: 'RG' },
+      { name: 'Ravi Gupta', role: "Barrister @ Gray's Inn", year: '2021', avatar: 'RG' },
     ],
   },
 ];
@@ -195,7 +195,7 @@ export default function LifeAfterGraduation() {
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, #355E47, transparent)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, #355E47, transparent)' }} />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Header ── */}
         <div ref={headingRef} className="mb-14 text-center">
@@ -210,34 +210,35 @@ export default function LifeAfterGraduation() {
             Graduate Outcomes
           </motion.div>
 
-          <div className="overflow-hidden mb-4">
+          {/* Title — matches StatsCounter: text-2xl md:text-3xl */}
+          <div className="overflow-hidden mb-3">
             <motion.h2
-              initial={{ y: 90 }}
+              initial={{ y: 60 }}
               animate={headingInView ? { y: 0 } : {}}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl sm:text-7xl font-black text-white leading-none tracking-tight"
-              style={{ fontFamily: "'Syne', system-ui" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="text-2xl md:text-3xl font-bold text-white"
             >
               Life After{' '}
-              <span className="relative" style={{ color: active.color, transition: 'color 0.4s ease' }}>
+              <span className="relative inline-block" style={{ color: active.color, transition: 'color 0.4s ease' }}>
                 Graduation
                 <motion.span
                   className="absolute -bottom-1 left-0 h-0.5 rounded-full"
                   style={{ background: active.color, transition: 'background 0.4s ease' }}
                   initial={{ width: 0 }}
                   animate={headingInView ? { width: '100%' } : {}}
-                  transition={{ duration: 1, delay: 0.6 }}
+                  transition={{ duration: 0.9, delay: 0.5 }}
                 />
               </span>
             </motion.h2>
           </div>
 
+          {/* Subtitle — matches StatsCounter: text-base max-w-2xl */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={headingInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-base sm:text-lg max-w-xl mx-auto"
-            style={{ color: 'rgba(255,255,255,0.4)' }}
+            className="text-base max-w-2xl mx-auto"
+            style={{ color: 'rgba(255,255,255,0.5)' }}
           >
             Explore where our graduates go — real roles, real companies, real salaries.
           </motion.p>
@@ -273,8 +274,6 @@ export default function LifeAfterGraduation() {
           >
             {/* Left — Overview */}
             <div className="lg:col-span-1 flex flex-col gap-5">
-
-              {/* Salary + employment */}
               <div
                 className="rounded-2xl p-6 relative overflow-hidden"
                 style={{ background: active.bg, border: `1px solid ${active.border}` }}
@@ -285,15 +284,14 @@ export default function LifeAfterGraduation() {
                 </p>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-3xl font-black text-white" style={{ fontFamily: "'Syne', system-ui" }}>{active.avgSalary}</p>
+                    <p className="text-3xl font-black text-white">{active.avgSalary}</p>
                     <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.4)' }}>Avg. starting salary</p>
                   </div>
                   <div>
-                    <p className="text-3xl font-black text-white" style={{ fontFamily: "'Syne', system-ui" }}>{active.employed}</p>
+                    <p className="text-3xl font-black text-white">{active.employed}</p>
                     <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.4)' }}>Employed within 6 months</p>
                   </div>
                 </div>
-                {/* Bar */}
                 <div className="mt-5 h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.08)' }}>
                   <motion.div
                     className="h-full rounded-full"
@@ -305,7 +303,6 @@ export default function LifeAfterGraduation() {
                 </div>
               </div>
 
-              {/* Top roles */}
               <div
                 className="rounded-2xl p-6"
                 style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
@@ -358,7 +355,6 @@ export default function LifeAfterGraduation() {
                 </div>
               </div>
 
-              {/* Info card */}
               <motion.div
                 className="rounded-2xl p-6 relative overflow-hidden"
                 style={{
@@ -388,7 +384,6 @@ export default function LifeAfterGraduation() {
                     <AlumniCard key={a.name} alumni={a} color={active.color} index={i} />
                   ))}
                 </div>
-
               </div>
             </div>
           </motion.div>
@@ -405,7 +400,6 @@ export default function LifeAfterGraduation() {
         >
           Data sourced from Graduate Outcomes Survey 2025 · 6 months after graduation
         </motion.p>
-
       </div>
     </section>
   );
