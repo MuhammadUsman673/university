@@ -8,6 +8,7 @@ const paths = [
   {
     id: 'tech',
     label: 'Technology',
+    shortLabel: 'Tech',
     emoji: '💻',
     color: '#4ECDC4',
     bg: 'rgba(78,205,196,0.08)',
@@ -25,6 +26,7 @@ const paths = [
   {
     id: 'finance',
     label: 'Finance',
+    shortLabel: 'Finance',
     emoji: '📈',
     color: '#FFD166',
     bg: 'rgba(255,209,102,0.08)',
@@ -42,6 +44,7 @@ const paths = [
   {
     id: 'health',
     label: 'Healthcare',
+    shortLabel: 'Health',
     emoji: '🏥',
     color: '#FF6B6B',
     bg: 'rgba(255,107,107,0.08)',
@@ -59,6 +62,7 @@ const paths = [
   {
     id: 'creative',
     label: 'Creative',
+    shortLabel: 'Creative',
     emoji: '🎨',
     color: '#A78BFA',
     bg: 'rgba(167,139,250,0.08)',
@@ -76,6 +80,7 @@ const paths = [
   {
     id: 'law',
     label: 'Law & Policy',
+    shortLabel: 'Law',
     emoji: '⚖️',
     color: '#F97316',
     bg: 'rgba(249,115,22,0.08)',
@@ -103,7 +108,7 @@ function PathTab({ path, active, onClick, index }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.08 }}
       onClick={onClick}
-      className="relative flex flex-col items-center justify-center gap-1.5 px-2 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl transition-all duration-300 flex-1 min-w-0 touch-manipulation"
+      className="relative flex flex-col items-center justify-center gap-1 py-2 sm:py-3 rounded-xl sm:rounded-2xl transition-all duration-300 touch-manipulation w-full min-w-0"
       style={{
         background: active ? path.bg : 'rgba(255,255,255,0.02)',
         border: `1px solid ${active ? path.border : 'rgba(255,255,255,0.06)'}`,
@@ -111,24 +116,32 @@ function PathTab({ path, active, onClick, index }) {
       whileHover={{ y: -2 }}
       whileTap={{ scale: 0.97 }}
     >
-      <span className="text-lg sm:text-xl leading-none">{path.emoji}</span>
+      {/* Emoji scales with viewport so it never overflows */}
       <span
-        className="text-[10px] sm:text-xs font-black uppercase tracking-wider leading-tight text-center"
-        style={{ color: active ? path.color : 'rgba(255,255,255,0.4)' }}
+        className="leading-none select-none"
+        style={{ fontSize: 'clamp(14px, 4vw, 22px)' }}
       >
-        {/* Abbreviated label on tiny screens */}
-        <span className="hidden xs:inline sm:hidden">
-          {path.label.split(' ')[0]}
-        </span>
-        <span className="inline xs:hidden sm:inline">
-          {path.label}
-        </span>
+        {path.emoji}
       </span>
+
+      {/* Label: shortLabel on mobile, full label on sm+ */}
+      <span
+        className="font-black uppercase text-center leading-tight w-full px-0.5 truncate"
+        style={{
+          color: active ? path.color : 'rgba(255,255,255,0.4)',
+          fontSize: 'clamp(7px, 1.8vw, 11px)',
+          letterSpacing: '0.04em',
+        }}
+      >
+        <span className="sm:hidden">{path.shortLabel}</span>
+        <span className="hidden sm:inline">{path.label}</span>
+      </span>
+
       {active && (
         <motion.div
           layoutId="activeTab"
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full"
-          style={{ background: path.color }}
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 rounded-full"
+          style={{ background: path.color, width: 'clamp(12px, 3vw, 24px)' }}
         />
       )}
     </motion.button>
@@ -145,17 +158,17 @@ function AlumniCard({ alumni, color, index }) {
       initial={{ opacity: 0, x: -20 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="flex items-center gap-3 p-3 sm:p-4 rounded-xl"
+      className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl"
       style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
     >
       <div
-        className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs font-black flex-shrink-0"
+        className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs font-black flex-shrink-0"
         style={{ background: `${color}20`, color, border: `1px solid ${color}30` }}
       >
         {alumni.avatar}
       </div>
       <div className="min-w-0 flex-1">
-        <p className="text-sm font-bold text-white truncate">{alumni.name}</p>
+        <p className="text-xs sm:text-sm font-bold text-white truncate">{alumni.name}</p>
         <p className="text-xs truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>{alumni.role}</p>
       </div>
       <span className="flex-shrink-0 text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>'{alumni.year.slice(2)}</span>
@@ -175,7 +188,7 @@ export default function LifeAfterGraduation() {
   return (
     <section
       ref={containerRef}
-      className="relative py-16 sm:py-24 lg:py-32 overflow-hidden"
+      className="relative py-12 sm:py-24 lg:py-32 overflow-hidden"
       style={{ background: 'linear-gradient(170deg, #060e09 0%, #0b1a11 50%, #060e09 100%)' }}
     >
       {/* Parallax grid */}
@@ -204,18 +217,18 @@ export default function LifeAfterGraduation() {
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, #355E47, transparent)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, #355E47, transparent)' }} />
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
 
         {/* ── Header ── */}
-        <div ref={headingRef} className="mb-10 sm:mb-14 text-center">
+        <div ref={headingRef} className="mb-8 sm:mb-14 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={headingInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full border text-xs font-black uppercase tracking-widest"
+            className="inline-flex items-center gap-1.5 sm:gap-2 mb-4 sm:mb-6 px-3 sm:px-4 py-1.5 rounded-full border text-xs font-black uppercase tracking-widest"
             style={{ borderColor: 'rgba(109,184,144,0.3)', color: '#6DB890', background: 'rgba(53,94,71,0.12)' }}
           >
-            <TrendingUp className="w-3.5 h-3.5" />
+            <TrendingUp className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             Graduate Outcomes
           </motion.div>
 
@@ -244,19 +257,23 @@ export default function LifeAfterGraduation() {
             initial={{ opacity: 0, y: 16 }}
             animate={headingInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-sm sm:text-base max-w-2xl mx-auto px-4"
+            className="text-sm sm:text-base max-w-2xl mx-auto px-2"
             style={{ color: 'rgba(255,255,255,0.5)' }}
           >
             Explore where our graduates go — real roles, real companies, real salaries.
           </motion.p>
         </div>
 
-        {/* ── Path Tabs ── */}
+        {/* ── Path Tabs ──
+            Always a single 5-column row.
+            Mobile: emoji + shortLabel, fluid sizing via clamp so nothing overflows on 320px.
+            sm+:    emoji + full label.
+        ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={headingInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.4 }}
-          className="flex gap-1.5 sm:gap-3 mb-8 sm:mb-10"
+          className="grid grid-cols-5 gap-1.5 sm:gap-3 mb-6 sm:mb-10"
         >
           {paths.map((path, i) => (
             <PathTab
@@ -277,30 +294,31 @@ export default function LifeAfterGraduation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"
           >
-            {/* Left — Overview */}
-            <div className="md:col-span-1 lg:col-span-1 flex flex-col gap-4 sm:gap-5">
-              {/* Snapshot card */}
+            {/* ── Col 1: Snapshot + Top Roles ── */}
+            <div className="flex flex-col gap-3 sm:gap-5">
+
+              {/* Snapshot */}
               <div
-                className="rounded-2xl p-5 sm:p-6 relative overflow-hidden"
+                className="rounded-2xl p-4 sm:p-6 relative overflow-hidden"
                 style={{ background: active.bg, border: `1px solid ${active.border}` }}
               >
                 <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-10 blur-2xl" style={{ background: active.color }} />
-                <p className="text-xs font-black uppercase tracking-widest mb-4" style={{ color: active.color }}>
+                <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: active.color }}>
                   {active.label} Snapshot
                 </p>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <p className="text-2xl sm:text-3xl font-black text-white">{active.avgSalary}</p>
+                    <p className="text-xl sm:text-3xl font-black text-white leading-none">{active.avgSalary}</p>
                     <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.4)' }}>Avg. starting salary</p>
                   </div>
                   <div>
-                    <p className="text-2xl sm:text-3xl font-black text-white">{active.employed}</p>
+                    <p className="text-xl sm:text-3xl font-black text-white leading-none">{active.employed}</p>
                     <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.4)' }}>Employed within 6 months</p>
                   </div>
                 </div>
-                <div className="mt-5 h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.08)' }}>
+                <div className="mt-4 h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.08)' }}>
                   <motion.div
                     className="h-full rounded-full"
                     style={{ background: active.color }}
@@ -311,12 +329,12 @@ export default function LifeAfterGraduation() {
                 </div>
               </div>
 
-              {/* Top roles */}
+              {/* Top Roles */}
               <div
-                className="rounded-2xl p-5 sm:p-6"
+                className="rounded-2xl p-4 sm:p-6"
                 style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
               >
-                <p className="text-xs font-black uppercase tracking-widest mb-4" style={{ color: 'rgba(255,255,255,0.35)' }}>
+                <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: 'rgba(255,255,255,0.35)' }}>
                   Top Roles
                 </p>
                 <div className="flex flex-col gap-2">
@@ -326,36 +344,36 @@ export default function LifeAfterGraduation() {
                       initial={{ opacity: 0, x: -12 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.07 }}
-                      className="flex items-center gap-3"
+                      className="flex items-center gap-2 sm:gap-3"
                     >
                       <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: active.color }} />
-                      <span className="text-sm font-semibold text-white">{role}</span>
+                      <span className="text-xs sm:text-sm font-semibold text-white">{role}</span>
                     </motion.div>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Middle — Companies */}
-            <div className="md:col-span-1 lg:col-span-1 flex flex-col gap-4 sm:gap-5">
+            {/* ── Col 2: Companies + CTA ── */}
+            <div className="flex flex-col gap-3 sm:gap-5">
               <div
-                className="rounded-2xl p-5 sm:p-6 flex-1"
+                className="rounded-2xl p-4 sm:p-6 flex-1"
                 style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
               >
-                <div className="flex items-center gap-2 mb-5">
+                <div className="flex items-center gap-2 mb-4">
                   <Building2 className="w-4 h-4 flex-shrink-0" style={{ color: active.color }} />
                   <p className="text-xs font-black uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.35)' }}>
                     Hiring Our Graduates
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {active.companies.map((company, i) => (
                     <motion.span
                       key={company}
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: i * 0.06 }}
-                      className="px-3 py-1.5 rounded-xl text-xs font-bold"
+                      className="px-2 py-1 sm:px-3 sm:py-1.5 rounded-xl text-xs font-bold"
                       style={{ background: `${active.color}15`, color: active.color, border: `1px solid ${active.color}25` }}
                     >
                       {company}
@@ -365,7 +383,7 @@ export default function LifeAfterGraduation() {
               </div>
 
               <motion.div
-                className="rounded-2xl p-5 sm:p-6 relative overflow-hidden"
+                className="rounded-2xl p-4 sm:p-6 relative overflow-hidden"
                 style={{
                   background: `linear-gradient(135deg, ${active.color}20, ${active.color}08)`,
                   border: `1px solid ${active.color}30`,
@@ -376,20 +394,20 @@ export default function LifeAfterGraduation() {
               </motion.div>
             </div>
 
-            {/* Right — Alumni — full width on mobile/md, 1 col on lg */}
+            {/* ── Col 3: Alumni — full width on md, 1-col on lg ── */}
             <div className="md:col-span-2 lg:col-span-1">
               <div
-                className="rounded-2xl p-5 sm:p-6 h-full"
+                className="rounded-2xl p-4 sm:p-6 h-full"
                 style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
               >
-                <div className="flex items-center gap-2 mb-5">
+                <div className="flex items-center gap-2 mb-4">
                   <Briefcase className="w-4 h-4 flex-shrink-0" style={{ color: active.color }} />
                   <p className="text-xs font-black uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.35)' }}>
                     Alumni Spotlight
                   </p>
                 </div>
-                {/* On md (2-col), show alumni in a 3-col row; on lg back to stacked */}
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-1 gap-3">
+                {/* Stacked on mobile & lg; 3-col row on md where panel is full-width */}
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-1 gap-2 sm:gap-3">
                   {active.alumni.map((a, i) => (
                     <AlumniCard key={a.name} alumni={a} color={active.color} index={i} />
                   ))}
@@ -405,7 +423,7 @@ export default function LifeAfterGraduation() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="text-center text-xs mt-8 sm:mt-10 px-4"
+          className="text-center text-xs mt-8 sm:mt-10 px-4 leading-relaxed"
           style={{ color: 'rgba(255,255,255,0.2)' }}
         >
           Data sourced from Graduate Outcomes Survey 2025 · 6 months after graduation
