@@ -103,7 +103,7 @@ function PathTab({ path, active, onClick, index }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.08 }}
       onClick={onClick}
-      className="relative flex flex-col items-center gap-2 px-4 py-3 rounded-2xl transition-all duration-300 flex-1 min-w-0"
+      className="relative flex flex-col items-center justify-center gap-1.5 px-2 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl transition-all duration-300 flex-1 min-w-0 touch-manipulation"
       style={{
         background: active ? path.bg : 'rgba(255,255,255,0.02)',
         border: `1px solid ${active ? path.border : 'rgba(255,255,255,0.06)'}`,
@@ -111,17 +111,23 @@ function PathTab({ path, active, onClick, index }) {
       whileHover={{ y: -2 }}
       whileTap={{ scale: 0.97 }}
     >
-      <span className="text-xl">{path.emoji}</span>
+      <span className="text-lg sm:text-xl leading-none">{path.emoji}</span>
       <span
-        className="text-xs font-black uppercase tracking-wider hidden sm:block"
+        className="text-[10px] sm:text-xs font-black uppercase tracking-wider leading-tight text-center"
         style={{ color: active ? path.color : 'rgba(255,255,255,0.4)' }}
       >
-        {path.label}
+        {/* Abbreviated label on tiny screens */}
+        <span className="hidden xs:inline sm:hidden">
+          {path.label.split(' ')[0]}
+        </span>
+        <span className="inline xs:hidden sm:inline">
+          {path.label}
+        </span>
       </span>
       {active && (
         <motion.div
           layoutId="activeTab"
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full"
           style={{ background: path.color }}
         />
       )}
@@ -139,20 +145,20 @@ function AlumniCard({ alumni, color, index }) {
       initial={{ opacity: 0, x: -20 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="flex items-center gap-3 p-4 rounded-xl"
+      className="flex items-center gap-3 p-3 sm:p-4 rounded-xl"
       style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
     >
       <div
-        className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-black flex-shrink-0"
+        className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs font-black flex-shrink-0"
         style={{ background: `${color}20`, color, border: `1px solid ${color}30` }}
       >
         {alumni.avatar}
       </div>
-      <div className="min-w-0">
+      <div className="min-w-0 flex-1">
         <p className="text-sm font-bold text-white truncate">{alumni.name}</p>
         <p className="text-xs truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>{alumni.role}</p>
       </div>
-      <span className="flex-shrink-0 text-xs ml-auto" style={{ color: 'rgba(255,255,255,0.25)' }}>'{alumni.year.slice(2)}</span>
+      <span className="flex-shrink-0 text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>'{alumni.year.slice(2)}</span>
     </motion.div>
   );
 }
@@ -169,7 +175,7 @@ export default function LifeAfterGraduation() {
   return (
     <section
       ref={containerRef}
-      className="relative py-24 sm:py-32 overflow-hidden"
+      className="relative py-16 sm:py-24 lg:py-32 overflow-hidden"
       style={{ background: 'linear-gradient(170deg, #060e09 0%, #0b1a11 50%, #060e09 100%)' }}
     >
       {/* Parallax grid */}
@@ -188,7 +194,10 @@ export default function LifeAfterGraduation() {
       {/* Spotlight */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: `radial-gradient(ellipse 60% 50% at 50% 10%, ${active.color}12 0%, transparent 70%)`, transition: 'background 0.6s ease' }}
+        style={{
+          background: `radial-gradient(ellipse 60% 50% at 50% 10%, ${active.color}12 0%, transparent 70%)`,
+          transition: 'background 0.6s ease',
+        }}
       />
 
       {/* Accent lines */}
@@ -198,19 +207,18 @@ export default function LifeAfterGraduation() {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Header ── */}
-        <div ref={headingRef} className="mb-14 text-center">
+        <div ref={headingRef} className="mb-10 sm:mb-14 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={headingInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border text-xs font-black uppercase tracking-widest"
+            className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full border text-xs font-black uppercase tracking-widest"
             style={{ borderColor: 'rgba(109,184,144,0.3)', color: '#6DB890', background: 'rgba(53,94,71,0.12)' }}
           >
             <TrendingUp className="w-3.5 h-3.5" />
             Graduate Outcomes
           </motion.div>
 
-          {/* Title — matches StatsCounter: text-2xl md:text-3xl */}
           <div className="overflow-hidden mb-3">
             <motion.h2
               initial={{ y: 60 }}
@@ -232,12 +240,11 @@ export default function LifeAfterGraduation() {
             </motion.h2>
           </div>
 
-          {/* Subtitle — matches StatsCounter: text-base max-w-2xl */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={headingInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-base max-w-2xl mx-auto"
+            className="text-sm sm:text-base max-w-2xl mx-auto px-4"
             style={{ color: 'rgba(255,255,255,0.5)' }}
           >
             Explore where our graduates go — real roles, real companies, real salaries.
@@ -249,7 +256,7 @@ export default function LifeAfterGraduation() {
           initial={{ opacity: 0, y: 20 }}
           animate={headingInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.4 }}
-          className="flex gap-3 mb-10"
+          className="flex gap-1.5 sm:gap-3 mb-8 sm:mb-10"
         >
           {paths.map((path, i) => (
             <PathTab
@@ -270,12 +277,13 @@ export default function LifeAfterGraduation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="grid lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
           >
             {/* Left — Overview */}
-            <div className="lg:col-span-1 flex flex-col gap-5">
+            <div className="md:col-span-1 lg:col-span-1 flex flex-col gap-4 sm:gap-5">
+              {/* Snapshot card */}
               <div
-                className="rounded-2xl p-6 relative overflow-hidden"
+                className="rounded-2xl p-5 sm:p-6 relative overflow-hidden"
                 style={{ background: active.bg, border: `1px solid ${active.border}` }}
               >
                 <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-10 blur-2xl" style={{ background: active.color }} />
@@ -284,11 +292,11 @@ export default function LifeAfterGraduation() {
                 </p>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-3xl font-black text-white">{active.avgSalary}</p>
+                    <p className="text-2xl sm:text-3xl font-black text-white">{active.avgSalary}</p>
                     <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.4)' }}>Avg. starting salary</p>
                   </div>
                   <div>
-                    <p className="text-3xl font-black text-white">{active.employed}</p>
+                    <p className="text-2xl sm:text-3xl font-black text-white">{active.employed}</p>
                     <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.4)' }}>Employed within 6 months</p>
                   </div>
                 </div>
@@ -303,8 +311,9 @@ export default function LifeAfterGraduation() {
                 </div>
               </div>
 
+              {/* Top roles */}
               <div
-                className="rounded-2xl p-6"
+                className="rounded-2xl p-5 sm:p-6"
                 style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
               >
                 <p className="text-xs font-black uppercase tracking-widest mb-4" style={{ color: 'rgba(255,255,255,0.35)' }}>
@@ -328,13 +337,13 @@ export default function LifeAfterGraduation() {
             </div>
 
             {/* Middle — Companies */}
-            <div className="lg:col-span-1 flex flex-col gap-5">
+            <div className="md:col-span-1 lg:col-span-1 flex flex-col gap-4 sm:gap-5">
               <div
-                className="rounded-2xl p-6 flex-1"
+                className="rounded-2xl p-5 sm:p-6 flex-1"
                 style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
               >
                 <div className="flex items-center gap-2 mb-5">
-                  <Building2 className="w-4 h-4" style={{ color: active.color }} />
+                  <Building2 className="w-4 h-4 flex-shrink-0" style={{ color: active.color }} />
                   <p className="text-xs font-black uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.35)' }}>
                     Hiring Our Graduates
                   </p>
@@ -356,7 +365,7 @@ export default function LifeAfterGraduation() {
               </div>
 
               <motion.div
-                className="rounded-2xl p-6 relative overflow-hidden"
+                className="rounded-2xl p-5 sm:p-6 relative overflow-hidden"
                 style={{
                   background: `linear-gradient(135deg, ${active.color}20, ${active.color}08)`,
                   border: `1px solid ${active.color}30`,
@@ -367,19 +376,20 @@ export default function LifeAfterGraduation() {
               </motion.div>
             </div>
 
-            {/* Right — Alumni */}
-            <div className="lg:col-span-1">
+            {/* Right — Alumni — full width on mobile/md, 1 col on lg */}
+            <div className="md:col-span-2 lg:col-span-1">
               <div
-                className="rounded-2xl p-6 h-full"
+                className="rounded-2xl p-5 sm:p-6 h-full"
                 style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
               >
                 <div className="flex items-center gap-2 mb-5">
-                  <Briefcase className="w-4 h-4" style={{ color: active.color }} />
+                  <Briefcase className="w-4 h-4 flex-shrink-0" style={{ color: active.color }} />
                   <p className="text-xs font-black uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.35)' }}>
                     Alumni Spotlight
                   </p>
                 </div>
-                <div className="flex flex-col gap-3">
+                {/* On md (2-col), show alumni in a 3-col row; on lg back to stacked */}
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-1 gap-3">
                   {active.alumni.map((a, i) => (
                     <AlumniCard key={a.name} alumni={a} color={active.color} index={i} />
                   ))}
@@ -395,7 +405,7 @@ export default function LifeAfterGraduation() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="text-center text-xs mt-10"
+          className="text-center text-xs mt-8 sm:mt-10 px-4"
           style={{ color: 'rgba(255,255,255,0.2)' }}
         >
           Data sourced from Graduate Outcomes Survey 2025 · 6 months after graduation

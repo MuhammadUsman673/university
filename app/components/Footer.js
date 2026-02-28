@@ -21,7 +21,16 @@ const hours = [
   { day: 'Sun', time: 'Closed' },
 ];
 
-const today = new Date().toLocaleDateString('en-GB', { weekday: 'short' });
+// Use Intl.DateTimeFormat with explicit timezone to get the correct local day,
+// avoiding SSR/UTC mismatch (e.g. UTC is still Friday when it's Saturday in Lahore/London)
+const getTodayShort = () => {
+  return new Intl.DateTimeFormat('en-GB', {
+    weekday: 'short',
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+  }).format(new Date());
+};
+
+const today = getTodayShort();
 
 const Footer = () => {
   const quickLinks = [
