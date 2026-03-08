@@ -22,6 +22,9 @@ export const metadata = {
   title: "Uni Vivamus - Empowering Your Learning Journey",
   description: "Discover innovative educational resources and opportunities across the UK and internationally. Join thousands of students achieving their dreams.",
   keywords: "university, education, UK universities, international education, student admissions",
+  icons: {
+    icon: '/logo.jpeg',
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -33,6 +36,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
