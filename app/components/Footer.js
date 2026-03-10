@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import { 
   Mail,
   Phone,
@@ -12,27 +13,23 @@ import {
 } from 'lucide-react';
 
 const hours = [
+  { day: 'Sun', time: 'Closed' },
   { day: 'Mon', time: '09:00 – 17:00' },
   { day: 'Tue', time: '09:00 – 17:00' },
   { day: 'Wed', time: '09:00 – 17:00' },
   { day: 'Thu', time: '09:00 – 17:00' },
   { day: 'Fri', time: '09:00 – 17:00' },
   { day: 'Sat', time: 'Closed' },
-  { day: 'Sun', time: 'Closed' },
 ];
 
-// Use Intl.DateTimeFormat with explicit timezone to get the correct local day,
-// avoiding SSR/UTC mismatch (e.g. UTC is still Friday when it's Saturday in Lahore/London)
-const getTodayShort = () => {
-  return new Intl.DateTimeFormat('en-GB', {
-    weekday: 'short',
-    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-  }).format(new Date());
-};
-
-const today = getTodayShort();
-
 const Footer = () => {
+  // -1 = not yet hydrated (SSR safe), useEffect sets the real browser-local day
+  const [todayIndex, setTodayIndex] = useState(null);
+
+  useEffect(() => {
+    setTodayIndex(new Date().getDay()); // 0=Sun, 1=Mon, ... 6=Sat in LOCAL timezone
+  }, []);
+
   const quickLinks = [
     { name: 'About Us', href: '/about' },
     { name: 'Admissions', href: '/admissions' },
@@ -76,8 +73,8 @@ const Footer = () => {
             <h3 className="text-lg font-bold text-white">Opening Hours</h3>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3">
-            {hours.map(({ day, time }) => {
-              const isToday = today === day;
+            {hours.map(({ day, time }, index) => {
+              const isToday = todayIndex !== null && index === todayIndex;
               return (
                 <div
                   key={day}
