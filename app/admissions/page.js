@@ -1,6 +1,6 @@
 import AdmissionsHero from '../components/AdmissionsHero';
 import ApplicationProcess from '../components/ApplicationProcess';
-import AdmissionRequirements from '../components/AdmissionRequirements';
+// import AdmissionRequirements from '../components/AdmissionRequirements';
 import FeesScholarships from '../components/FeesScholarships';
 
 export default function AdmissionsPage() {
@@ -8,7 +8,7 @@ export default function AdmissionsPage() {
     <div>
       <AdmissionsHero />
       <ApplicationProcess/>
-      <AdmissionRequirements />
+      {/* <AdmissionRequirements /> */}
       <FeesScholarships />
     </div>
   );

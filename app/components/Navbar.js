@@ -44,7 +44,6 @@ const Navbar = () => {
 
   const admissionLinks = [
     { name: 'How to Apply', href: '/admissions', desc: 'Step-by-step guide' },
-    { name: 'Entry Requirements', href: '/admissions', desc: 'Qualifications needed' },
     { name: 'Tuition & Fees', href: '/admissions', desc: 'Costs & payment plans' },
     { name: 'Scholarships', href: '/admissions', desc: 'Funding opportunities' },
   ];
