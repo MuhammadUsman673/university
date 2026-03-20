@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 import { motion } from 'framer-motion';
-import { FileText, Upload, CreditCard, CheckCircle, Users } from 'lucide-react';
+import { FileText, Upload, CheckCircle, Users, Gift } from 'lucide-react';
 
 const ApplicationProcess = () => {
   const steps = [
@@ -24,10 +24,10 @@ const ApplicationProcess = () => {
     },
     {
       number: 3,
-      icon: CreditCard,
-      title: 'Pay Application Fee',
-      description: 'Pay the £50 application fee securely through our payment portal.',
-      duration: '5 minutes',
+      icon: Gift,
+      title: 'Free Application',
+      description: 'Apply completely free of charge — no application fee required.',
+      duration: '2 minutes',
       color: 'from-amber-500 to-amber-600'
     },
     {
