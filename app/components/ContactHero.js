@@ -87,7 +87,12 @@ export default function ContactHero() {
               </div>
               <div className="text-left">
                 <div className="text-xs" style={{ color: 'rgba(255,255,255,0.7)' }}>Visit Us</div>
-                <div className="text-base font-semibold text-white">12 Global Locations</div>
+               <div className="text-base font-semibold text-white leading-relaxed">
+  <span className="block">Visit us at our office:</span>
+  <span className="block text-sm font-normal">
+    HQ3 The Quadrant, Coventry, England, CV1 2DY
+  </span>
+</div>
               </div>
             </div>
           </motion.div>
